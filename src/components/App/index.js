@@ -1,13 +1,35 @@
 // == Import
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+
+// import styles
+import './styles.scss';
+
+// import components
+import Header from '../Header';
+import Footer from '../Footer';
+import Home from '../Home';
 
 // == Composant
-function App() {
+const App = () => { 
+  // utils
+  const location = useLocation();
+
+  // scroll to top on page change
+  useEffect(
+    () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
+    },
+    [location]
+  );
+
   return (
     <div className="app">
-      <img src={reactLogo} alt="react logo" />
-      <h1>Composant : App</h1>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      {/* <Footer /> */}
     </div>
   );
 }

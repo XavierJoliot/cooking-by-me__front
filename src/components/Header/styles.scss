@@ -1,0 +1,148 @@
+@use '../../styles/vars';
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  z-index: 1000;
+  box-shadow: 0px 3px 5px #6b6b6b;
+
+  &__left {
+    width: 20%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    &__burger {  
+      padding: .5rem;
+      margin: .5rem;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      z-index: 3;
+  
+      &__icon {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        
+        &__link {
+          position: relative;
+          display: block;
+          width: 35px;
+          height: 3px;
+          border-radius: 2px;
+          background: transparent;
+          transition: all .2s ease-in-out;
+  
+          
+          &:before, 
+          &:after {
+            position: absolute;
+            background: vars.$third-color;
+            content: '';
+            width: 35px;
+            height: 3px;
+            border-radius: 2px;
+            transition: all .2s ease-in-out;
+          }
+          
+          &:before {
+            top: -6px;
+          }
+          
+          &:after {
+            top: 6px;
+          }
+        }
+  
+        &--active {
+  
+          span {  
+            
+            &:before {
+              transform: rotate(45deg) translate(5px, 4px);
+              width: 31px;
+            }
+            
+            &:after {
+              transform: rotate(-45deg) translate(5px, -4px);
+              width: 31px;
+            }
+          }
+        }
+      } 
+    }
+  
+    &__navigation {
+      top: 0;
+      padding-top: 5rem;
+      height: 100vh;
+      position: absolute;
+      background-color: red;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      overflow: scroll;
+      overscroll-behavior: contain;
+      transform: translatex(-100%);
+      transition: all 1s;
+      z-index: 1;
+  
+  
+      &--active {
+        transform: translate(0);
+      }
+  
+      &__list {
+  
+        &__link {
+          display: block;
+          transition: all .5s;
+          border-bottom: 1px solid transparent;
+  
+          &:hover {
+            color: #DAA520;
+            border-bottom: 1px solid #DAA520;
+          }
+  
+          &__item {
+            padding: 1rem;
+            margin: 0 4rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__center {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__link {
+      display: block;
+      padding: 1rem;
+
+      &__image {
+        width: 100%;
+      }
+    }
+  }
+
+  &__right {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

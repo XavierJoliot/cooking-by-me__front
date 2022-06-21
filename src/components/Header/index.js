@@ -1,0 +1,48 @@
+// import styles
+import './styles.scss';
+
+// import utils
+import HeadLogo from 'src/assets/images/logo_typo.png';
+import UserMenu from '../../shared/userMenu';
+
+const Header = () => {
+  // handleEvent
+  const handleBurgerClicked = (e) => {
+    const link = document.querySelector('.header__left__burger');
+    const nav = document.querySelector('.header__left__navigation');
+
+    link.classList.toggle('header__left__burger__icon--active');
+    nav.classList.toggle('header__left__navigation--active');
+
+    return false;
+  }
+
+  return (
+    <header className='header'>
+      <div className='header__left'>
+        <div className='header__left__burger'>
+          <div className='header__left__burger__icon' onClick={(handleBurgerClicked)} href="#">
+            <span className='header__left__burger__icon__link'></span>
+          </div>
+        </div>
+        <nav className='header__left__navigation'>
+          <ul className='header__left__navigation__list'>
+            <a className='header__left__navigation__list__link' href='#'>
+              <li className='header__left__navigation__list__link__item'>Home</li>
+            </a>
+          </ul>
+        </nav>
+      </div>
+      <div className='header__center'>
+        <a  className='header__center__link' href='/'>
+          <img  className='header__center__link__image' src={HeadLogo} alt="Logo cooking by me" />
+        </a>
+      </div>
+      <div className='header__right'>
+        <UserMenu />
+      </div>
+    </header>
+  );
+};
+
+export default Header;

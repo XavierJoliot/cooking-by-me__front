@@ -1,0 +1,68 @@
+@use '../../styles/vars';
+
+.home {
+  height: 9000px;
+
+  &__slider {
+    position: relative;
+
+    &__image {
+      width: 100%;
+    }
+  }
+
+  &__presentation {
+    text-align: center;
+    padding: 2rem;
+
+    &__logo {
+      width: 50%;
+      margin: 0 0 1rem 0;
+    }
+
+    &__image {
+      width: 100%;
+      margin: 1rem 0;
+    }
+
+    &__description {
+      text-align: left;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-top: 1px solid vars.$first-color;
+      border-bottom: 1px solid vars.$first-color;
+
+      &__text {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__my-recipes {
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('src/assets/images/mes-recettes.jpg');
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__cooking-recipes {
+
+    &__description {
+        padding: 2rem;
+
+      &__text {
+        margin-top: 1rem;
+      }
+    }
+
+    &__list {
+      display: flex;
+      overflow: auto;
+    }
+  }
+}
