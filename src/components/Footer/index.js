@@ -1,8 +1,13 @@
+// import utils
 import './styles.scss';
 
+// import component
+import ContactForm from '../../shared/contactForm';
+
 const Footer = () => (
-  <p>Composant : Footer</p>
-  
+  <footer>
+    <ContactForm />
+  </footer>  
 );
 
 export default Footer;

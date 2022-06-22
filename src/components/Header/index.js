@@ -27,7 +27,7 @@ const Header = () => {
         </div>
         <nav className='header__left__navigation'>
           <ul className='header__left__navigation__list'>
-            <a className='header__left__navigation__list__link' href='#'>
+            <a className='header__left__navigation__list__link' href='/'>
               <li className='header__left__navigation__list__link__item'>Home</li>
             </a>
           </ul>

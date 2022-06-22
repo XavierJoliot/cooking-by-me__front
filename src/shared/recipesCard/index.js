@@ -23,7 +23,7 @@ const RecipesCard = ({ imagePath, time, title, quantity }) => (
 
 RecipesCard.propTypes = {
   imagePath: PropTypes.string.isRequired,
-  time: PropTypes.number.isReauired,
+  time: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired
 };

@@ -3,16 +3,30 @@
 .button {
   padding: 1rem;
   border: none;
+  transition: all .5s;
+  border-radius: 2px;
 }
 
 .fill {
-  border-radius: 2px;
   background-color: vars.$first-color;
   color: vars.$second-color;
-  transition: all .5s;
+  border: 1px solid vars.$first-color;
 
   &:hover {
+    border: 1px solid vars.$second-color;
     background-color: vars.$second-color;
     color: vars.$first-color;
+  }
+}
+
+.stroke {
+  background-color: #fff;
+  color: vars.$first-color;
+  border: 1px solid vars.$first-color;
+
+  &:hover {
+    background-color: vars.$first-color;
+    border: 1px solid vars.$first-color;
+    color: vars.$second-color;
   }
 }

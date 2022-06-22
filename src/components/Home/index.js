@@ -3,6 +3,7 @@ import './styles.scss';
 
 // import images
 import Slider from '../../assets/images/slider-head-home.jpg';
+import HowItWork from '../../assets/images/how-it-work.jpg';
 import Logo from '../../assets/images/logo.png'
 
 // import component
@@ -15,14 +16,16 @@ const Home = () => (
       <img className='home__slider__image' src={Slider} alt="Livre de recettes Cooking by me" />
     </section>
     <section className='home__presentation'>
-      <img className='home__presentation__logo' src={Logo} alt="Logo simplifié Cooking by me" />
+      <div className='home__presentation__logo'>
+        <img className='home__presentation__logo__item' src={Logo} alt="Logo simplifié Cooking by me" />
+      </div>
       <div className='home__presentation__description'>
         <h1 className='home__presentation__description__title'>Comment ça fonctionne ?</h1>
         <p className='home__presentation__description__text'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim mauris, dictum eget sapien vitae, auctor vulputate mi. Maecenas finibus elit arcu, vel sodales massa vulputate quis. Praesent iaculis risus vitae feugiat laoreet. Vestibulum ut ligula nec mi rhoncus sodales.
         </p>
       </div>
-      <img className='home__presentation__image' src={Slider} alt="Livre de recettes Cooking by me" />
+      <img className='home__presentation__image' src={HowItWork} alt="Livre de recettes Cooking by me" />
     </section>
     <section className='home__my-recipes'>
       <Button type='button' text='Mes recettes' className='fill' />

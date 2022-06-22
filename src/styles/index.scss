@@ -1,10 +1,17 @@
 @use 'reset';
 @use 'vars';
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
 body {
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   width: 100%;
+}
+
+textarea,
+input {
+  font-family: 'Raleway', sans-serif;
 }
 
 h1,
