@@ -1,8 +1,10 @@
 // import styles
 import './styles.scss';
 
-// import utils
+// import images
 import HeadLogo from 'src/assets/images/logo_typo.png';
+
+// import component
 import UserMenu from '../../shared/userMenu';
 
 const Header = () => {

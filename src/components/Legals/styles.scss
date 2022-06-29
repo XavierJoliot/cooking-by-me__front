@@ -1,0 +1,27 @@
+@use '../../styles/vars';
+
+.legals {
+  padding: 2rem;
+
+  &__title {
+    font-weight: vars.$font-bold;
+    margin-bottom: 2rem;
+  }
+
+  &__theme {
+    margin-bottom: 1.5rem;
+
+    &__title {
+      margin-bottom: .5rem;
+    }
+
+    &__subtitle {
+      margin-bottom: .5rem;
+    }
+
+    &__content {
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}

@@ -6,6 +6,10 @@
   flex-direction: column;
   align-items: center;
 
+  &__hidden {
+    display: none;
+  }
+
   &__image {
     width: 100%;
     
