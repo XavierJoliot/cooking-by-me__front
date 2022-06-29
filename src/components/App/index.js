@@ -11,6 +11,7 @@ import Footer from '../Footer';
 import Home from '../Home';
 import AboutUs from '../AboutUs';
 import Contact from '../Contact';
+import Legals from '../Legals';
 
 // == Composant
 const App = () => { 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/a-propos-de-nous" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/mentions-legales" element={<Legals />} />
       </Routes>
       <Footer />
     </div>
