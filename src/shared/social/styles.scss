@@ -1,0 +1,15 @@
+.social {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__link {
+    display: block;
+    padding: 1rem;
+    width: 75px;
+
+    &__image {
+      width: 100%;
+    }
+  }
+}
