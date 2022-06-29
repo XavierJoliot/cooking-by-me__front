@@ -33,6 +33,9 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/a-propos-de-nous'>
               <li className='header__left__navigation__list__link__item'>À propos de nous</li>
             </a>
+            <a className='header__left__navigation__list__link' href='/contact'>
+              <li className='header__left__navigation__list__link__item'>Contact</li>
+            </a>
           </ul>
         </nav>
       </div>
