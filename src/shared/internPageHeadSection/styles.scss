@@ -2,16 +2,14 @@
 
 .head {
   width: 100%;
+  padding: 2rem;
   position: relative;
   text-align: center;
-
-  &__image {
-    width: 100%;
-  }
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 
   &__title {
-    top: 30%;
-    position: absolute;
     width: 100%;
     font-weight: vars.$font-bold;
     padding: .5rem;

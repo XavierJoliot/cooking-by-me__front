@@ -3,8 +3,7 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 
 const InternPageHeadSection = ({ imagePath, title }) => (
-  <section className='head'>
-    <img src={imagePath} className='head__image' alt='Cooking by me image entête' />
+  <section className='head' style={{"background-image": "url(" + imagePath + ")"}}>
     <h1 className='head__title'>{title}</h1>
   </section>  
 );
