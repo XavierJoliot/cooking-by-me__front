@@ -9,6 +9,7 @@ import './styles.scss';
 import Header from '../Header';
 import Footer from '../Footer';
 import Home from '../Home';
+import AboutUs from '../AboutUs';
 
 // == Composant
 const App = () => { 
@@ -28,6 +29,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/a-propos-de-nous" element={<AboutUs />} />
       </Routes>
       <Footer />
     </div>

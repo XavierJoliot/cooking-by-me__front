@@ -28,7 +28,10 @@ const Header = () => {
         <nav className='header__left__navigation'>
           <ul className='header__left__navigation__list'>
             <a className='header__left__navigation__list__link' href='/'>
-              <li className='header__left__navigation__list__link__item'>Home</li>
+              <li className='header__left__navigation__list__link__item'>Cooking by me</li>
+            </a>
+            <a className='header__left__navigation__list__link' href='/a-propos-de-nous'>
+              <li className='header__left__navigation__list__link__item'>À propos de nous</li>
             </a>
           </ul>
         </nav>

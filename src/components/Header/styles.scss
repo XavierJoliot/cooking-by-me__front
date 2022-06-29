@@ -86,7 +86,7 @@
       padding-top: 5rem;
       height: 100vh;
       position: absolute;
-      background-color: red;
+      background-color: #fff;
       left: 0;
       width: 100%;
       text-align: center;
@@ -103,11 +103,14 @@
       }
   
       &__list {
+        padding: 1rem;
   
         &__link {
           display: block;
+          width: 100%;
           transition: all .5s;
-          border-bottom: 1px solid transparent;
+          border-bottom: 1px solid vars.$third-color;
+          padding: 1rem;
   
           &:hover {
             color: #DAA520;
@@ -116,7 +119,7 @@
   
           &__item {
             padding: 1rem;
-            margin: 0 4rem;
+
           }
         }
       }
