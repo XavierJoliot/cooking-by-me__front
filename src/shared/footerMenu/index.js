@@ -16,7 +16,7 @@ const FooterMenu = () => (
       <a className='footer-navigation__list__link' href='/a-propos-de-nous' target='_blank'>
         <li className='footer-navigation__list__link__item'>À propos de nous</li>
       </a>
-      <a className='footer-navigation__list__link' href='#' target='_blank'>
+      <a className='footer-navigation__list__link' href='mes-recettes' target='_blank'>
         <li className='footer-navigation__list__link__item'>Mes recettes</li>
       </a>
       <a className='footer-navigation__list__link' href='#' target='_blank'>

@@ -1,0 +1,18 @@
+@use '../../styles/vars';
+
+.group-card {
+  min-width: 150px;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  box-shadow: 0px 3px 5px #a2a2a2;
+  margin-right: .5rem;
+
+  &__title {
+    font-weight: vars.$font-bold;
+  }
+}

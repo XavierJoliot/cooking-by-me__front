@@ -12,7 +12,8 @@
   &__title {
     width: 100%;
     font-weight: vars.$font-bold;
+    text-shadow: vars.$third-color 0 0 2px;
     padding: .5rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
   }
 }

@@ -35,6 +35,9 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/a-propos-de-nous'>
               <li className='header__left__navigation__list__link__item'>À propos de nous</li>
             </a>
+            <a className='header__left__navigation__list__link' href='/mes-recettes'>
+              <li className='header__left__navigation__list__link__item'>Mes recettes</li>
+            </a>
             <a className='header__left__navigation__list__link' href='/contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>

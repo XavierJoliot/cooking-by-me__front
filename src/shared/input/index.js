@@ -8,6 +8,12 @@ const Input = ({ name, type, value, label, placeholder }) => {
     console.log(e.target.value);
   };
 
+  let labelVisibility = <label className='group__label' htmlFor={name}>{label}</label>;
+
+  if(!label) {
+    labelVisibility = null;
+  }
+
   let input = <input
       className='group__input'
       type={type}
@@ -30,7 +36,7 @@ const Input = ({ name, type, value, label, placeholder }) => {
   }
   return (
     <div className='group'>
-      <label className='group__label' htmlFor={name}>{label}</label>
+      {label}
       {input}
     </div>
   );
@@ -40,7 +46,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
 }
 

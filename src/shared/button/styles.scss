@@ -7,6 +7,10 @@
   border-radius: 2px;
 }
 
+.full {
+  width: 100%;
+}
+
 .fill {
   background-color: vars.$first-color;
   color: vars.$second-color;
@@ -29,4 +33,10 @@
     border: 1px solid vars.$first-color;
     color: vars.$second-color;
   }
+}
+
+.filter {
+  border-radius: 30px;
+  padding: .5rem;
+  margin: .2rem;
 }
