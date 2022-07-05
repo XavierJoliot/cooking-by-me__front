@@ -25,5 +25,19 @@
       font-weight: vars.$font-bold;
       margin-bottom: .5rem;
     }
+
+    &__filter {
+      display: inline-block;
+      border: 1px solid vars.$first-color;
+      padding: .5rem;
+      border-radius: 50px;
+      margin: .5rem;
+      color: vars.$first-color;
+
+      &__hover {
+        color: #fff;
+        background-color: vars.$first-color;
+      }
+    }
   }
 }

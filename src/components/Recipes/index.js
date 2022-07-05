@@ -3,18 +3,26 @@ import './styles.scss';
 
 // import components
 import InternPageHeadSection from '../../shared/internPageHeadSection';
-
-// import images
-import HeadImage from '../../assets/images/recipes.jpg';
+import RecipesCard from '../../shared/recipesCard';
 import Sidebar from '../../shared/sidebar';
 import GroupCard from '../../shared/groupCard';
 
+// import images
+import HeadImage from '../../assets/images/recipes.jpg';
+import Slider from '../../assets/images/slider-head-home.jpg';
+
 const Recipes = () => { 
   const handleClick = (e) => {
-    if(e.target.classList.contains('fa-caret-down')){
-      e.target.classList.replace('fa-caret-down', 'fa-caret-right');
+    const elmt = e.target;
+    const parent = elmt.closest('div');
+    const content = parent.nextSibling;
+
+    if(elmt.classList.contains('fa-caret-down')){
+      elmt.classList.replace('fa-caret-down', 'fa-caret-right');
+      content.style.display = 'none';
     } else {
-      e.target.classList.replace('fa-caret-right', 'fa-caret-down');
+      elmt.classList.replace('fa-caret-right', 'fa-caret-down');
+      content.style.display = '';
     }
   }
   return(
@@ -30,7 +38,7 @@ const Recipes = () => {
           <Sidebar />
         </section>
         <section className='recipes__list__right'>
-          <div className='recipes__list__right__group'>
+          <div id='group' className='recipes__list__right__group'>
             <div className='recipes__list__right__group__title'>
               <h2 className='recipes__list__right__group__title__text'>Groupes</h2>
               <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
@@ -45,6 +53,60 @@ const Recipes = () => {
               <GroupCard title='Titre' imagePath='' />
               <GroupCard title='Titre' imagePath='' />
               <GroupCard title='Titre' imagePath='' />
+            </div>
+          </div>
+          <div className='recipes__list__right__group'>
+            <div id='recipes' className='recipes__list__right__group__title'>
+              <h2 className='recipes__list__right__group__title__text'>Mes recettes</h2>
+              <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
+              <span className='recipes__list__right__group__title__bar'></span>
+            </div>
+            <div className='content recipes__list__right__group__content'>
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
+            </div>
+          </div>
+          <div className='recipes__list__right__group'>
+            <div id='cooking' className='recipes__list__right__group__title'>
+              <h2 className='recipes__list__right__group__title__text'>Recettes Cookin by me</h2>
+              <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
+              <span className='recipes__list__right__group__title__bar'></span>
+            </div>
+            <div className='content recipes__list__right__group__content'>
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
+              <RecipesCard
+                imagePath={Slider} 
+                time={35}
+                title="test"
+                quantity={4}
+              />
             </div>
           </div>
         </section>

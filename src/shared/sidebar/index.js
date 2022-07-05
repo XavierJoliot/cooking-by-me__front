@@ -16,9 +16,9 @@ const Sidebar = () => (
     </div>
     <div className='sidebar__navigation'>
       <h2 className='sidebar__navigation__title'>Navigation :</h2>
-      <Button type='button' text='Groupes' className='stroke filter' />
-      <Button type='button' text='Mes recettes' className='stroke filter' />
-      <Button type='button' text='Recettes Cooking by me' className='stroke filter' />
+      <a href='#group' className='sidebar__navigation__filter'>Groupes</a>
+      <a href='#recipes' className='sidebar__navigation__filter'>Mes recettes</a>
+      <a href='#cooking' className='sidebar__navigation__filter'>Recettes Cooking by me</a>
     </div>
   </aside>
 );
