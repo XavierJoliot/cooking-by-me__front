@@ -18,6 +18,8 @@ const Header = () => {
 
     return false;
   }
+  
+  // You can add a reloadDocument property to the Link or NavLink that you want to cause a reload.
 
   return (
     <header className='header'>
