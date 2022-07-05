@@ -1,0 +1,43 @@
+@use '../../styles/vars';
+
+.sidebar {
+  width: 100%;
+  padding: 1rem;
+
+  &__add {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  &__search {
+    margin-bottom: 1rem;
+
+    &__title {
+      font-weight: vars.$font-bold;
+      margin-bottom: .5rem;
+    }
+  }
+
+  &__navigation {
+    width: 100%;
+
+    &__title {
+      font-weight: vars.$font-bold;
+      margin-bottom: .5rem;
+    }
+
+    &__filter {
+      display: inline-block;
+      border: 1px solid vars.$first-color;
+      padding: .5rem;
+      border-radius: 50px;
+      margin: .5rem;
+      color: vars.$first-color;
+
+      &__hover {
+        color: #fff;
+        background-color: vars.$first-color;
+      }
+    }
+  }
+}

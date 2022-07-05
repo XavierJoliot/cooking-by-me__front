@@ -1,0 +1,49 @@
+@use '../../styles/vars';
+
+.recipes {
+
+  &__description {
+    padding: 2rem;
+  }
+
+  &__list {
+
+    &__left {
+
+    }
+
+    &__right {
+
+      &__group {
+        padding: 1rem;
+
+        &__title {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          &__text {
+            font-weight: vars.$font-bold;
+          }
+
+          &__icon {
+            margin: 0 1rem;
+            color: vars.$first-color;
+          }
+
+          &__bar {
+            height: 2px;
+            width: 100%;
+            background-color: vars.$first-color;
+          }
+        }
+
+        &__content {
+          display: flex;
+          padding: 1rem;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
