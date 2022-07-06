@@ -52,15 +52,27 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    &__link {
+      display: block;
+    }
   }
 
   &__cooking-recipes {
 
     &__description {
         padding: 2rem;
+        display: flex;
+        flex-direction: column;
 
       &__text {
         margin-top: 1rem;
+      }
+
+      &__link {
+        display: block;
+        margin: 1rem;
+        align-self: center;
       }
     }
 
@@ -68,6 +80,77 @@
       display: flex;
       overflow: auto;
       margin-bottom: 2rem;
+
+      &::-webkit-scrollbar{
+        width: 10px;
+        height: 5px;
+
+        &-track {
+          box-shadow: inset 0 0 5px #dedede; 
+          border-radius: 10px;
+        }
+
+        &-thumb {
+          background: #b1b1b1; 
+          border-radius: 10px;
+
+          &:hover {
+            background: #8d8d8d; 
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 769px) {
+  .home {
+
+    &__presentation {
+      flex-direction: row;
+
+      &__logo {
+        width: 33%;
+        padding: 2rem;
+        text-align: center;
+
+        &__item {
+          width: 40%;
+        }
+      }
+
+      &__image {
+        padding: 2rem;
+        width: 33%;
+      }
+
+      &__description {
+        padding: 2rem 3rem;
+        width: 33%;
+        border: none;
+        border-right: 1px solid vars.$first-color;
+        border-left: 1px solid vars.$first-color;
+      }
+    }
+
+    &__cooking-recipes {
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+
+      &__description{
+        width: 40%;
+
+        &__link {
+          align-self: flex-start;
+          margin-left: 0;
+        }
+      }
+
+      &__list {
+        width: 60%;
+        margin-bottom: 0;
+      }
     }
   }
 }
