@@ -28,7 +28,9 @@ const Home = () => (
       <img className='home__presentation__image' src={HowItWork} alt="Livre de recettes Cooking by me" />
     </section>
     <section className='home__my-recipes'>
-      <Button type='button' text='Mes recettes' className='fill' />
+      <a className='home__my-recipes__link' href='mes-recettes/#recipes'>
+        <Button type='button' text='Mes recettes' className='fill' href='/mes-recettes/#recipes' />
+      </a>
     </section>
     <section className='home__cooking-recipes'>
       <div className='home__cooking-recipes__description'>
@@ -36,6 +38,9 @@ const Home = () => (
         <p className='home__cooking-recipes__description__text'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim mauris, dictum eget sapien vitae, auctor vulputate mi. Maecenas finibus elit arcu, vel sodales massa vulputate quis. Praesent iaculis risus vitae feugiat laoreet. Vestibulum ut ligula nec mi rhoncus sodales.
         </p>
+        <a className='home__cooking-recipes__description__link' href='mes-recettes/#cooking'>
+          <Button type='button' text='Découvrir' className='fill' /> 
+        </a>
       </div>
       <div className='home__cooking-recipes__list'>
         <RecipesCard

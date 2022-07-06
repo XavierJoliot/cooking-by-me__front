@@ -33,7 +33,9 @@ const AboutUs = () => (
     </section>
     <section className='about__foot'>
       <h2 className='about__foot__title'>Allez, on ne laisse pas l'huile sur le feu et on s'y met !</h2>
-      <Button type='button' text='Créer mon compte' className='fill' />
+      <a href='#' className='about__foot__link'>
+        <Button type='button' text='Créer mon compte' className='fill' />
+      </a>
     </section>
   </main>
 );

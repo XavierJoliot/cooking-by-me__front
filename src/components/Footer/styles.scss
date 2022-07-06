@@ -6,3 +6,12 @@
     padding: 1rem;
   }
 }
+
+@media(min-width: 769px) {
+  .footer {
+
+    &__copyright {
+      padding-top: 0;
+    }
+  }
+}

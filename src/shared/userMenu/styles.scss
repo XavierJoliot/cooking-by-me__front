@@ -13,3 +13,12 @@
     }
   }
 }
+
+@media (min-width: 769px) {
+  .user-menu {
+
+    &__avatar {
+      width: 75px;
+    }
+  }
+}

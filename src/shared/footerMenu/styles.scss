@@ -33,3 +33,29 @@
     }
   }
 }
+
+@media(min-width: 769px) {
+  .footer-navigation{
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem;
+    border-bottom: 1px solid vars.$first-color;
+    border-top: 1px solid vars.$first-color;
+
+    &__link {
+      width: 25%;
+
+      &__logo {
+        margin: 0;
+      }
+    }
+
+    &__list {
+      display: flex;
+      justify-content: center;
+      border: none;
+      width: auto;
+    }
+  }
+}
