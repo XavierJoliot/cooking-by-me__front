@@ -7,7 +7,6 @@ import Image from '../../assets/images/contact-form.jpg';
 // import component
 import Button from '../button';
 import Input from '../input';
-import { useLocation } from 'react-router-dom';
 
 const ContactForm = () => (
   <section className='contact'>

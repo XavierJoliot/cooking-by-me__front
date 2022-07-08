@@ -36,7 +36,7 @@ const Input = ({ name, type, value, label, placeholder }) => {
   }
   return (
     <div className='group'>
-      {label}
+      {labelVisibility}
       {input}
     </div>
   );

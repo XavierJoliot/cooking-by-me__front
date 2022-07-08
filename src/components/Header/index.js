@@ -25,7 +25,7 @@ const Header = () => {
     <header className='header'>
       <div className='header__left'>
         <div className='header__left__burger'>
-          <div className='header__left__burger__icon' onClick={(handleBurgerClicked)} href="#">
+          <div className='header__left__burger__icon' onClick={handleBurgerClicked} href="#">
             <span className='header__left__burger__icon__link'></span>
           </div>
         </div>

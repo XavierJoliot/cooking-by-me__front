@@ -27,6 +27,17 @@ const App = () => {
     [location]
   );
 
+  // change header bar color
+  // function runOnScroll() {
+  //   if (window.scrollY > 100) {
+  //     document.querySelector('.header').style.backgroundColor = "red";
+  //   } else {
+  //     document.querySelector('.header').style.backgroundColor = "#fff";
+  //   }
+  // };
+
+  // window.addEventListener("scroll", () => {runOnScroll()});
+
   return (
     <div className="app">
       <Header />
