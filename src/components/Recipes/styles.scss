@@ -80,6 +80,17 @@
 
       &__right {
         width: 75%;
+
+        &__group {
+          
+          &__content {
+
+            &--recipes {
+              overflow: hidden;
+              flex-wrap: wrap;
+            }
+          }
+        }
       }
     }
   }

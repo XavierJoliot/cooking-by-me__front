@@ -30,6 +30,10 @@
       }
     }
   }
+}
 
-
+@media(min-width: 769px) {
+  .card {
+    max-width: 310px;
+  }
 }
