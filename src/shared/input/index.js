@@ -1,11 +1,15 @@
 // import utils
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setInputValue } from '../../actions/input';
 import './styles.scss';
 
 const Input = ({ name, type, value, label, placeholder }) => {
 
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    console.log(e.target.value);
+    dispatch(setInputValue(name, e.target.value));
   };
 
   let labelVisibility = <label className='group__label' htmlFor={name}>{label}</label>;
@@ -30,6 +34,7 @@ const Input = ({ name, type, value, label, placeholder }) => {
       id={name}
       name={name}
       maxLength='200'
+      value={value}
       placeholder={placeholder}
       onChange={handleChange} 
     />;
@@ -45,9 +50,8 @@ const Input = ({ name, type, value, label, placeholder }) => {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   label: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 }
 
 export default Input;

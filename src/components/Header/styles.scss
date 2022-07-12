@@ -119,7 +119,6 @@
   
           &__item {
             padding: 1rem;
-
           }
         }
       }
@@ -147,6 +146,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &__button {
+      display: none;
+    }
   }
 }
 
@@ -207,6 +210,22 @@
 
     &__right {
       order: 3;
+
+      &__button {
+        display: block;
+        padding: .5rem;
+        background-color: vars.$first-color;
+        color: vars.$second-color;
+        transition: all .5s;
+        cursor: pointer;
+        margin-right: 1rem;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: vars.$second-color;
+          color: vars.$first-color;
+        }
+      }
     }
   }
 }

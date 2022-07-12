@@ -29,8 +29,6 @@ const Recipes = () => {
   }
 
   const { myRecipes } = useSelector((state) => state.recipes);
-
-  console.log(myRecipes);
   return(
     <main className='recipes'>
       <InternPageHeadSection imagePath={HeadImage} title='Mes recettes' />
@@ -71,7 +69,7 @@ const Recipes = () => {
               {
                 myRecipes.map(
                   (item) =>
-                    <Link to={'/recette/' + item.id} reloadDocument>
+                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
                       <RecipesCard
                         key={item.title}
                         imagePath={item.imagePath} 
@@ -86,7 +84,7 @@ const Recipes = () => {
           </div>
           <div className='recipes__list__right__group'>
             <div id='cooking' className='recipes__list__right__group__title'>
-              <h2 className='recipes__list__right__group__title__text'>Recettes Cookin by me</h2>
+              <h2 className='recipes__list__right__group__title__text'>Recettes Cooking by me</h2>
               <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
               <span className='recipes__list__right__group__title__bar'></span>
             </div>

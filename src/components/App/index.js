@@ -1,6 +1,7 @@
 // == Import
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // import styles
 import './styles.scss';
@@ -14,6 +15,7 @@ import Contact from '../Contact';
 import Legals from '../Legals';
 import Recipes from '../Recipes';
 import Recipe from '../Recipe';
+import Modal from '../Modal';
 
 // == Composant
 const App = () => { 
@@ -28,6 +30,8 @@ const App = () => {
     [location]
   );
 
+  const { isOpen } = useSelector((state) => state.addRecipeModal);
+
   // change header bar color
   // function runOnScroll() {
   //   if (window.scrollY > 100) {
@@ -41,6 +45,7 @@ const App = () => {
 
   return (
     <div className="app">
+      {isOpen && <Modal />}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

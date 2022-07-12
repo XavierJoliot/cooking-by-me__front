@@ -106,7 +106,7 @@
 
 @media(min-width:769px) {
   .recipe {
-    width: 70%;
+    width: 60%;
     padding: 2rem;
     margin: 3rem auto;
     box-shadow: 0px 3px 5px #a2a2a2;
@@ -136,6 +136,7 @@
 
       &__menu {
         justify-content: flex-start;
+        margin-bottom: 2rem;
 
         &__link {
           padding: 1rem 0;

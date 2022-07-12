@@ -1,0 +1,113 @@
+@use '../../styles/vars';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  padding: 2rem;
+  overflow-y: scroll;
+
+  &__form {
+    background-color: #fff;
+    padding: 2rem;
+    position: relative;
+
+    &__close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+    }
+
+    &__title {
+      color: #000;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 1rem;
+      font-weight: vars.$font-bold;
+    }
+
+    &__lists {
+
+      &__ingredients {
+        margin-bottom: 1rem;
+
+        &__title {
+          font-size: 18px;
+          font-family: 'Raleway', sans-serif;
+          font-weight: 700;
+          margin: 0.5rem 0;
+        }
+
+        &__list {
+          padding: 1rem;
+          list-style: circle;
+        }
+
+        &__add {
+          display: block;
+          padding: .5rem;
+          border-radius: 10px;
+          border: 1px solid vars.$first-color;
+          width: auto;
+          color: vars.$first-color;
+          transition: all .5s;
+          cursor: pointer;
+          text-align: center;
+          margin: .5rem 0;
+    
+          &:hover { 
+            background-color: vars.$first-color;
+            color: vars.$second-color;
+          }
+
+          &__icon {
+            color: vars.$first-color;
+          }
+        }
+
+      }
+
+      &__steps {
+        margin-bottom: 1rem;
+
+        &__title {
+          font-size: 18px;
+          font-family: 'Raleway', sans-serif;
+          font-weight: 700;
+          margin: 0.5rem 0;
+        }
+
+        &__list {
+          padding: 1rem;
+          list-style: circle;
+        }
+
+        &__add {
+          display: block;
+          padding: .5rem;
+          border-radius: 10px;
+          border: 1px solid vars.$first-color;
+          width: auto;
+          color: vars.$first-color;
+          transition: all .5s;
+          cursor: pointer;
+          text-align: center;
+          margin: .5rem 0;
+    
+          &:hover { 
+            background-color: vars.$first-color;
+            color: vars.$second-color;
+          }
+
+          &__icon {
+            color: vars.$first-color;
+          }
+        }
+      }
+    }
+  }
+}
