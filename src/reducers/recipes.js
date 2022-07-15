@@ -58,44 +58,41 @@ const initialState = {
       {
         id: 1,
         order: 1,
-        title: 'Titre 1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus posuere odio, a venenatis ipsum ultricies finibus.',
       },
       {
         id: 2,
         order: 2,
-        title: 'Titre 2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus posuere odio, a venenatis ipsum ultricies finibus.',
       },
       {
         id: 3,
         order: 3,
-        title: 'Titre 3',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus posuere odio, a venenatis ipsum ultricies finibus.',
       },
     ],
     ingredients: [
       {
         id: 1,
-        ingredientName: 'ingredient 1',
+        name: 'ingredient 1',
         quantity: 100,
         unit: 'g',
       },
       {
         id: 2,
-        ingredientName: 'ingredient 2',
+        name: 'ingredient 2',
         quantity: 100,
         unit: 'L',
       },
       {
         id: 3,
-        ingredientName: 'ingredient 3',
+        name: 'ingredient 3',
         quantity: 100,
         unit: 'ml',
       },
       {
         id: 4,
-        ingredientName: 'ingredient 4',
+        name: 'ingredient 4',
         quantity: 100,
         unit: 'g',
       },

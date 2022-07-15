@@ -1,16 +1,18 @@
 // import utils
 import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsModalOpen } from '../../actions/recipes';
+import { setIsItemModalOpen, setIsModalOpen, setItemModalType } from '../../actions/recipes';
+import { setInputAddRecipeValue } from '../../actions/input';
 
 // import component
 import Input from '../../shared/input';
 import Button from '../../shared/button';
 
-const Modal = () => { 
+const AddRecipeModal = () => { 
   const dispatch = useDispatch();
 
-  const { title, imagePath, time, people, note } = useSelector((state) => state.addRecipeModal.newRecipe);
+  const { title, imagePath, time, quantity, note } = useSelector((state) => state.addRecipeModal.newRecipe);
+  const { ingredients, steps } = useSelector((state) => state.addRecipeModal);
 
   const handleClose = () => {
     dispatch(setIsModalOpen());
@@ -19,6 +21,16 @@ const Modal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setIsModalOpen());
+  }
+
+  const handleOpenAddItemModal = (e) => {
+    if(e.target.id === 'ingredient') {
+      dispatch(setItemModalType('ingredient'));
+    };
+    if(e.target.id === 'step') {
+      dispatch(setItemModalType('step'));
+    };
+    dispatch(setIsItemModalOpen());
   }
 
   return (
@@ -32,29 +44,50 @@ const Modal = () => {
           value={title}
           label='Titre de la recette :' 
           placeholder='Entrez un titre pour votre recette..' 
+          action={setInputAddRecipeValue}
+          isRequired={true}
         />
         <Input
           name='imagePath'
           type='file'
           value={imagePath}
           label='Média :'
+          action={setInputAddRecipeValue}
+          isRequired={false}
         />
         <div className='modal__form__lists'>
           <div className='modal__form__lists__ingredients'>
             <h2 className='modal__form__lists__ingredients__title'>Ingrédients :</h2>
             <ul className='modal__form__lists__ingredients__list'>
-              <li className='modal__form__lists__ingredients__list__item'>test</li>
+              {
+                ingredients.map(
+                  (ingredient) => (
+                    <li key={ingredient.name} className='modal__form__lists__ingredients__list__item'>
+                      {ingredient.name} - {ingredient.quantity}{ingredient.unit}
+                    </li>
+                  )
+                )
+              }
             </ul>
-            <a className='modal__form__lists__ingredients__add'>
+            <a id='ingredient' className='modal__form__lists__ingredients__add' onClick={handleOpenAddItemModal}>
               <i className="fa-solid fa-plus modal__form__lists__steps__add__icon"></i> Ajouter
             </a>
           </div>
           <div className='modal__form__lists__steps'>
             <h2 className='modal__form__lists__steps__title'>Étapes :</h2>
             <ul className='modal__form__lists__steps__list'>
-              <li className='modal__form__lists__steps__list__item'>test</li>
+              {
+                steps.map(
+                  (step) => (
+                    <li key={step.order} className='modal__form__lists__steps__list__item'>
+                      <p className='modal__form__lists__steps__list__item__title'>Étape {step.order} : </p>
+                      {step.description}
+                    </li>
+                  )
+                )
+              }
             </ul>
-            <a className='modal__form__lists__steps__add'>
+            <a id='step' className='modal__form__lists__steps__add' onClick={handleOpenAddItemModal}>
               <i className="fa-solid fa-plus modal__form__lists__steps__add__icon"></i> Ajouter
             </a>
           </div>
@@ -65,12 +98,16 @@ const Modal = () => {
             type='number'
             value={time}
             label='Temps de préparation :'
+            action={setInputAddRecipeValue}
+            isRequired={true}
           />
           <Input
-            name='people'
+            name='quantity'
             type='number'
-            value={people}
+            value={quantity}
             label='Nombre de personnes :'
+            action={setInputAddRecipeValue}
+            isRequired={true}
           />
         </div>
         <Input
@@ -79,12 +116,14 @@ const Modal = () => {
           value={note}
           label='Note :'
           placeholder='Entrez une note succeptible de vous aider...' 
+          action={setInputAddRecipeValue}
+          isRequired={false}
         />
-        <Button type='submit' text='Ajouter' className='fill' />
-        <Button type='button' text='Clear' className='stroke' />
+        <Button type='submit' text='Ajouter' className='fill m-r' />
+        <Button handler={handleClose} type='button' text='Fermer' className='stroke' />
       </form>
     </section>
   );
 };
 
-export default Modal;
+export default AddRecipeModal;

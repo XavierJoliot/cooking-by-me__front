@@ -15,7 +15,8 @@ import Contact from '../Contact';
 import Legals from '../Legals';
 import Recipes from '../Recipes';
 import Recipe from '../Recipe';
-import Modal from '../Modal';
+import AddRecipeModal from '../AddRecipeModal';
+import AddItemModal from '../../shared/AddItemModal';
 
 // == Composant
 const App = () => { 
@@ -31,6 +32,7 @@ const App = () => {
   );
 
   const { isOpen } = useSelector((state) => state.addRecipeModal);
+  const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
   // change header bar color
   // function runOnScroll() {
@@ -45,7 +47,8 @@ const App = () => {
 
   return (
     <div className="app">
-      {isOpen && <Modal />}
+      {isOpen && <AddRecipeModal />}
+      {isItemModalOpen && <AddItemModal />}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

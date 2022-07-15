@@ -1,5 +1,5 @@
-import { SET_INPUT_VALUE } from "../actions/input";
-import { SET_IS_MODAL_OPEN } from "../actions/recipes";
+import { SET_INPUT_ADD_RECIPE_VALUE } from "../actions/input";
+import { SET_INGREDIENTS, SET_IS_MODAL_OPEN } from "../actions/recipes";
 
 const initialState = {
   isOpen: false,
@@ -7,9 +7,22 @@ const initialState = {
     title: '',
     imagePath: '',
     time: 0,
-    people: 0,
+    quantity: 0,
     note: '',
   },
+  ingredients: [
+    {
+      name: 'ingredient 1',
+      quantity: 100,
+      unit: 'g',
+    }
+  ],
+  steps: [
+    {
+      order: 1,
+      description: 'Test',
+    }
+  ],
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -20,12 +33,21 @@ const reducer = (state = initialState, action = {}) => {
         isOpen: !state.isOpen,
       }
     }
-    case SET_INPUT_VALUE: {
+    case SET_INPUT_ADD_RECIPE_VALUE: {
       return {
         ...state,
         newRecipe: {
           ...state.newRecipe,
           [action.name]: action.value,
+        }
+      }
+    }
+    case SET_INGREDIENTS: {
+      return {
+        ...state,
+        newRecipe: {
+          ...state.newRecipe,
+          ingredients: state.ingredients.push(action.object)
         }
       }
     }

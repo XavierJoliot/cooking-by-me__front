@@ -45,6 +45,10 @@
         &__list {
           padding: 1rem;
           list-style: circle;
+
+          &__item {
+            margin-bottom: .5rem;
+          }
         }
 
         &__add {
@@ -84,6 +88,15 @@
         &__list {
           padding: 1rem;
           list-style: circle;
+
+          &__item {
+            margin-bottom: .5rem;
+
+            &__title {
+              margin-bottom: .25rem;
+              font-weight: vars.$font-bold;
+            }
+          }
         }
 
         &__add {
@@ -101,10 +114,36 @@
           &:hover { 
             background-color: vars.$first-color;
             color: vars.$second-color;
-          }
+          }          
+        }
+      }
+    }
+  }
+}
 
-          &__icon {
-            color: vars.$first-color;
+@media(min-width: 769px) {
+  .modal {
+    padding: 2rem 10rem;
+
+    &__form {
+
+      &__lists {
+        display: flex;
+        width: 100%;
+
+        &__ingredients {
+          width: 50%;
+
+          &__add {
+            width: 100px;
+          }
+        }
+
+        &__steps {
+          width: 50%;
+
+          &__add {
+            width: 100px;
           }
         }
       }

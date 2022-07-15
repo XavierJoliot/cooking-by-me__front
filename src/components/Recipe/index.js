@@ -57,7 +57,7 @@ const Recipe = () => {
               currentRecipe.ingredients.map(
                 (item) => (
                   <li key={item.id} className='recipe__content__ingredients__list__item'>
-                    - {item.ingredientName} - {item.quantity}{item.unit}
+                    - {item.name} - {item.quantity}{item.unit}
                   </li>
                 )
               )
@@ -70,7 +70,7 @@ const Recipe = () => {
               (item) => (
                 <div key={item.id} className='recipe__content__steps__item'>
                   <h3 className='recipe__content__steps__item__title'>
-                    {item.order}. {item.title}
+                  Étape {item.order} :
                   </h3>
                   <p className='recipe__content__steps__item__text'>
                     {item.description}

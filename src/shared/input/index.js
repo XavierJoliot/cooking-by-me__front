@@ -1,15 +1,14 @@
 // import utils
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { setInputValue } from '../../actions/input';
 import './styles.scss';
 
-const Input = ({ name, type, value, label, placeholder }) => {
+const Input = ({ name, type, value, label, placeholder, action, isRequired }) => {
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    dispatch(setInputValue(name, e.target.value));
+    dispatch(action(name, e.target.value));
   };
 
   let labelVisibility = <label className='group__label' htmlFor={name}>{label}</label>;
@@ -26,6 +25,7 @@ const Input = ({ name, type, value, label, placeholder }) => {
       value={value}
       placeholder={placeholder}
       onChange={handleChange} 
+      required={isRequired}
     />;
 
   if(type === 'textarea') {
@@ -37,6 +37,7 @@ const Input = ({ name, type, value, label, placeholder }) => {
       value={value}
       placeholder={placeholder}
       onChange={handleChange} 
+      required={isRequired}
     />;
   }
   return (
@@ -52,6 +53,8 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
+  action: PropTypes.func.isRequired,
+  isRequired: PropTypes.bool.isRequired,
 }
 
 export default Input;
