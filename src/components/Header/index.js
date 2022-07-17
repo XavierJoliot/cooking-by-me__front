@@ -1,13 +1,17 @@
 // import styles
 import './styles.scss';
+import { useDispatch } from 'react-redux';
 
 // import images
 import HeadLogo from 'src/assets/images/logo_typo.png';
 
 // import component
 import UserMenu from '../../shared/userMenu';
+import { setIsModalOpen } from '../../actions/recipes';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   // handleEvent
   const handleBurgerClicked = (e) => {
     const link = document.querySelector('.header__left__burger');
@@ -18,6 +22,10 @@ const Header = () => {
 
     return false;
   }
+
+  const handleAddRecipeClick = () => {
+    dispatch(setIsModalOpen());
+  }
   
   // You can add a reloadDocument property to the Link or NavLink that you want to cause a reload.
 
@@ -25,7 +33,7 @@ const Header = () => {
     <header className='header'>
       <div className='header__left'>
         <div className='header__left__burger'>
-          <div className='header__left__burger__icon' onClick={(handleBurgerClicked)} href="#">
+          <div className='header__left__burger__icon' onClick={handleBurgerClicked} href="#">
             <span className='header__left__burger__icon__link'></span>
           </div>
         </div>
@@ -52,6 +60,7 @@ const Header = () => {
         </a>
       </div>
       <div className='header__right'>
+        <a className='header__right__button' onClick={handleAddRecipeClick}>Ajouter une recette</a>
         <UserMenu />
       </div>
     </header>

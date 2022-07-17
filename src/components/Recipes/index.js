@@ -1,5 +1,7 @@
-// import style
+// import utils
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // import components
 import InternPageHeadSection from '../../shared/internPageHeadSection';
@@ -25,6 +27,8 @@ const Recipes = () => {
       content.style.display = '';
     }
   }
+
+  const { myRecipes, cookingRecipes } = useSelector((state) => state.recipes);
   return(
     <main className='recipes'>
       <InternPageHeadSection imagePath={HeadImage} title='Mes recettes' />
@@ -61,52 +65,45 @@ const Recipes = () => {
               <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
               <span className='recipes__list__right__group__title__bar'></span>
             </div>
-            <div className='content recipes__list__right__group__content'>
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
+            <div className='content recipes__list__right__group__content recipes__list__right__group__content--recipes'>
+              {
+                myRecipes.map(
+                  (item) =>
+                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
+                      <RecipesCard
+                        key={item.title}
+                        imagePath={item.imagePath} 
+                        time={item.time}
+                        title={item.title}
+                        quantity={item.quantity}
+                      />
+                    </Link>
+                )
+              }
             </div>
           </div>
           <div className='recipes__list__right__group'>
             <div id='cooking' className='recipes__list__right__group__title'>
-              <h2 className='recipes__list__right__group__title__text'>Recettes Cookin by me</h2>
+              <h2 className='recipes__list__right__group__title__text'>Recettes Cooking by me</h2>
               <i className="fa-solid fa-caret-down recipes__list__right__group__title__icon" onClick={handleClick}></i>
               <span className='recipes__list__right__group__title__bar'></span>
             </div>
-            <div className='content recipes__list__right__group__content'>
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
+            <div className='content recipes__list__right__group__content recipes__list__right__group__content--recipes'>
+              {
+                cookingRecipes.map(
+                  (item) => (
+                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
+                      <RecipesCard
+                        key={item.title}
+                        imagePath={item.imagePath} 
+                        time={item.time}
+                        title={item.title}
+                        quantity={item.quantity}
+                      />
+                    </Link>
+                  )
+                )
+              }
             </div>
           </div>
         </section>

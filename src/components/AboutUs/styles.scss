@@ -12,7 +12,6 @@
       padding: 2rem 1rem;
 
       &__title {
-        font-weight: vars.$font-bold;
         margin-bottom: 1rem;
       }
     }
@@ -32,7 +31,6 @@
     &__title {
       text-align: center;
       margin-top: 1rem;
-      font-weight: vars.$font-bold;
     }
 
     &__article {
@@ -54,7 +52,6 @@
 
         &__title {
           margin-bottom: .5rem;
-          font-weight: vars.$font-bold;
         }
       }
     }
@@ -66,7 +63,6 @@
 
     &__title {
       margin-bottom: 1rem;
-      font-weight: vars.$font-bold;
     }
 
     &__link {
@@ -131,7 +127,6 @@
 
     &__foot {
       padding-bottom: 3rem;
-      background-color: vars.$second-color;
     }
   }
 }

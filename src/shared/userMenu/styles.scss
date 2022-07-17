@@ -1,24 +1,97 @@
-.user-menu {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+@use '../../styles/vars';
 
-  &__avatar {
-    padding: 1rem;
+.user {  
+  &__navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
 
-    &__image {
-      width: 100%;
-      border-radius: 50%;
-      box-shadow: 0px 5px 5px #dedede;
+    &__icon {
+      display: none;
     }
+
+    &__avatar {
+      padding: 1rem;
+
+      &__image {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0px 5px 5px #dedede;
+      }
+    }
+
+    &__icon {
+      color: vars.$third-color;
+    }
+  }
+  
+  &__menu {
+    position: absolute;
+    background-color: #fff;
+    display: block;
+    width: 100%;
+    right:0;
+    z-index: 99;
+    text-align: center;
+    transition: all 1s;
+      
+    &--hidden {
+      display: none;
+    }
+
+    &__list {
+        
+
+      &__link {
+        display: block;
+        padding: 1rem;
+
+        &:nth-child(2){
+          border-bottom: 1px solid vars.$second-color;
+          border-top: 1px solid vars.$second-color;
+        }
+
+        &__item {
+          &__icon {
+            margin-right: 1rem;
+            color: vars.$third-color;
+
+            &--red {
+              color: red;
+            }
+          }
+        }
+      }
+    }    
   }
 }
 
 @media (min-width: 769px) {
-  .user-menu {
+  .user {
+    position: relative;
 
-    &__avatar {
-      width: 75px;
+    &__navigation {
+      &__avatar {
+        width: 75px;
+      }
+    }
+
+    &__menu {
+      text-align: left;
+      width: 200px;
+      padding: 1rem;
+      left: -100px;
+
+      &__list {
+
+        &__link {
+
+          &:hover {
+            background-color: #dedede;
+          }
+        }
+      }
     }
   }
 }

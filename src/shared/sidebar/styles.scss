@@ -7,13 +7,32 @@
   &__add {
     width: 100%;
     margin-bottom: 2rem;
+
+    &__button {
+      display: block;
+      padding: 1rem;
+      background-color: vars.$first-color;
+      width: 100%;
+      color: vars.$second-color;
+      transition: all .5s;
+      cursor: pointer;
+      text-align: center;
+
+      &:hover { 
+        background-color: vars.$first-color;
+        color: vars.$second-color;
+      }
+
+      &__icon {
+        color: vars.$second-color;
+      }
+    }
   }
 
   &__search {
     margin-bottom: 1rem;
 
     &__title {
-      font-weight: vars.$font-bold;
       margin-bottom: .5rem;
     }
   }
@@ -22,7 +41,6 @@
     width: 100%;
 
     &__title {
-      font-weight: vars.$font-bold;
       margin-bottom: .5rem;
     }
 

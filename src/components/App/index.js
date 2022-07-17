@@ -1,6 +1,7 @@
 // == Import
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // import styles
 import './styles.scss';
@@ -13,6 +14,9 @@ import AboutUs from '../AboutUs';
 import Contact from '../Contact';
 import Legals from '../Legals';
 import Recipes from '../Recipes';
+import Recipe from '../Recipe';
+import AddRecipeModal from '../AddRecipeModal';
+import AddItemModal from '../../shared/AddItemModal';
 
 // == Composant
 const App = () => { 
@@ -27,8 +31,24 @@ const App = () => {
     [location]
   );
 
+  const { isOpen } = useSelector((state) => state.addRecipeModal);
+  const { isItemModalOpen } = useSelector((state) => state.addItemModal);
+
+  // change header bar color
+  // function runOnScroll() {
+  //   if (window.scrollY > 100) {
+  //     document.querySelector('.header').style.backgroundColor = "red";
+  //   } else {
+  //     document.querySelector('.header').style.backgroundColor = "#fff";
+  //   }
+  // };
+
+  // window.addEventListener("scroll", () => {runOnScroll()});
+
   return (
     <div className="app">
+      {isOpen && <AddRecipeModal />}
+      {isItemModalOpen && <AddItemModal />}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -36,6 +56,7 @@ const App = () => {
         <Route path="/mes-recettes" element={<Recipes />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<Legals />} />
+        <Route path="/recette/:id" element={<Recipe />} />
       </Routes>
       <Footer />
     </div>

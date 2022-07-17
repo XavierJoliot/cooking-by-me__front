@@ -14,10 +14,6 @@
   &__description {
     padding: .5rem;
 
-    &__title {
-      font-weight: bold;
-    }
-
     &__details {
       display: flex;
       align-items: center;
@@ -34,6 +30,10 @@
       }
     }
   }
+}
 
-
+@media(min-width: 769px) {
+  .card {
+    max-width: 310px;
+  }
 }

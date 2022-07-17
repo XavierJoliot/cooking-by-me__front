@@ -1,7 +1,7 @@
 @use 'reset';
 @use 'vars';
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Calistoga&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -25,6 +25,7 @@ h4,
 h5,
 h6 {
   color: vars.$first-color;
+  font-family: 'Calistoga', cursive;
 }
 
 h1 {
