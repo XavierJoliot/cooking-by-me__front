@@ -21,3 +21,11 @@ export const setInputItemIngredientModal = (name, value) => ({
   name, 
   value
 });
+
+export const SET_INPUT_ITEM_STEP_MODAL = 'SET_INPUT_ITEM_STEP_MODAL';
+
+export const setInputItemStepModal = (name, value) => ({
+  type: SET_INPUT_ITEM_STEP_MODAL,
+  name, 
+  value
+});

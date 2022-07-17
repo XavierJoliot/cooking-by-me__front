@@ -1,5 +1,5 @@
 import { SET_INPUT_ADD_RECIPE_VALUE } from "../actions/input";
-import { SET_INGREDIENTS, SET_IS_MODAL_OPEN } from "../actions/recipes";
+import { SET_INGREDIENTS, SET_STEPS, SET_IS_MODAL_OPEN } from "../actions/recipes";
 
 const initialState = {
   isOpen: false,
@@ -48,6 +48,15 @@ const reducer = (state = initialState, action = {}) => {
         newRecipe: {
           ...state.newRecipe,
           ingredients: state.ingredients.push(action.object)
+        }
+      }
+    }
+    case SET_STEPS: {
+      return {
+        ...state,
+        newRecipe: {
+          ...state.newRecipe,
+          steps: state.steps.push(action.object)
         }
       }
     }

@@ -1,4 +1,4 @@
-import { SET_INPUT_ITEM_INGREDIENT_MODAL } from "../actions/input";
+import { SET_INPUT_ITEM_INGREDIENT_MODAL, SET_INPUT_ITEM_STEP_MODAL } from "../actions/input";
 import { SET_IS_ITEM_MODAL_OPEN, SET_ITEM_MODAL_TYPE } from "../actions/recipes";
 
 const initialState = {
@@ -9,12 +9,11 @@ const initialState = {
     quantity: 0,
     unit: '',
   },
-  steps: {
+  step: {
     order: 0,
-    description: 'Test',
+    description: '',
   },
   unitList: [
-    'Sélectionner...',
     'mg',
     'g',
     'Kg',
@@ -44,6 +43,15 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         ingredient: {
           ...state.ingredient,
+          [action.name]: action.value,
+        }
+      }
+    }
+    case SET_INPUT_ITEM_STEP_MODAL: {
+      return {
+        ...state,
+        step: {
+          ...state.step,
           [action.name]: action.value,
         }
       }

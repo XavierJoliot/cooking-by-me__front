@@ -28,7 +28,7 @@ const AddRecipeModal = () => {
       dispatch(setItemModalType('ingredient'));
     };
     if(e.target.id === 'step') {
-      dispatch(setItemModalType('step'));
+      dispatch(setItemModalType('étape'));
     };
     dispatch(setIsItemModalOpen());
   }
@@ -97,7 +97,7 @@ const AddRecipeModal = () => {
             name='time'
             type='number'
             value={time}
-            label='Temps de préparation :'
+            label='Temps de préparation en minute :'
             action={setInputAddRecipeValue}
             isRequired={true}
           />

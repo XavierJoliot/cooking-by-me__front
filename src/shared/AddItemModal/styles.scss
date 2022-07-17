@@ -16,6 +16,12 @@
     padding: 2rem;
     position: relative;
 
+    &__order {
+      & input {
+        width: 3rem;
+      }
+    }
+
     &__close {
       position: absolute;
       right: 1rem;
@@ -56,6 +62,7 @@
         &__item {
           padding: .5rem;
           border-color: vars.$first-color;
+          width: 5rem;
 
           &:focus
           &:focus-within,
@@ -70,9 +77,18 @@
           }
 
           &__option {
+            &:hover {
+              background-color: vars.$second-color;
+            }
           }
         }
       }
     }
+  }
+}
+
+@media(min-width: 769px) {
+  .add-item-modal {
+    padding: 4rem 15rem;
   }
 }

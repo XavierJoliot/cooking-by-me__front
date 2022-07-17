@@ -12,7 +12,7 @@ import { setIngredients } from '../../actions/recipes';
 const Ingredient = ({ close }) => { 
   const dispatch = useDispatch();
 
-  const { isItemModalOpen, modalName, unitList, ingredient } = useSelector((state) => state.addItemModal);
+  const { modalName, unitList, ingredient } = useSelector((state) => state.addItemModal);
   const { name, quantity, unit } = useSelector((state) => state.addItemModal.ingredient);
 
   const handleSelect = (e) => {
@@ -23,6 +23,7 @@ const Ingredient = ({ close }) => {
     e.preventDefault();
     if(name && quantity && unit) {
       dispatch(setIngredients(ingredient));
+      close();
       return(console.log('done'));
     }
 
@@ -56,6 +57,7 @@ const Ingredient = ({ close }) => {
         <div className='add-item-modal__form__quantity__select'>
           <label className='add-item-modal__form__quantity__select__label'>Unité :</label>
           <select onChange={handleSelect} className='add-item-modal__form__quantity__select__item'>
+            <option className='add-item-modal__form__quantity__select__item__option' value="value" selected>Choisir</option>
             {
               unitList.map(
                 (unit) => (

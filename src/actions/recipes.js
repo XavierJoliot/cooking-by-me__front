@@ -24,4 +24,11 @@ export const setIngredients = (object) => ({
   object
 });
 
+export const SET_STEPS = 'SET_STEPS';
+
+export const setSteps = (object) => ({
+  type: SET_STEPS,
+  object
+});
+
 

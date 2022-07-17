@@ -5,6 +5,7 @@ import { setIsItemModalOpen } from '../../actions/recipes';
 
 // import components
 import Ingredient from './ingredient';
+import Step from './step';
 
 const AddItemModal = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const AddItemModal = () => {
   return (
     <section className='add-item-modal'>
       {modalName === 'ingredient' && <Ingredient close={handleClose} />}
+      {modalName === 'étape' && <Step close={handleClose} />}
     </section>  
   );
 }

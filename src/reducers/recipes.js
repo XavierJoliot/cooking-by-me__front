@@ -46,7 +46,41 @@ const initialState = {
     }
   ],
   cookingRecipes: [
-
+    {
+      id: 1,
+      title: 'test titre 1',
+      time: 45,
+      quantity: 4,
+      imagePath: imgTest
+    },
+    {
+      id: 2,
+      title: 'test titre2',
+      time: 45,
+      quantity: 4,
+      imagePath: imgTest
+    },
+    {
+      id: 3,
+      title: 'test titre 3',
+      time: 45,
+      quantity: 4,
+      imagePath: imgTest
+    },
+    {
+      id: 4,
+      title: 'test titre 4',
+      time: 45,
+      quantity: 4,
+      imagePath: imgTest
+    },
+    {
+      id: 5,
+      title: 'test titre 5',
+      time: 45,
+      quantity: 4,
+      imagePath: imgTest
+    },
   ], 
   currentRecipe: {
     id: 1,

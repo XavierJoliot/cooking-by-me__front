@@ -1,4 +1,4 @@
-// import style
+// import utils
 import './styles.scss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ const Recipes = () => {
     }
   }
 
-  const { myRecipes } = useSelector((state) => state.recipes);
+  const { myRecipes, cookingRecipes } = useSelector((state) => state.recipes);
   return(
     <main className='recipes'>
       <InternPageHeadSection imagePath={HeadImage} title='Mes recettes' />
@@ -89,24 +89,21 @@ const Recipes = () => {
               <span className='recipes__list__right__group__title__bar'></span>
             </div>
             <div className='content recipes__list__right__group__content recipes__list__right__group__content--recipes'>
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
-              <RecipesCard
-                imagePath={Slider} 
-                time={35}
-                title="test"
-                quantity={4}
-              />
+              {
+                cookingRecipes.map(
+                  (item) => (
+                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
+                      <RecipesCard
+                        key={item.title}
+                        imagePath={item.imagePath} 
+                        time={item.time}
+                        title={item.title}
+                        quantity={item.quantity}
+                      />
+                    </Link>
+                  )
+                )
+              }
             </div>
           </div>
         </section>
