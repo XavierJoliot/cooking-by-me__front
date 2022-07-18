@@ -1,6 +1,7 @@
-// import styles
+// import utils
 import './styles.scss';
 import { useDispatch } from 'react-redux';
+import { useAuth0 } from "@auth0/auth0-react";
 
 // import images
 import HeadLogo from 'src/assets/images/logo_typo.png';
@@ -11,6 +12,8 @@ import { setIsModalOpen } from '../../actions/recipes';
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const { loginWithRedirect } = useAuth0();
 
   // handleEvent
   const handleBurgerClicked = (e) => {
@@ -51,6 +54,7 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>
+            <button onClick={() => loginWithRedirect()}>Connexion</button>
           </ul>
         </nav>
       </div>
