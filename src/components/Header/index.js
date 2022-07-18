@@ -13,7 +13,7 @@ import { setIsModalOpen } from '../../actions/recipes';
 const Header = () => {
   const dispatch = useDispatch();
 
-  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   // handleEvent
   const handleBurgerClicked = (e) => {
@@ -54,18 +54,22 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>
-            <button onClick={() => loginWithRedirect()}>Connexion</button>
-            <button onClick={() => logout({ returnTo: window.location.origin })}>Déconnexion</button>
+            
+            <a className='header__left__navigation__list__link header__left__navigation__list__link--logout' onClick={() => loginWithRedirect()}>
+              <li className='header__left__navigation__list__link__item'>Connexion / inscription</li>
+            </a>
           </ul>
         </nav>
       </div>
       <div className='header__center'>
-        <a  className='header__center__link' href='/'>
+        <a className='header__center__link' href='/'>
           <img  className='header__center__link__image' src={HeadLogo} alt="Logo cooking by me" />
         </a>
       </div>
       <div className='header__right'>
-        <a className='header__right__button' onClick={handleAddRecipeClick}>Ajouter une recette</a>
+        {
+          isAuthenticated && <a className='header__right__button' onClick={handleAddRecipeClick}>Ajouter une recette</a>
+        }
         <UserMenu />
       </div>
     </header>

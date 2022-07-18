@@ -97,7 +97,6 @@
       transition: all 1s;
       z-index: 1;
   
-  
       &--active {
         transform: translate(0);
       }
@@ -111,6 +110,10 @@
           transition: all .5s;
           border-bottom: 1px solid vars.$third-color;
           padding: 1rem;
+
+          &--logout {
+            color: vars.$first-color;
+          }
   
           &:hover {
             color: vars.$second-color;
@@ -214,6 +217,10 @@
       
       &__link {
         width: 50%;
+
+        &--logout {
+          display: none;
+        }
 
         &__image {
           width: 100%;

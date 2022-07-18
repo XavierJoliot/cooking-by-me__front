@@ -1,11 +1,25 @@
 @use '../../styles/vars';
 
 .user {  
+
+  &--logout {
+    display: none;
+  }
+
   &__navigation {
     display: flex;
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+
+    &__link {
+      display: block;
+      transition: all .5s;
+
+      &:hover {
+        color: vars.$first-color;
+      }
+    }
 
     &__icon {
       display: none;
@@ -67,13 +81,21 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 969px) {
   .user {
     position: relative;
+
+    &--logout {
+      display: '';
+    }
 
     &__navigation {
       &__avatar {
         width: 75px;
+      }
+
+      &__icon {
+        display: block;
       }
     }
 

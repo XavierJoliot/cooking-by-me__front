@@ -34,6 +34,7 @@ const App = () => {
   const { isOpen } = useSelector((state) => state.addRecipeModal);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
+
   // change header bar color
   // function runOnScroll() {
   //   if (window.scrollY > 100) {
