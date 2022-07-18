@@ -55,6 +55,7 @@ const Header = () => {
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>
             <button onClick={() => loginWithRedirect()}>Connexion</button>
+            <button onClick={() => logout({ returnTo: window.location.origin })}>Déconnexion</button>
           </ul>
         </nav>
       </div>
