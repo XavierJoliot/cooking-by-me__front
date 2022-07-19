@@ -1,11 +1,11 @@
 // import utils
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { setIsModalOpen } from '../../actions/recipes';
+import { setIsItemModalOpen, setIsModalOpen, setItemModalType } from '../../actions/recipes';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // import components
 import Input from '../../shared/input';
-import { useAuth0 } from '@auth0/auth0-react';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -16,12 +16,22 @@ const Sidebar = () => {
     dispatch(setIsModalOpen());
   }
 
+  const handleAddGroupClick = () => {
+    dispatch(setItemModalType('groupe'));
+    dispatch(setIsItemModalOpen());
+  }
+
   return (
     <aside className='sidebar'>
       <div className='sidebar__add'>
         { isAuthenticated &&
           <a onClick={handleAddRecipeClick} className='sidebar__add__button'>
             <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter une recette
+          </a>
+        }
+        { isAuthenticated &&
+          <a onClick={handleAddGroupClick} className='sidebar__add__button'>
+            <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter un groupe
           </a>
         }
       </div>

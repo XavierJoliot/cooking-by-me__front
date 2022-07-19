@@ -1,21 +1,24 @@
 // import utils
 import './styles.scss';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { setIsModalOpen } from '../../actions/recipes';
 
 // import components
 import InternPageHeadSection from '../../shared/internPageHeadSection';
 import RecipesCard from '../../shared/recipesCard';
 import Sidebar from '../../shared/sidebar';
 import GroupCard from '../../shared/groupCard';
-import Button from '../../shared/button';
 
 // import images
 import HeadImage from '../../assets/images/recipes.jpg';
 
 const Recipes = () => { 
-  const { isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleClick = (e) => {
     const elmt = e.target;
@@ -31,7 +34,12 @@ const Recipes = () => {
     }
   }
 
-  const { myRecipes, cookingRecipes } = useSelector((state) => state.recipes);
+  const handleAddRecipeClick = () => {
+    dispatch(setIsModalOpen());
+  }
+
+  const { myRecipes, cookingRecipes, groupList } = useSelector((state) => state.recipes);
+
   return(
     <main className='recipes'>
       <InternPageHeadSection imagePath={HeadImage} title='Mes recettes' />
@@ -52,14 +60,37 @@ const Recipes = () => {
               <span className='recipes__list__right__group__title__bar'></span>
             </div>
             <div className='recipes__list__right__group__content'>
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
-              <GroupCard title='Titre' imagePath='' />
+              {
+                isAuthenticated &&
+                groupList.length > 0 &&
+                groupList.map(
+                  (item) =>
+                    <Link key={item.id} to={'/groupe/' + item.id} reloadDocument>
+                      <GroupCard title={item.title} imagePath={item.imagePath} />
+                    </Link>
+                )
+              }
+              {
+                isAuthenticated &&
+                groupList.length === 0 &&
+                <a className='recipes__list__right__group__content__empty' onClick={handleAddRecipeClick}> 
+                  <p className='recipes__list__right__group__content__empty__text'>
+                  <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
+                  Ajouter un groupe de recette pour le voir s'afficher ici.
+                  <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
+                  </p>
+                </a>
+              }
+              {
+                !isAuthenticated &&
+                <a className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
+                  <p className='recipes__list__right__group__content__empty__text'>
+                  <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
+                  Créer vous un compte pour pouvoir ajouter un groupe de recette et débuter votre livre.
+                  <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
+                  </p>
+                </a>
+              }
             </div>
           </div>
           <div className='recipes__list__right__group'>
@@ -88,21 +119,23 @@ const Recipes = () => {
               {
                 isAuthenticated &&
                 myRecipes.length === 0 &&
-                <section className='recipes__list__right__group__content__empty'>
-                  <p className='recipes__list__right__group__content__empty__text'>N'attendez plus ! Ajouter une recette pour la voir s'afficher ici.</p>
-                  <a className='recipes__list__right__group__content__empty__button' href="#"> 
-                    {/* <Button type='button' text='Connexion / inscription' className='fill' /> */}
-                  </a>
-                </section>
+                <a className='recipes__list__right__group__content__empty' onClick={handleAddRecipeClick}> 
+                  <p className='recipes__list__right__group__content__empty__text'>
+                  <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
+                  Ajouter une recette pour la voir s'afficher ici.
+                  <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
+                  </p>
+                </a>
               }
               {
                 !isAuthenticated &&
-                <section className='recipes__list__right__group__content__empty'>
-                  <p className='recipes__list__right__group__content__empty__text'>N'attendez plus ! Créer vous un compte pour pouvoir ajouter une recette et débuter votre livre.</p>
-                  <a className='recipes__list__right__group__content__empty__button' onClick={() => loginWithRedirect()}> 
-                    <Button type='button' text='Connexion / Inscritption' className='fill' />
-                  </a>
-                </section>
+                <a className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
+                  <p className='recipes__list__right__group__content__empty__text'>
+                  <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
+                  Créer vous un compte pour pouvoir ajouter une recette et débuter votre livre.
+                  <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
+                  </p>
+                </a>
               }
             </div>
           </div>

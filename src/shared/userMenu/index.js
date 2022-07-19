@@ -6,7 +6,7 @@ const UserMenu = () => {
   const handleMenuClick = (e) => {
     const elmt = document.querySelector('.user__menu');
 
-    elmt.classList.toggle('user__menu--hidden');
+    elmt.classList.toggle('user__menu--active');
   };
 
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -20,7 +20,7 @@ const UserMenu = () => {
           </div>
           <i className='fa-solid fa-caret-down user__navigation__icon'></i>
         </div>
-        <div className='user__menu user__menu--hidden'>
+        <div className='user__menu'>
           <ul className='user__menu__list'>
             <a href='/mon-espace' className='user__menu__list__link'>
               <li className='user__menu__list__link__item'>

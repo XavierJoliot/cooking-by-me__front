@@ -1,4 +1,4 @@
-import { SET_INPUT_ITEM_INGREDIENT_MODAL, SET_INPUT_ITEM_STEP_MODAL } from "../actions/input";
+import { SET_INPUT_ITEM_INGREDIENT_MODAL, SET_INPUT_ITEM_STEP_MODAL, SET_INPUT_ITEM_GROUP_MODAL } from "../actions/input";
 import { SET_IS_ITEM_MODAL_OPEN, SET_ITEM_MODAL_TYPE } from "../actions/recipes";
 
 const initialState = {
@@ -21,7 +21,11 @@ const initialState = {
     'L',
     'càc',
     'càs',
-  ]
+  ],
+  group: {
+    title: '',
+    description: '',
+  }
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -52,6 +56,15 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         step: {
           ...state.step,
+          [action.name]: action.value,
+        }
+      }
+    }
+    case SET_INPUT_ITEM_GROUP_MODAL: {
+      return {
+        ...state,
+        group: {
+          ...state.group,
           [action.name]: action.value,
         }
       }

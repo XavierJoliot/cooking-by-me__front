@@ -19,6 +19,7 @@ import AddRecipeModal from '../AddRecipeModal';
 import AddItemModal from '../../shared/addItemModal';
 import Loader from '../../shared/loader';
 import { useAuth0 } from '@auth0/auth0-react';
+import Group from '../Group';
 
 // == Composant
 const App = () => { 
@@ -62,6 +63,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<Legals />} />
         <Route path="/recette/:id" element={<Recipe />} />
+        <Route path="/groupe/:id" element={<Group />} />
       </Routes>
       <Footer />
     </div>

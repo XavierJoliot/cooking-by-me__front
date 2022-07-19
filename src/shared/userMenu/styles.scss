@@ -52,10 +52,10 @@
     text-align: center;
     transition: all .5s;
     top: 100px;
-    transform: translateX(0);
+    transform: translateX(200%);
       
-    &--hidden {
-      transform: translateX(200%);
+    &--active {
+      transform: translate(0);
     }
 
     &__list {
@@ -90,7 +90,7 @@
     position: relative;
 
     &--logout {
-      display: block;
+      display: flex;
     }
 
     &__navigation {
