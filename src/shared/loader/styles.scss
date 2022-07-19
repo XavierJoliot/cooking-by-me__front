@@ -1,0 +1,46 @@
+.loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000000;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+
+  &__item {
+    width: 50%;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+
+    &__hero {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: rotate 2s infinite ease-out;
+    }
+
+    &__cookie {
+      width: 100%;
+    }
+  }
+}
+
+@media(min-width: 969px) {
+  .loader {
+     &__item {
+      max-width: 15%;
+     }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

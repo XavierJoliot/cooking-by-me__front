@@ -1,11 +1,28 @@
 @use '../../styles/vars';
 
 .user {  
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &--logout {
+    display: none;
+  }
+
   &__navigation {
     display: flex;
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+
+    &__link {
+      display: block;
+      transition: all .5s;
+
+      &:hover {
+        color: vars.$first-color;
+      }
+    }
 
     &__icon {
       display: none;
@@ -32,12 +49,13 @@
     display: block;
     width: 100%;
     right:0;
-    z-index: 99;
     text-align: center;
-    transition: all 1s;
+    transition: all .5s;
+    top: 100px;
+    transform: translateX(200%);
       
-    &--hidden {
-      display: none;
+    &--active {
+      transform: translate(0);
     }
 
     &__list {
@@ -67,13 +85,21 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 969px) {
   .user {
     position: relative;
+
+    &--logout {
+      display: flex;
+    }
 
     &__navigation {
       &__avatar {
         width: 75px;
+      }
+
+      &__icon {
+        display: block;
       }
     }
 

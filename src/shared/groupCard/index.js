@@ -3,7 +3,7 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 
 const GroupCard = ({ title, imagePath }) => (
-  <article className='group-card' style={{'backgroundImage': imagePath}}>
+  <article className='group-card' style={{backgroundImage: "url(" + imagePath + ")"}}>
     <h3 className='group-card__title'>{title}</h3>
   </article>
 );

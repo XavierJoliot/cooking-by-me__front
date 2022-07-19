@@ -29,3 +29,11 @@ export const setInputItemStepModal = (name, value) => ({
   name, 
   value
 });
+
+export const SET_INPUT_ITEM_GROUP_MODAL = 'SET_INPUT_ITEM_GROUP_MODAL';
+
+export const setInputItemGroupModal = (name, value) => ({
+  type: SET_INPUT_ITEM_GROUP_MODAL,
+  name, 
+  value
+});

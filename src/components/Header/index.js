@@ -1,6 +1,7 @@
-// import styles
+// import utils
 import './styles.scss';
 import { useDispatch } from 'react-redux';
+import { useAuth0 } from "@auth0/auth0-react";
 
 // import images
 import HeadLogo from 'src/assets/images/logo_typo.png';
@@ -11,6 +12,8 @@ import { setIsModalOpen } from '../../actions/recipes';
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   // handleEvent
   const handleBurgerClicked = (e) => {
@@ -32,8 +35,8 @@ const Header = () => {
   return (
     <header className='header'>
       <div className='header__left'>
-        <div className='header__left__burger'>
-          <div className='header__left__burger__icon' onClick={handleBurgerClicked} href="#">
+        <div className='header__left__burger' onClick={handleBurgerClicked} href="#">
+          <div className='header__left__burger__icon'>
             <span className='header__left__burger__icon__link'></span>
           </div>
         </div>
@@ -51,16 +54,25 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>
+            {
+              !isAuthenticated && 
+              <a className='header__left__navigation__list__link header__left__navigation__list__link--logout' onClick={() => loginWithRedirect()}>
+                <li className='header__left__navigation__list__link__item'>Connexion / inscription</li>
+              </a>
+            }
+            
           </ul>
         </nav>
       </div>
       <div className='header__center'>
-        <a  className='header__center__link' href='/'>
+        <a className='header__center__link' href='/'>
           <img  className='header__center__link__image' src={HeadLogo} alt="Logo cooking by me" />
         </a>
       </div>
       <div className='header__right'>
-        <a className='header__right__button' onClick={handleAddRecipeClick}>Ajouter une recette</a>
+        {
+          isAuthenticated && <a className='header__right__button' onClick={handleAddRecipeClick}><i className="fa-solid fa-plus header__right__button__icon"></i> Ajouter une recette</a>
+        }
         <UserMenu />
       </div>
     </header>
