@@ -10,7 +10,7 @@
   background-color: #ffffff;
   z-index: 1000;
   box-shadow: 0px 3px 5px #6b6b6b;
-  height: 100px;
+  height: 80px;
 
   &__left {
     width: 20%;
@@ -160,7 +160,6 @@
 
 @media(min-width: 769px) {
   .header {
-    height: 100px;
 
     &__center {
 
@@ -171,7 +170,7 @@
   }
 }
 
-@media(min-width: 969px) {
+@media(min-width: 1050px) {
   .header {
 
     &__left {
@@ -193,6 +192,7 @@
         display: flex;
         justify-content: center;
         background-color: transparent;
+        overflow: hidden;
 
         &__list {
           display: flex;
@@ -202,6 +202,7 @@
             border: none;
             border-bottom: 2px solid transparent;
             width: auto;
+            padding: .2rem 0;
 
             &--logout {
               display: none;

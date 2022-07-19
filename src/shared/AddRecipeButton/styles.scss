@@ -1,0 +1,25 @@
+@use '../../styles/vars';
+
+.recipe-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: vars.$first-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  &__icon {
+    color: vars.$second-color;
+    font-size: 1.5rem;
+  }
+}
+
+@media(min-width: 1050px) {
+  .recipe-button {
+    display: none;
+  }
+}
