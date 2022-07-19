@@ -20,6 +20,7 @@ import AddItemModal from '../../shared/addItemModal';
 import Loader from '../../shared/loader';
 import { useAuth0 } from '@auth0/auth0-react';
 import Group from '../Group';
+import AddRecipeButton from '../../shared/AddRecipeButton';
 
 // == Composant
 const App = () => { 
@@ -55,6 +56,7 @@ const App = () => {
       {isLoading && <Loader />}
       {isOpen && <AddRecipeModal />}
       {isItemModalOpen && <AddItemModal />}
+      <AddRecipeButton />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
