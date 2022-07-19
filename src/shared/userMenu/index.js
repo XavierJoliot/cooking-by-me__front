@@ -48,9 +48,9 @@ const UserMenu = () => {
 
   return (
     <div className='user user--logout'>
-      <div className='user__navigation' onClick={handleMenuClick}>
-        <a className='user__navigation__link' onClick={() => loginWithRedirect()}>Connexion / Inscritpion</a>
-      </div>
+      {!isAuthenticated &&
+        <a className='user__link' onClick={() => loginWithRedirect()}>Connexion / Inscritpion</a>
+      }
     </div>
   );
 };

@@ -10,6 +10,7 @@
   background-color: #ffffff;
   z-index: 1000;
   box-shadow: 0px 3px 5px #6b6b6b;
+  height: 100px;
 
   &__left {
     width: 20%;
@@ -149,6 +150,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 
     &__button {
       display: none;
@@ -200,6 +202,10 @@
             border: none;
             border-bottom: 2px solid transparent;
             width: auto;
+
+            &--logout {
+              display: none;
+            }
   
             &:hover {
               color: vars.$first-color;
@@ -217,10 +223,6 @@
       
       &__link {
         width: 50%;
-
-        &--logout {
-          display: none;
-        }
 
         &__image {
           width: 100%;

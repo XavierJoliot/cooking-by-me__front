@@ -35,8 +35,8 @@ const Header = () => {
   return (
     <header className='header'>
       <div className='header__left'>
-        <div className='header__left__burger'>
-          <div className='header__left__burger__icon' onClick={handleBurgerClicked} href="#">
+        <div className='header__left__burger' onClick={handleBurgerClicked} href="#">
+          <div className='header__left__burger__icon'>
             <span className='header__left__burger__icon__link'></span>
           </div>
         </div>
@@ -54,10 +54,13 @@ const Header = () => {
             <a className='header__left__navigation__list__link' href='/contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
             </a>
+            {
+              !isAuthenticated && 
+              <a className='header__left__navigation__list__link header__left__navigation__list__link--logout' onClick={() => loginWithRedirect()}>
+                <li className='header__left__navigation__list__link__item'>Connexion / inscription</li>
+              </a>
+            }
             
-            <a className='header__left__navigation__list__link header__left__navigation__list__link--logout' onClick={() => loginWithRedirect()}>
-              <li className='header__left__navigation__list__link__item'>Connexion / inscription</li>
-            </a>
           </ul>
         </nav>
       </div>
@@ -68,7 +71,7 @@ const Header = () => {
       </div>
       <div className='header__right'>
         {
-          isAuthenticated && <a className='header__right__button' onClick={handleAddRecipeClick}>Ajouter une recette</a>
+          isAuthenticated && <a className='header__right__button' onClick={handleAddRecipeClick}><i className="fa-solid fa-plus header__right__button__icon"></i> Ajouter une recette</a>
         }
         <UserMenu />
       </div>

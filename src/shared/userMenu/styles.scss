@@ -1,6 +1,9 @@
 @use '../../styles/vars';
 
 .user {  
+  height: 100%;
+  display: flex;
+  align-items: center;
 
   &--logout {
     display: none;
@@ -46,12 +49,13 @@
     display: block;
     width: 100%;
     right:0;
-    z-index: 99;
     text-align: center;
-    transition: all 1s;
+    transition: all .5s;
+    top: 100px;
+    transform: translateX(0);
       
     &--hidden {
-      display: none;
+      transform: translateX(200%);
     }
 
     &__list {
@@ -86,7 +90,7 @@
     position: relative;
 
     &--logout {
-      display: '';
+      display: block;
     }
 
     &__navigation {

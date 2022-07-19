@@ -16,7 +16,9 @@ import Legals from '../Legals';
 import Recipes from '../Recipes';
 import Recipe from '../Recipe';
 import AddRecipeModal from '../AddRecipeModal';
-import AddItemModal from '../../shared/AddItemModal';
+import AddItemModal from '../../shared/addItemModal';
+import Loader from '../../shared/loader';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // == Composant
 const App = () => { 
@@ -34,6 +36,7 @@ const App = () => {
   const { isOpen } = useSelector((state) => state.addRecipeModal);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
+  const { isLoading } = useAuth0();
 
   // change header bar color
   // function runOnScroll() {
@@ -48,6 +51,7 @@ const App = () => {
 
   return (
     <div className="app">
+      {isLoading && <Loader />}
       {isOpen && <AddRecipeModal />}
       {isItemModalOpen && <AddItemModal />}
       <Header />

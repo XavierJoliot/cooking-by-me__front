@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 import { setIsModalOpen } from '../../actions/recipes';
 
 // import components
-import Button from '../../shared/button';
 import Input from '../../shared/input';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+
+  const { isAuthenticated } = useAuth0();
 
   const handleAddRecipeClick = () => {
     dispatch(setIsModalOpen());
@@ -17,9 +19,11 @@ const Sidebar = () => {
   return (
     <aside className='sidebar'>
       <div className='sidebar__add'>
-        <a onClick={handleAddRecipeClick} className='sidebar__add__button'>
-          <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter une recette
-        </a>
+        { isAuthenticated &&
+          <a onClick={handleAddRecipeClick} className='sidebar__add__button'>
+            <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter une recette
+          </a>
+        }
       </div>
       <div className='sidebar__search'>
         <h2 className='sidebar__search__title'>Rechercher :</h2>

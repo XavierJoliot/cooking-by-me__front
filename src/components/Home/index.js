@@ -37,13 +37,13 @@ const Home = () =>{
       </section>
       <section className='home__my-recipes'>
         {
-          isAuthenticated && 
+          !isAuthenticated && 
           <a className='home__my-recipes__link ' onClick={() => loginWithRedirect()}> 
             <Button type='button' text='Connexion / inscription' className='fill' />
           </a>
         }
         {
-          !isAuthenticated && 
+          isAuthenticated && 
           <a className='home__my-recipes__link' href='mes-recettes/#recipes'>
             <Button type='button' text='Mes recettes' className='fill' />
           </a>
