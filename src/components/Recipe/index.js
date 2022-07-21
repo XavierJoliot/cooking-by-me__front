@@ -35,7 +35,7 @@ const Recipe = () => {
       <section className='recipe__description'>
         <div className='recipe__description__info'>
           <i className="fa-regular fa-clock recipe__description__info__icon"></i>
-          <h2 className='recipe__description__info__title'>{currentRecipe.time} minutes</h2>
+          <h2 className='recipe__description__info__title'>{currentRecipe.duration} minutes</h2>
         </div>
         <div className='recipe__description__info'>
         <i className="fa-regular fa-user recipe__description__info__icon"></i>

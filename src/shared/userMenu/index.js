@@ -11,6 +11,8 @@ const UserMenu = () => {
 
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
+  console.log(user);
+
   if(isAuthenticated) {
     return (
       <div className='user'>

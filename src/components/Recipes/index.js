@@ -109,7 +109,7 @@ const Recipes = () => {
                       <RecipesCard
                         key={item.title}
                         imagePath={item.imagePath} 
-                        time={item.time}
+                        duration={item.duration}
                         title={item.title}
                         quantity={item.quantity}
                       />
@@ -153,7 +153,7 @@ const Recipes = () => {
                       <RecipesCard
                         key={item.title}
                         imagePath={item.imagePath} 
-                        time={item.time}
+                        duration={item.duration}
                         title={item.title}
                         quantity={item.quantity}
                       />

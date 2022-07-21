@@ -2,7 +2,7 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
 
-const RecipesCard = ({ imagePath, time, title, quantity }) => (
+const RecipesCard = ({ imagePath, duration, title, quantity }) => (
   <article className='card'>
     <img className='card__image' src={imagePath} alt='Rectte cooking by me' />
     <div className='card__description'>
@@ -10,7 +10,7 @@ const RecipesCard = ({ imagePath, time, title, quantity }) => (
       <div className='card__description__details'>
         <div className='card__description__details__item'>
           <i className="fa-regular fa-clock card__description__details__item__icon"></i>
-          <p className='card__description__details__item__text'>{time} min.</p>
+          <p className='card__description__details__item__text'>{duration} min.</p>
         </div>
         <div className='card__description__details__item'>
           <i className="fa-regular fa-user card__description__details__item__icon"></i>
@@ -23,7 +23,7 @@ const RecipesCard = ({ imagePath, time, title, quantity }) => (
 
 RecipesCard.propTypes = {
   imagePath: PropTypes.string.isRequired,
-  time: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired
 };

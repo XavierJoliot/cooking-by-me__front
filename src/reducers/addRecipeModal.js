@@ -6,7 +6,7 @@ const initialState = {
   newRecipe: {
     title: '',
     imagePath: '',
-    time: 0,
+    duration: 0,
     quantity: 0,
     note: '',
   },

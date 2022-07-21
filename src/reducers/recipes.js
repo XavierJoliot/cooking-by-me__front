@@ -5,42 +5,42 @@ const initialState = {
     {
       id: 1,
       title: 'test titre 1',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 2,
       title: 'test titre2',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 3,
       title: 'test titre 3',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 4,
       title: 'test titre 4',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 5,
       title: 'test titre 5',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 6,
       title: 'test titre 6',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     }
@@ -49,35 +49,35 @@ const initialState = {
     {
       id: 1,
       title: 'test titre 1',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 2,
       title: 'test titre2',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 3,
       title: 'test titre 3',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 4,
       title: 'test titre 4',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
     {
       id: 5,
       title: 'test titre 5',
-      time: 45,
+      duration: 45,
       quantity: 4,
       imagePath: imgTest
     },
@@ -86,7 +86,7 @@ const initialState = {
     id: 1,
     title: 'Titre de la recette',
     quantity: 4,
-    time: 45,
+    duration: 45,
     imagePath: imgTest,
     steps: [
       {
@@ -158,28 +158,28 @@ const initialState = {
       {
         id: 1,
         title: 'test titre 1',
-        time: 45,
+        duration: 45,
         quantity: 4,
         imagePath: imgTest
       },
       {
         id: 2,
         title: 'test titre2',
-        time: 45,
+        duration: 45,
         quantity: 4,
         imagePath: imgTest
       },
       {
         id: 3,
         title: 'test titre 3',
-        time: 45,
+        duration: 45,
         quantity: 4,
         imagePath: imgTest
       },
       {
         id: 4,
         title: 'test titre 3',
-        time: 45,
+        duration: 45,
         quantity: 4,
         imagePath: imgTest
       },

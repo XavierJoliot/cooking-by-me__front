@@ -11,7 +11,7 @@ import Button from '../../shared/button';
 const AddRecipeModal = () => { 
   const dispatch = useDispatch();
 
-  const { title, imagePath, time, quantity, note } = useSelector((state) => state.addRecipeModal.newRecipe);
+  const { title, imagePath, duration, quantity, note } = useSelector((state) => state.addRecipeModal.newRecipe);
   const { ingredients, steps } = useSelector((state) => state.addRecipeModal);
 
   const handleClose = () => {
@@ -94,9 +94,9 @@ const AddRecipeModal = () => {
         </div>
         <div className='modal__form__number'>
           <Input
-            name='time'
+            name='duration'
             type='number'
-            value={time}
+            value={duration}
             label='Temps de préparation en minute :'
             action={setInputAddRecipeValue}
             isRequired={true}
