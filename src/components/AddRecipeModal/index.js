@@ -1,8 +1,9 @@
 // import utils
 import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsItemModalOpen, setIsModalOpen, setItemModalType } from '../../actions/recipes';
+import { setIsItemModalOpen, setIsModalOpen, setItemModalType, setUserToken, submitAddRecipeModal } from '../../actions/recipes';
 import { setInputAddRecipeValue } from '../../actions/input';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // import component
 import Input from '../../shared/input';
@@ -11,16 +12,28 @@ import Button from '../../shared/button';
 const AddRecipeModal = () => { 
   const dispatch = useDispatch();
 
-  const { title, imagePath, duration, quantity, note } = useSelector((state) => state.addRecipeModal.newRecipe);
-  const { ingredients, steps } = useSelector((state) => state.addRecipeModal);
+  const { user, getAccessTokenSilently } = useAuth0();
+
+  const { 
+    title, 
+    imagePath,
+    duration, 
+    quantity, 
+    note, 
+    ingredientsList, 
+    stepsList 
+  } = useSelector((state) => state.addRecipeModal.newRecipe);
 
   const handleClose = () => {
     dispatch(setIsModalOpen());
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {    
     e.preventDefault();
-    dispatch(setIsModalOpen());
+
+    dispatch(setInputAddRecipeValue('userId', user.sub));
+
+    dispatch(submitAddRecipeModal());
   }
 
   const handleOpenAddItemModal = (e) => {
@@ -60,7 +73,7 @@ const AddRecipeModal = () => {
             <h2 className='modal__form__lists__ingredients__title'>Ingrédients :</h2>
             <ul className='modal__form__lists__ingredients__list'>
               {
-                ingredients.map(
+                ingredientsList.map(
                   (ingredient) => (
                     <li key={ingredient.name} className='modal__form__lists__ingredients__list__item'>
                       {ingredient.name} - {ingredient.quantity}{ingredient.unit}
@@ -77,7 +90,7 @@ const AddRecipeModal = () => {
             <h2 className='modal__form__lists__steps__title'>Étapes :</h2>
             <ul className='modal__form__lists__steps__list'>
               {
-                steps.map(
+                stepsList.map(
                   (step) => (
                     <li key={step.order} className='modal__form__lists__steps__list__item'>
                       <p className='modal__form__lists__steps__list__item__title'>Étape {step.order} : </p>

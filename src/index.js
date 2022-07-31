@@ -15,7 +15,7 @@ import store from 'src/store';
 const rootReactElement = (
   <Auth0Provider
     domain="dev-1rffl3ah.us.auth0.com"
-    clientId="V0K1yohHeqTAeCUhz7tKsuRn1EETjtZd"
+    clientId="bSgDImO9Ba02NLloiZDelCychEeAzFBQ"
     redirectUri={window.location.origin}
   >
     <BrowserRouter>

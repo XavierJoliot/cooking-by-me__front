@@ -1,7 +1,9 @@
 // == Import
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserToken } from '../../actions/recipes';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // import styles
 import './styles.scss';
@@ -18,7 +20,6 @@ import Recipe from '../Recipe';
 import AddRecipeModal from '../AddRecipeModal';
 import AddItemModal from '../../shared/addItemModal';
 import Loader from '../../shared/loader';
-import { useAuth0 } from '@auth0/auth0-react';
 import Group from '../Group';
 import AddRecipeButton from '../../shared/AddRecipeButton';
 
@@ -26,6 +27,8 @@ import AddRecipeButton from '../../shared/AddRecipeButton';
 const App = () => { 
   // utils
   const location = useLocation();
+
+  const dispatch = useDispatch();
 
   // scroll to top on page change
   useEffect(
@@ -38,7 +41,31 @@ const App = () => {
   const { isOpen } = useSelector((state) => state.addRecipeModal);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
-  const { isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+
+  const getToken = async () => {
+    const getUserMetadata = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently({
+          audience: "https://localhost:7262/",
+        });
+
+        console.log(accessToken);
+
+        dispatch(setUserToken(accessToken));
+
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+
+    if(isAuthenticated) {
+      await getUserMetadata();
+    }
+  }
+
+  getToken();
+
 
   // change header bar color
   // function runOnScroll() {
@@ -59,7 +86,7 @@ const App = () => {
       <AddRecipeButton />
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" exact element={<Home />} />
         <Route path="/a-propos-de-nous" element={<AboutUs />} />
         <Route path="/mes-recettes" element={<Recipes />} />
         <Route path="/contact" element={<Contact />} />

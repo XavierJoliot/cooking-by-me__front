@@ -11,6 +11,11 @@ const Input = ({ name, type, value, label, placeholder, action, isRequired }) =>
     dispatch(action(name, e.target.value));
   };
 
+  const handleChangeFile = (e) => {
+    console.log(e.target.files[0])
+    dispatch(action(name, e.target.files[0]));
+  }
+
   let labelVisibility = <label className='group__label' htmlFor={name}>{label}</label>;
 
   if(!label) {
@@ -37,6 +42,18 @@ const Input = ({ name, type, value, label, placeholder, action, isRequired }) =>
       value={value}
       placeholder={placeholder}
       onChange={handleChange} 
+      required={isRequired}
+    />;
+  }
+
+  if(type === 'file') {
+    input = <input
+      className='group__input'
+      type={type}
+      id={name}
+      name={name}
+      placeholder={placeholder}
+      onChange={handleChangeFile} 
       required={isRequired}
     />;
   }

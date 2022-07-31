@@ -4,25 +4,27 @@ import { SET_INGREDIENTS, SET_STEPS, SET_IS_MODAL_OPEN } from "../actions/recipe
 const initialState = {
   isOpen: false,
   newRecipe: {
+    userId: '',
+    groupId: 0,
     title: '',
-    imagePath: '',
     duration: 0,
     quantity: 0,
+    imagePath: '',
     note: '',
+    stepsList: [
+      {
+        order: 1,
+        description: 'Test',
+      }
+    ],
+    ingredientsList: [
+      {
+        name: 'ingredient 1',
+        quantity: 100,
+        unit: 'g',
+      }
+    ]
   },
-  ingredients: [
-    {
-      name: 'ingredient 1',
-      quantity: 100,
-      unit: 'g',
-    }
-  ],
-  steps: [
-    {
-      order: 1,
-      description: 'Test',
-    }
-  ],
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -39,7 +41,7 @@ const reducer = (state = initialState, action = {}) => {
         newRecipe: {
           ...state.newRecipe,
           [action.name]: action.value,
-        }
+        },
       }
     }
     case SET_INGREDIENTS: {
@@ -47,7 +49,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          ingredients: state.ingredients.push(action.object)
+          ingredientsList: state.ingredients.push(action.object)
         }
       }
     }
@@ -56,7 +58,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          steps: state.steps.push(action.object)
+          stepsList: state.steps.push(action.object)
         }
       }
     }
