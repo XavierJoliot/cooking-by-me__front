@@ -57,9 +57,3 @@ export const setAllRecipes = (recipes) => ({
   type: SET_ALL_RECIPES,
   recipes
 });
-
-
-
-
-
-

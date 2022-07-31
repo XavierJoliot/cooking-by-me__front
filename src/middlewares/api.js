@@ -2,32 +2,35 @@ import axios from 'axios';
 import { GET_ALL_RECIPES, setAllRecipes, SUBMIT_ADD_RECIPE_MODAL } from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
+  axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+  
+  const { token } = store.getState().user;
+
+  console.log(JSON.stringify(token));
+
   const api = axios.create({
-    baseURL: 'https://localhost:7262/api/',
+    baseURL: 'https://localhost:7262/'
   });
 
   switch (action.type) {
     case SUBMIT_ADD_RECIPE_MODAL: {
       const { newRecipe } = store.getState().addRecipeModal;
-
-      console.log(newRecipe);
-      const { token } = store.getState().user;
       api
-        .post('recette',
-          newRecipe,
+        .post('/api/recette',
           {
-            headers: {
-              Autorization: `bearer ${token}`,
-            }
-          })
+            crossdomain: true,
+            header: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+          newRecipe,)
         .then(
           () => {
             console.log('ok')
           },
         )
-        .catch(
-          (error) => {
-            console.log(error);
+        .catch((error) => {
+            console.log(error)
           },
         );
 
@@ -37,12 +40,14 @@ const apiMiddleware = (store) => (next) => (action) => {
     case GET_ALL_RECIPES: {
       const { token } = store.getState().user;
       api
-        .get('recette/',
-          {
-            headers: {
-              Autorization: `Bearer ${token}`,
-            }
-          })
+        .get('api/recette/',
+        {
+          crossdomain: true,
+          header: {
+            Authorization: `Bearer ${token}`,
+            'content-type': 'application/json; charset=utf-8'
+          },
+        })
         .then(
           (response) => {
             store.dispatch(setAllRecipes(response.data));

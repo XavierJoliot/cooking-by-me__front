@@ -2,6 +2,7 @@
 import './styles.scss';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from 'react-router-dom';
 
 // import images
 import HeadLogo from 'src/assets/images/logo_typo.png';
@@ -42,18 +43,18 @@ const Header = () => {
         </div>
         <nav className='header__left__navigation'>
           <ul className='header__left__navigation__list'>
-            <a className='header__left__navigation__list__link' href='/'>
+            <Link className='header__left__navigation__list__link' onClick={handleBurgerClicked} to='/'>
               <li className='header__left__navigation__list__link__item'>Cooking by me</li>
-            </a>
-            <a className='header__left__navigation__list__link' href='/a-propos-de-nous'>
+            </Link>
+            <Link className='header__left__navigation__list__link' onClick={handleBurgerClicked} to='a-propos-de-nous'>
               <li className='header__left__navigation__list__link__item'>À propos de nous</li>
-            </a>
-            <a className='header__left__navigation__list__link' href='/mes-recettes'>
+            </Link>
+            <Link className='header__left__navigation__list__link' onClick={handleBurgerClicked} to='mes-recettes'>
               <li className='header__left__navigation__list__link__item'>Mes recettes</li>
-            </a>
-            <a className='header__left__navigation__list__link' href='/contact'>
+            </Link>
+            <Link className='header__left__navigation__list__link' onClick={handleBurgerClicked} to='contact'>
               <li className='header__left__navigation__list__link__item'>Contact</li>
-            </a>
+            </Link>
             {
               !isAuthenticated && 
               <a className='header__left__navigation__list__link header__left__navigation__list__link--logout' onClick={() => loginWithRedirect()}>
@@ -65,9 +66,9 @@ const Header = () => {
         </nav>
       </div>
       <div className='header__center'>
-        <a className='header__center__link' href='/'>
+        <Link className='header__center__link' to='/'>
           <img  className='header__center__link__image' src={HeadLogo} alt="Logo cooking by me" />
-        </a>
+        </Link>
       </div>
       <div className='header__right'>
         {

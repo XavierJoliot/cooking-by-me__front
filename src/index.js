@@ -17,6 +17,7 @@ const rootReactElement = (
     domain="dev-1rffl3ah.us.auth0.com"
     clientId="bSgDImO9Ba02NLloiZDelCychEeAzFBQ"
     redirectUri={window.location.origin}
+    audience= "https://localhost:7262/"
   >
     <BrowserRouter>
         <Provider store={store}>

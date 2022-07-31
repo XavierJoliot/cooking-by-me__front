@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { setIsModalOpen } from '../../actions/recipes';
+import { setIsModalOpen, setUserToken } from '../../actions/recipes';
 import { getAllRecipes } from '../../actions/recipes';
 
 // import components
@@ -15,16 +15,13 @@ import GroupCard from '../../shared/groupCard';
 
 // import images
 import HeadImage from '../../assets/images/recipes.jpg';
-import { useEffect } from 'react';
 
 const Recipes = () => { 
   const dispatch = useDispatch();
 
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
-  console.log('chargement 1');
-
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     const elmt = e.target;
     const parent = elmt.closest('div');
     const content = parent.nextSibling;
@@ -36,6 +33,10 @@ const Recipes = () => {
       elmt.classList.replace('fa-caret-right', 'fa-caret-down');
       content.style.display = '';
     }
+
+    const token = await getAccessTokenSilently();
+
+    dispatch(setUserToken(token));
     
     dispatch(getAllRecipes(user.sub));
   }
