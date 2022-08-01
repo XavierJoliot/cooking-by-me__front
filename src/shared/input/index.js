@@ -12,7 +12,6 @@ const Input = ({ name, type, value, label, placeholder, action, isRequired }) =>
   };
 
   const handleChangeFile = (e) => {
-    console.log(e.target.files[0])
     dispatch(action(name, e.target.files[0]));
   }
 

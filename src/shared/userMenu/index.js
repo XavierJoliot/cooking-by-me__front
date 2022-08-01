@@ -1,6 +1,7 @@
 // import utils
 import './styles.scss';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const UserMenu = () => { 
   const handleMenuClick = (e) => {
@@ -22,24 +23,24 @@ const UserMenu = () => {
         </div>
         <div className='user__menu'>
           <ul className='user__menu__list'>
-            <a href='/mon-espace' className='user__menu__list__link'>
+            <Link to='mon-espace' className='user__menu__list__link' onClick={handleMenuClick}>
               <li className='user__menu__list__link__item'>
                 <i className="fa-solid fa-house user__menu__list__link__item__icon"></i>
                 Mon espace
               </li>
-            </a>
-            <a href='/mon-espace/profil' className='user__menu__list__link'>
+            </Link>
+            <Link to='mon-espace/profil' className='user__menu__list__link' onClick={handleMenuClick}>
               <li className='user__menu__list__link__item'>
                 <i className="fa-solid fa-circle-user user__menu__list__link__item__icon"></i>
                 Mon profil
               </li>
-            </a>
-            <a className='user__menu__list__link' onClick={() => logout({ returnTo: window.location.origin })}>
+            </Link>
+            <Link className='user__menu__list__link' to='#' onClick={() => logout({ returnTo: window.location.origin })}>
               <li className='user__menu__list__link__item'>
                 <i className="fa-solid fa-right-from-bracket user__menu__list__link__item__icon user__menu__list__link__item__icon--red"></i>
                 Déconnexion
               </li>
-            </a>
+            </Link>
           </ul>
         </div>
       </div>

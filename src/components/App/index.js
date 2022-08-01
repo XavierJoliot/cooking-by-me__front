@@ -41,30 +41,8 @@ const App = () => {
   const { isOpen } = useSelector((state) => state.addRecipeModal);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
-  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const { isLoading } = useAuth0();
 
-  const getToken = async () => {
-    const getUserMetadata = async () => {
-      try {
-        const accessToken = await getAccessTokenSilently({
-          audience: "https://localhost:7262/",
-        });
-
-        console.log(accessToken);
-
-        dispatch(setUserToken(accessToken));
-
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-
-    if(isAuthenticated) {
-      await getUserMetadata();
-    }
-  }
-
-  getToken();
 
 
   // change header bar color

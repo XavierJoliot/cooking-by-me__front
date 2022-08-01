@@ -1,28 +1,60 @@
 import axios from 'axios';
-import { GET_ALL_RECIPES, setAllRecipes, SUBMIT_ADD_RECIPE_MODAL } from '../actions/recipes';
+import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, getDataFromApi, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
+import { setNewRecipe, setAllRecipes, setIsModalOpen} from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
+  axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+  
+  const { token } = store.getState().user;
+
   const api = axios.create({
     baseURL: 'https://localhost:7262/api/',
+    headers: {
+      'authorization': `Bearer ${token}`
+    },
   });
 
   switch (action.type) {
-    case SUBMIT_ADD_RECIPE_MODAL: {
-      const { newRecipe } = store.getState().addRecipeModal;
-
-      console.log(newRecipe);
-      const { token } = store.getState().user;
+    case ADD_DATA_TO_API: {
       api
-        .post('recette',
-          newRecipe,
-          {
-            headers: {
-              Autorization: `bearer ${token}`,
-            }
-          })
+        .post(action.endPoint,
+          action.data)
         .then(
           () => {
-            console.log('ok')
+            switch(action.information) {
+              case 'myRecipe': {
+                document.location.reload();
+                break;
+              }
+            }
+          },
+        )
+        .catch((error) => {
+            console.log(error)
+          },
+        );
+
+      next(action);
+      break;
+    }
+    case GET_DATA_FROM_API: {
+      api
+        .get(action.endPoint)
+        .then(
+          (response) => {
+            switch(action.information) {
+              case 'myRecipesList' : {
+                store.dispatch(setAllRecipes(response.data));
+                break;
+              }
+              case 'editMyRecipe' : {
+                store.dispatch(setNewRecipe(response.data));
+                store.dispatch(setIsModalOpen('edit'));
+                break;
+              }
+              default:
+                break;
+            }
           },
         )
         .catch(
@@ -34,18 +66,36 @@ const apiMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    case GET_ALL_RECIPES: {
-      const { token } = store.getState().user;
+    case UPDATE_DATA_TO_API: {
       api
-        .get('recette/',
-          {
-            headers: {
-              Autorization: `Bearer ${token}`,
-            }
-          })
+        .put(action.endPoint, action.data)
+          .then(
+            (response) => {
+              switch(action.information) {
+                case 'editMyRecipe' : {
+                  document.location.reload();
+                  break;
+                }
+                default:
+                  break;
+              }
+            },
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            },
+          );  
+
+      next(action);
+      break;
+    }
+    case DELETE_DATA_FROM_API: {
+      api
+        .delete(action.endPoint)
         .then(
-          (response) => {
-            store.dispatch(setAllRecipes(response.data));
+          () => {
+            document.location.reload();
           },
         )
         .catch(

@@ -38,15 +38,15 @@ const Home = () =>{
       <section className='home__my-recipes'>
         {
           !isAuthenticated && 
-          <a className='home__my-recipes__link ' onClick={() => loginWithRedirect()}> 
+          <Link className='home__my-recipes__link ' to='#' onClick={() => loginWithRedirect()}> 
             <Button type='button' text='Connexion / inscription' className='fill' />
-          </a>
+          </Link>
         }
         {
           isAuthenticated && 
-          <a className='home__my-recipes__link' href='mes-recettes/#recipes'>
+          <Link className='home__my-recipes__link' to='mes-recettes/#recipes'>
             <Button type='button' text='Mes recettes' className='fill' />
-          </a>
+          </Link>
         }
         
       </section>
@@ -56,23 +56,23 @@ const Home = () =>{
           <p className='home__cooking-recipes__description__text'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim mauris, dictum eget sapien vitae, auctor vulputate mi. Maecenas finibus elit arcu, vel sodales massa vulputate quis. Praesent iaculis risus vitae feugiat laoreet. Vestibulum ut ligula nec mi rhoncus sodales.
           </p>
-          <a className='home__cooking-recipes__description__link' href='mes-recettes/#cooking'>
+          <Link className='home__cooking-recipes__description__link' to='mes-recettes/#cooking'>
             <Button type='button' text='Découvrir' className='fill' /> 
-          </a>
+          </Link>
         </div>
         <div className='home__cooking-recipes__list'>
           {
             cookingRecipes.map(
               (item) => (
-                <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
-                  <RecipesCard
-                    key={item.title}
-                    imagePath={item.imagePath} 
-                    duration={item.duration}
-                    title={item.title}
-                    quantity={item.quantity}
-                  />
-                </Link>
+                <RecipesCard
+                  isEditable={false}
+                  recipeId={item.id}
+                  key={item.title}
+                  imagePath={item.imagePath} 
+                  duration={item.duration}
+                  title={item.title}
+                  quantity={item.quantity}
+                />
               )
             )
           }
