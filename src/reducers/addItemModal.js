@@ -34,11 +34,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isItemModalOpen: !state.isItemModalOpen,
-      }
-    }
-    case SET_ITEM_MODAL_TYPE: {
-      return {
-        ...state,
         modalName: action.name,
       }
     }

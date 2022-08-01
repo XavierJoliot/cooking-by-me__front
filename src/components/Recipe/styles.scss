@@ -78,6 +78,23 @@
 
         &__item {
           padding: .25rem;
+          display: flex;
+          justify-content: space-between;
+
+          &__icon {
+            font-size: 1.2rem;
+            color: #a2a2a2;
+
+            &__item {
+              margin-right: 1rem;
+              vertical-align: middle;
+              cursor: pointer;
+
+              &--red {
+                color: rgb(176, 3, 3);
+              }
+            }
+          }
         }
       }
     }

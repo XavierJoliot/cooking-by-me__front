@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, getDataFromApi, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
-import { setNewRecipe, setAllRecipes, setIsModalOpen} from '../actions/recipes';
+import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
+import { setAllGroup } from '../actions/groups';
+import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe} from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
   axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
@@ -26,6 +27,12 @@ const apiMiddleware = (store) => (next) => (action) => {
                 document.location.reload();
                 break;
               }
+              case 'group': {
+                document.location.reload();
+                break;
+              }
+              default:
+                break;
             }
           },
         )
@@ -50,6 +57,14 @@ const apiMiddleware = (store) => (next) => (action) => {
               case 'editMyRecipe' : {
                 store.dispatch(setNewRecipe(response.data));
                 store.dispatch(setIsModalOpen('edit'));
+                break;
+              }
+              case 'groupsList': {
+                store.dispatch(setAllGroup(response.data));
+                break;
+              }
+              case 'getRecipe': {
+                store.dispatch(setCurrentRecipe(response.data));
                 break;
               }
               default:

@@ -3,10 +3,10 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 
 // import images
 import EmptyImage from '../../assets/images/empty-image.jpg';
-import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 
 const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantity }) => { 
   const dispatch = useDispatch();

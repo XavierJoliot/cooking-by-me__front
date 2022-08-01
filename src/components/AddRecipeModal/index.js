@@ -45,12 +45,11 @@ const AddRecipeModal = () => {
 
   const handleOpenAddItemModal = (e) => {
     if(e.target.id === 'ingredient') {
-      dispatch(setItemModalType('ingredient'));
+      dispatch(setIsItemModalOpen('ingredient'));
     };
     if(e.target.id === 'step') {
-      dispatch(setItemModalType('étape'));
+      dispatch(setIsItemModalOpen('étape'));
     };
-    dispatch(setIsItemModalOpen());
   }
 
   return (

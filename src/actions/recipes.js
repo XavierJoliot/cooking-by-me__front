@@ -5,17 +5,11 @@ export const setIsModalOpen = (mode) => ({
   mode
 });
 
-export const SET_ITEM_MODAL_TYPE = 'SET_ITEM_MODAL_TYPE';
-
-export const setItemModalType = (name) => ({
-  type: SET_ITEM_MODAL_TYPE,
-  name
-});
-
 export const SET_IS_ITEM_MODAL_OPEN = 'SET_IS_ITEM_MODAL_OPEN';
 
-export const setIsItemModalOpen = () => ({
+export const setIsItemModalOpen = (name) => ({
   type: SET_IS_ITEM_MODAL_OPEN,
+  name
 });
 
 export const SET_INGREDIENTS = 'SET_INGREDIENTS';
@@ -52,4 +46,12 @@ export const setNewRecipe = (recipe) => ({
   type: SET_NEW_RECIPE,
   recipe
 });
+
+export const SET_CURRENT_RECIPE = 'SET_CURRENT_RECIPE';
+
+export const setCurrentRecipe = (data) => ({
+  type: SET_CURRENT_RECIPE,
+  data
+});
+
 

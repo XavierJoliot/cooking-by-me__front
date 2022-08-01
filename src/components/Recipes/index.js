@@ -3,7 +3,9 @@ import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { setIsModalOpen, setUserToken } from '../../actions/recipes';
+import { setIsItemModalOpen, setIsModalOpen, setUserToken } from '../../actions/recipes';
+import { useEffect } from 'react';
+import { getDataFromApi } from '../../actions/api';
 
 // import components
 import InternPageHeadSection from '../../shared/internPageHeadSection';
@@ -13,8 +15,6 @@ import GroupCard from '../../shared/groupCard';
 
 // import images
 import HeadImage from '../../assets/images/recipes.jpg';
-import { useEffect } from 'react';
-import { getDataFromApi } from '../../actions/api';
 
 const Recipes = () => { 
   const dispatch = useDispatch();
@@ -35,26 +35,32 @@ const Recipes = () => {
     }
   }
 
-  const getRecipes = async() => {
+  const getData = async() => {
     const token = await getAccessTokenSilently();
 
     dispatch(setUserToken(token));
-    
+
     dispatch(getDataFromApi('recette', 'myRecipesList'));
+    dispatch(getDataFromApi('groupe', 'groupsList'));
   }
 
   useEffect(() => {
     if(isAuthenticated) {
-      getRecipes();
+      getData();
     }
   },
-  [isAuthenticated])
+  [isAuthenticated]);
 
   const handleAddRecipeClick = () => {
     dispatch(setIsModalOpen());
   }
 
-  const { isMyRecipesLoaded, myRecipes, cookingRecipes, groupList } = useSelector((state) => state.recipes);
+  const handleAddGroupClicked = () => {
+    dispatch(setIsItemModalOpen('groupe'))
+  }
+
+  const { myRecipes, cookingRecipes } = useSelector((state) => state.recipes);
+  const { groupList } = useSelector((state) => state.groups);
 
 
   return(
@@ -90,7 +96,7 @@ const Recipes = () => {
               }
               {
                 isAuthenticated &&
-                <Link to='#'>
+                <Link to='#' onClick={handleAddGroupClicked}>
                   <GroupCard isGroup={false} />
                 </Link>
               }

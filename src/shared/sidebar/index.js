@@ -17,8 +17,7 @@ const Sidebar = () => {
   }
 
   const handleAddGroupClick = () => {
-    dispatch(setItemModalType('groupe'));
-    dispatch(setIsItemModalOpen());
+    dispatch(setIsItemModalOpen('groupe'));
   }
 
   return (

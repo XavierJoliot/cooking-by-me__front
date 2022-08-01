@@ -1,10 +1,35 @@
 // import utils
 import './styles.scss';
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDataFromApi } from '../../actions/api';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useEffect } from 'react';
+import { setUserToken } from '../../actions/recipes';
+
+// import component
+import Loader from '../../shared/loader';
 
 const Recipe = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  const getData = async() => {
+    const token = await getAccessTokenSilently();
+
+    dispatch(setUserToken(token));
+
+    dispatch(getDataFromApi(`recette/${id}`, 'getRecipe'));
+  }
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      getData();
+    }
+  },
+  [isAuthenticated]);
+
   const currentRecipe = useSelector((state) => state.recipes.currentRecipe);
   
   // voir pour amélioration
@@ -53,11 +78,15 @@ const Recipe = () => {
         </div>
         <article id='ingredients' className='recipe__content__ingredients'>
           <ul className='recipe__content__ingredients__list'>
-            {
-              currentRecipe.ingredients.map(
+            {currentRecipe.ingredientsList &&
+              currentRecipe.ingredientsList.map(
                 (item) => (
                   <li key={item.id} className='recipe__content__ingredients__list__item'>
                     - {item.name} - {item.quantity}{item.unit}
+                    <div className='recipe__content__ingredients__list__item__icon'> 
+                      <i title='Modifier' className="fa-solid fa-pen-to-square recipe__content__ingredients__list__item__icon__item"></i>
+                      <i title='Supprimer' className="fa-solid fa-xmark recipe__content__ingredients__list__item__icon__item recipe__content__ingredients__list__item__icon__item--red"></i>
+                    </div>
                   </li>
                 )
               )
@@ -65,8 +94,8 @@ const Recipe = () => {
           </ul>
         </article>
         <article id='steps' className='recipe__content__steps recipe__content__steps--hidden'>
-          {
-            currentRecipe.steps.map(
+          {currentRecipe.stepsList &&
+            currentRecipe.stepsList.map(
               (item) => (
                 <div key={item.id} className='recipe__content__steps__item'>
                   <h3 className='recipe__content__steps__item__title'>
@@ -85,4 +114,6 @@ const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default withAuthenticationRequired(Recipe, {
+  onRedirecting: () => <Loader />,
+});
