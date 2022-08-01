@@ -6,8 +6,6 @@ const apiMiddleware = (store) => (next) => (action) => {
   
   const { token } = store.getState().user;
 
-  console.log(JSON.stringify(token));
-
   const api = axios.create({
     baseURL: 'https://localhost:7262/'
   });
@@ -42,10 +40,9 @@ const apiMiddleware = (store) => (next) => (action) => {
       api
         .get('api/recette/',
         {
-          crossdomain: true,
-          header: {
-            Authorization: `Bearer ${token}`,
-            'content-type': 'application/json; charset=utf-8'
+          headers: {
+            'authorization': `Bearer ${token}`
+
           },
         })
         .then(

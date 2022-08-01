@@ -15,13 +15,14 @@ import GroupCard from '../../shared/groupCard';
 
 // import images
 import HeadImage from '../../assets/images/recipes.jpg';
+import { useEffect } from 'react';
 
 const Recipes = () => { 
   const dispatch = useDispatch();
 
   const { user, isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     const elmt = e.target;
     const parent = elmt.closest('div');
     const content = parent.nextSibling;
@@ -33,13 +34,23 @@ const Recipes = () => {
       elmt.classList.replace('fa-caret-right', 'fa-caret-down');
       content.style.display = '';
     }
+  }
 
+  const getRecipes = async() => {
     const token = await getAccessTokenSilently();
 
     dispatch(setUserToken(token));
     
     dispatch(getAllRecipes(user.sub));
   }
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      console.log('test');
+      getRecipes();
+    }
+  },
+  [isAuthenticated])
 
   const handleAddRecipeClick = () => {
     dispatch(setIsModalOpen());
