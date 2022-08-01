@@ -1,11 +1,9 @@
 // import utils
 import './styles.scss';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { setIsModalOpen, setUserToken } from '../../actions/recipes';
-import { getAllRecipes } from '../../actions/recipes';
 
 // import components
 import InternPageHeadSection from '../../shared/internPageHeadSection';
@@ -16,11 +14,12 @@ import GroupCard from '../../shared/groupCard';
 // import images
 import HeadImage from '../../assets/images/recipes.jpg';
 import { useEffect } from 'react';
+import { getDataFromApi } from '../../actions/api';
 
 const Recipes = () => { 
   const dispatch = useDispatch();
 
-  const { user, isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
   const handleClick = (e) => {
     const elmt = e.target;
@@ -41,12 +40,11 @@ const Recipes = () => {
 
     dispatch(setUserToken(token));
     
-    dispatch(getAllRecipes(user.sub));
+    dispatch(getDataFromApi('recette', 'myRecipesList'));
   }
 
   useEffect(() => {
     if(isAuthenticated) {
-      console.log('test');
       getRecipes();
     }
   },
@@ -85,20 +83,16 @@ const Recipes = () => {
                 groupList.map(
                   (item) =>
                     <Link key={item.id} to={'/groupe/' + item.id} reloadDocument>
-                      <GroupCard title={item.title} imagePath={item.imagePath} />
+                      <GroupCard isGroup={true} title={item.title} imagePath={item.imagePath} />
                     </Link>
                 )
+                
               }
               {
                 isAuthenticated &&
-                groupList.length === 0 &&
-                <a className='recipes__list__right__group__content__empty' onClick={handleAddRecipeClick}> 
-                  <p className='recipes__list__right__group__content__empty__text'>
-                  <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
-                  Ajouter un groupe de recette pour le voir s'afficher ici.
-                  <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
-                  </p>
-                </a>
+                <Link to='#'>
+                  <GroupCard isGroup={false} />
+                </Link>
               }
               {
                 !isAuthenticated &&
@@ -124,15 +118,15 @@ const Recipes = () => {
                 myRecipes.length > 0 &&
                 myRecipes.map(
                   (item) =>
-                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
-                      <RecipesCard
-                        key={item.title}
-                        imagePath={item.imagePath} 
-                        duration={item.duration}
-                        title={item.title}
-                        quantity={item.quantity}
-                      />
-                    </Link>
+                    <RecipesCard
+                      isEditable={true}
+                      recipeId={item.id}
+                      key={item.title}
+                      imagePath={item.imagePath} 
+                      duration={item.duration}
+                      title={item.title}
+                      quantity={item.quantity}
+                    />
                 )
               }
               {
@@ -168,15 +162,15 @@ const Recipes = () => {
               {
                 cookingRecipes.map(
                   (item) => (
-                    <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
-                      <RecipesCard
-                        key={item.title}
-                        imagePath={item.imagePath} 
-                        duration={item.duration}
-                        title={item.title}
-                        quantity={item.quantity}
-                      />
-                    </Link>
+                    <RecipesCard
+                      isEditable={false}
+                      recipeId={item.id}
+                      key={item.title}
+                      imagePath={item.imagePath} 
+                      duration={item.duration}
+                      title={item.title}
+                      quantity={item.quantity}
+                    />
                   )
                 )
               }

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { getAllRecipes, GET_ALL_RECIPES, setAllRecipes, setIsModalOpen, SUBMIT_ADD_RECIPE_MODAL } from '../actions/recipes';
+import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, getDataFromApi, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
+import { setNewRecipe, setAllRecipes, setIsModalOpen} from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
   axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
@@ -7,22 +8,25 @@ const apiMiddleware = (store) => (next) => (action) => {
   const { token } = store.getState().user;
 
   const api = axios.create({
-    baseURL: 'https://localhost:7262/',
+    baseURL: 'https://localhost:7262/api/',
     headers: {
       'authorization': `Bearer ${token}`
     },
   });
 
   switch (action.type) {
-    case SUBMIT_ADD_RECIPE_MODAL: {
-      const { newRecipe } = store.getState().addRecipeModal;
+    case ADD_DATA_TO_API: {
       api
-        .post('/api/recette',
-          newRecipe)
+        .post(action.endPoint,
+          action.data)
         .then(
           () => {
-            store.dispatch(getAllRecipes());
-            store.dispatch(setIsModalOpen());
+            switch(action.information) {
+              case 'myRecipe': {
+                document.location.reload();
+                break;
+              }
+            }
           },
         )
         .catch((error) => {
@@ -33,13 +37,65 @@ const apiMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    case GET_ALL_RECIPES: {
-      const { token } = store.getState().user;
+    case GET_DATA_FROM_API: {
       api
-        .get('api/recette/')
+        .get(action.endPoint)
         .then(
           (response) => {
-            store.dispatch(setAllRecipes(response.data));
+            switch(action.information) {
+              case 'myRecipesList' : {
+                store.dispatch(setAllRecipes(response.data));
+                break;
+              }
+              case 'editMyRecipe' : {
+                store.dispatch(setNewRecipe(response.data));
+                store.dispatch(setIsModalOpen('edit'));
+                break;
+              }
+              default:
+                break;
+            }
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+
+      next(action);
+      break;
+    }
+    case UPDATE_DATA_TO_API: {
+      api
+        .put(action.endPoint, action.data)
+          .then(
+            (response) => {
+              switch(action.information) {
+                case 'editMyRecipe' : {
+                  document.location.reload();
+                  break;
+                }
+                default:
+                  break;
+              }
+            },
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            },
+          );  
+
+      next(action);
+      break;
+    }
+    case DELETE_DATA_FROM_API: {
+      api
+        .delete(action.endPoint)
+        .then(
+          () => {
+            document.location.reload();
           },
         )
         .catch(

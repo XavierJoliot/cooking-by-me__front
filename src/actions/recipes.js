@@ -1,7 +1,8 @@
 export const SET_IS_MODAL_OPEN = 'SET_IS_MODAL_OPEN';
 
-export const setIsModalOpen = () => ({
+export const setIsModalOpen = (mode) => ({
   type: SET_IS_MODAL_OPEN,
+  mode
 });
 
 export const SET_ITEM_MODAL_TYPE = 'SET_ITEM_MODAL_TYPE';
@@ -31,24 +32,11 @@ export const setSteps = (object) => ({
   object
 });
 
-export const SUBMIT_ADD_RECIPE_MODAL = 'SUBMIT_ADD_RECIPE_MODAL';
-
-export const submitAddRecipeModal = () => ({
-  type: SUBMIT_ADD_RECIPE_MODAL
-});
-
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 
 export const setUserToken = (token) => ({
   type: SET_USER_TOKEN,
   token
-});
-
-export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
-
-export const getAllRecipes = (userId) => ({
-  type: GET_ALL_RECIPES,
-  userId
 });
 
 export const SET_ALL_RECIPES = 'SET_ALL_RECIPES';
@@ -57,3 +45,11 @@ export const setAllRecipes = (recipes) => ({
   type: SET_ALL_RECIPES,
   recipes
 });
+
+export const SET_NEW_RECIPE = 'SET_NEW_RECIPE';
+
+export const setNewRecipe = (recipe) => ({
+  type: SET_NEW_RECIPE,
+  recipe
+});
+

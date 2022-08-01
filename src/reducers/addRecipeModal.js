@@ -1,10 +1,11 @@
 import { SET_INPUT_ADD_RECIPE_VALUE } from "../actions/input";
-import { SET_INGREDIENTS, SET_STEPS, SET_IS_MODAL_OPEN } from "../actions/recipes";
+import { SET_INGREDIENTS, SET_STEPS, SET_IS_MODAL_OPEN, SET_NEW_RECIPE } from "../actions/recipes";
 
 const initialState = {
   isOpen: false,
+  mode: '',
   newRecipe: {
-    userId: '',
+    id: '',
     groupId: 0,
     title: '',
     duration: 0,
@@ -33,6 +34,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isOpen: !state.isOpen,
+        mode: action.mode
       }
     }
     case SET_INPUT_ADD_RECIPE_VALUE: {
@@ -60,6 +62,12 @@ const reducer = (state = initialState, action = {}) => {
           ...state.newRecipe,
           stepsList: state.steps.push(action.object)
         }
+      }
+    }
+    case SET_NEW_RECIPE: {
+      return {
+        ...state,
+        newRecipe: action.recipe,
       }
     }
     default:

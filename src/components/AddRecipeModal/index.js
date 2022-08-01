@@ -8,13 +8,17 @@ import { useAuth0 } from '@auth0/auth0-react';
 // import component
 import Input from '../../shared/input';
 import Button from '../../shared/button';
+import { addDataToApi, updateDataToApi } from '../../actions/api';
 
 const AddRecipeModal = () => { 
   const dispatch = useDispatch();
 
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { user } = useAuth0();
+
+  const { mode, newRecipe } = useSelector((state) => state.addRecipeModal);
 
   const { 
+    id,
     title, 
     imagePath,
     duration, 
@@ -30,10 +34,13 @@ const AddRecipeModal = () => {
 
   const handleSubmit = async (e) => {    
     e.preventDefault();
+    if(mode === 'edit') {
+      dispatch(updateDataToApi(`recette/${id}`, newRecipe, 'editMyRecipe'));
+    } else {
+      dispatch(addDataToApi('recette', newRecipe, 'myRecipe'));
+    }
 
-    dispatch(setInputAddRecipeValue('userId', user.sub));
-
-    dispatch(submitAddRecipeModal());
+    
   }
 
   const handleOpenAddItemModal = (e) => {
