@@ -83,7 +83,7 @@
     padding: 1rem;
 
     &__list {
-      padding-top: 2rem;
+      padding: 1rem;
       display: flex;
       height: 200px;
       overflow: hidden;
@@ -110,7 +110,6 @@
         width: 50%;
         border: 2px solid transparent;
         cursor: pointer;
-        background-color: #dedede;
 
         &--active {
           border-bottom: 2px solid vars.$first-color;

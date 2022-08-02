@@ -6,17 +6,17 @@ const initialState = {
   modalName: '',
   mode: '',
   ingredient: {
-    recipeId: 0,
-    id: '',
-    name: '',
-    quantity: 0,
-    unit: '',
+    recipeId: null,
+    id: null,
+    name: null,
+    quantity: null,
+    unit: null,
   },
   step: {
-    recipeId: 0,
-    id: '',
-    order: 0,
-    description: '',
+    recipeId: null,
+    id: null,
+    order: null,
+    description: null,
   },
   unitList: [
     'mg',
@@ -28,8 +28,9 @@ const initialState = {
     'càs',
   ],
   group: {
-    title: '',
-    description: '',
+    id: null,
+    title: null,
+    description: null,
   }
 }
 

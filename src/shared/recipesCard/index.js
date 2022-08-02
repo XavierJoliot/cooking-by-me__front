@@ -26,6 +26,11 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
       dispatch(deleteDataFromAPI(`recette/${recipeId}`));
     }
   }
+
+  const failedImageLoad = ({currentTarget}) => {
+    currentTarget.onError = null;
+    currentTarget.src = EmptyImage;
+  }
   return (
     <article className='card'>
       {
@@ -50,7 +55,7 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
       }
       
       <Link key={recipeId} to={'/recette/' + recipeId}>
-        <img className='card__image' src={imageSrc} alt='Rectte cooking by me' />
+        <img className='card__image' src={imageSrc} onError={failedImageLoad} alt='Rectte cooking by me' />
         <div className='card__description'>
           <h3 className='card__description__title'>{title}</h3>
           <div className='card__description__details'>

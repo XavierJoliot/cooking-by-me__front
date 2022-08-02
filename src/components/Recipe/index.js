@@ -38,6 +38,11 @@ const Recipe = () => {
   const currentRecipe = useSelector((state) => state.recipes.currentRecipe);
 
   const imageSrc = currentRecipe.imagePath ? currentRecipe.imagePath : EmptyImage;
+
+  const failedImageLoad = ({currentTarget}) => {
+    currentTarget.onError = null;
+    currentTarget.src = EmptyImage;
+  }
   
   // voir pour amélioration
   const handleLinkClick = (e) => {
@@ -108,6 +113,13 @@ const Recipe = () => {
     dispatch(setIsItemModalOpen('groupe'))
   }
 
+  // redirect if data not found
+  const { redirectTo } = useSelector((state) => state.general);
+
+  if(redirectTo) {
+    return <Navigate to={redirectTo} replace={true} />
+  }
+
   return (
     <main className='recipe'>
       <section className='recipe__presentation'>
@@ -128,7 +140,7 @@ const Recipe = () => {
             </ul>
           </div>
         </div>
-        <img className='recipe__presentation__image' src={imageSrc} alt='Presentation recette utilisateur Cooking by me' />
+        <img className='recipe__presentation__image' onError={failedImageLoad} src={imageSrc} alt='Presentation recette utilisateur Cooking by me' />
         <h1 className='recipe__presentation__title'>{currentRecipe.title}</h1>
       </section>
       <section className='recipe__description'>
@@ -155,7 +167,7 @@ const Recipe = () => {
             )
           }
           <Link to='#' onClick={handleAddGroupClicked}>
-            <GroupCard isGroup={false} />
+            <GroupCard isGroup={false} title='Ajouter un groupe' />
           </Link>
         </div>
       </section>

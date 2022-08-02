@@ -1,9 +1,18 @@
-import { SET_ALL_GROUPS } from "../actions/groups";
+import { SET_ALL_GROUPS, SET_CURRENT_GROUP } from "../actions/groups";
 
 const initialState = {
   
   groupList: [],
-  currentGroup: {}
+  currentGroup: {
+    id: null,
+    userId: '',
+    title: '',
+    imagePath: '',
+    description: '',
+    createdAt: '',
+    updatedAt: '',
+    group_Recipe: []
+  }
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -12,6 +21,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         groupList: action.group,
+      }
+    }
+    case SET_CURRENT_GROUP: {
+      return {
+        ...state,
+        currentGroup: action.data,
       }
     }
     default:

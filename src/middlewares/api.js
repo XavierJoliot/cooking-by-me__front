@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
-import { setAllGroup } from '../actions/groups';
+import { redirectNotFound } from '../actions/general';
+import { setAllGroup, setCurrentGroup } from '../actions/groups';
 import { setCurrentItem, setIsItemModalOpen } from '../actions/modal';
 import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe} from '../actions/recipes';
 
@@ -49,6 +50,11 @@ const apiMiddleware = (store) => (next) => (action) => {
                 store.dispatch(setIsModalOpen('edit'));
                 break;
               }
+              case 'editGroup' : {
+                store.dispatch(setCurrentItem('group', response.data));
+                store.dispatch(setIsItemModalOpen('groupe', 'edit'));
+                break;
+              }
               case 'editIngredient' : {
                 store.dispatch(setCurrentItem('ingredient', response.data));
                 store.dispatch(setIsItemModalOpen('ingredient', 'edit'));
@@ -67,6 +73,10 @@ const apiMiddleware = (store) => (next) => (action) => {
                 store.dispatch(setCurrentRecipe(response.data));
                 break;
               }
+              case 'getGroup': {
+                store.dispatch(setCurrentGroup(response.data));
+                break;
+              }
               default:
                 break;
             }
@@ -75,6 +85,15 @@ const apiMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
+            if(error.response.status === 404) {
+              switch(action.information) {
+                default: {
+                  store.dispatch(redirectNotFound('/mes-recettes'));
+                  break;
+                }
+              }
+            }
+            
           },
         );
 

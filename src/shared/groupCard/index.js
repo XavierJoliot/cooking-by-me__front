@@ -14,7 +14,7 @@ const GroupCard = ({ isGroup, title, imagePath }) => {
       <article className='group-card group-card--add'>
         <div className='group-card__add'>
           <i className="fa-solid fa-plus group-card__add__icon"></i>
-          Ajouter un groupe.
+          {title}
         </div>
       </article>
     );

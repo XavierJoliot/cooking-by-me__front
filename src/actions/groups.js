@@ -5,3 +5,10 @@ export const setAllGroup = (group) => ({
   group
 });
 
+export const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
+
+export const setCurrentGroup = (data) => ({
+  type: SET_CURRENT_GROUP,
+  data
+});
+

@@ -5,24 +5,24 @@ const initialState = {
   isOpen: false,
   mode: '',
   newRecipe: {
-    id: '',
-    groupId: 0,
-    title: '',
-    duration: 0,
-    quantity: 0,
-    imagePath: '',
-    note: '',
+    id: null,
+    groupId: null,
+    title: null,
+    duration: null,
+    quantity: null,
+    imagePath: null,
+    note: null,
     stepsList: [
       {
-        order: 1,
-        description: 'Test',
+        order: null,
+        description: null,
       }
     ],
     ingredientsList: [
       {
-        name: 'ingredient 1',
-        quantity: 100,
-        unit: 'g',
+        name: null,
+        quantity: null,
+        unit: null,
       }
     ]
   },

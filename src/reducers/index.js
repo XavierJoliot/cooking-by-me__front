@@ -6,6 +6,7 @@ import recipeModalReducer from './addRecipeModal';
 import itemModalReducer from './addItemModal';
 import userReducer from './user';
 import groupReducer from './groups';
+import generalReducer from './general';
 
 const rootReducer = combineReducers({
   recipes: recipesReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   addItemModal: itemModalReducer,
   user: userReducer,
   groups: groupReducer,
+  general: generalReducer,
 });
 
 export default rootReducer;

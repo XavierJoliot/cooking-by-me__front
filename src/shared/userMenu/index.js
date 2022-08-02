@@ -12,12 +12,17 @@ const UserMenu = () => {
 
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
+  const failedImageLoad = ({currentTarget}) => {
+    currentTarget.onError = null;
+    currentTarget.src = EmptyImage;
+  }
+
   if(isAuthenticated) {
     return (
       <div className='user'>
         <div className='user__navigation' onClick={handleMenuClick}>
           <div className='user__navigation__avatar'>
-            <img className='user__navigation__avatar__image' src={user.picture} alt={`Avatar ${user.name} Cooking by me`} />
+            <img className='user__navigation__avatar__image' src={user.picture} onError={failedImageLoad} alt={`Avatar ${user.name} Cooking by me`} />
           </div>
           <i className='fa-solid fa-caret-down user__navigation__icon'></i>
         </div>
