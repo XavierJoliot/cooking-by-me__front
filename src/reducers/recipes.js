@@ -40,7 +40,21 @@ const initialState = {
       imagePath: imgTest
     },
   ], 
-  currentRecipe: {}
+  currentRecipe: {
+    id: 0,
+    userId: null,
+    title: null,
+    duration: 0,
+    quantity: 0,
+    imagePath: null,
+    note: null,
+    stepsList: [
+    ],
+    ingredientsList: [
+    ],
+    group_Recipe: [
+    ]
+  },
 };
 
 const reducer = (state = initialState, action = {}) => {

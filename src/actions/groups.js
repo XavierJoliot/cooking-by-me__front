@@ -4,3 +4,4 @@ export const setAllGroup = (group) => ({
   type: SET_ALL_GROUPS,
   group
 });
+

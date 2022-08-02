@@ -5,13 +5,6 @@ export const setIsModalOpen = (mode) => ({
   mode
 });
 
-export const SET_IS_ITEM_MODAL_OPEN = 'SET_IS_ITEM_MODAL_OPEN';
-
-export const setIsItemModalOpen = (name) => ({
-  type: SET_IS_ITEM_MODAL_OPEN,
-  name
-});
-
 export const SET_INGREDIENTS = 'SET_INGREDIENTS';
 
 export const setIngredients = (object) => ({

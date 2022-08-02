@@ -18,7 +18,7 @@ const Group = ({ close }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(title) {
-      dispatch(addDataToApi(('groupe'), group, 'group'));
+      dispatch(addDataToApi(('groupe'), group));
       close();
       return(console.log('done'));
     }

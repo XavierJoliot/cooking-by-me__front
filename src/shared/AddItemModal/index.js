@@ -1,7 +1,7 @@
 // import utils
 import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsItemModalOpen } from '../../actions/recipes';
+import { eraseDataItemModal, setIsItemModalOpen } from '../../actions/modal';
 
 // import components
 import Ingredient from './ingredient';
@@ -13,6 +13,7 @@ const AddItemModal = () => {
   const { modalName } = useSelector((state) => state.addItemModal);
 
   const handleClose = () => {
+    dispatch(eraseDataItemModal());
     dispatch(setIsItemModalOpen());
   }
 

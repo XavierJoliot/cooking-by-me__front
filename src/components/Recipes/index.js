@@ -3,7 +3,8 @@ import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { setIsItemModalOpen, setIsModalOpen, setUserToken } from '../../actions/recipes';
+import { setIsModalOpen, setUserToken } from '../../actions/recipes';
+import { setIsItemModalOpen } from '../../actions/modal';
 import { useEffect } from 'react';
 import { getDataFromApi } from '../../actions/api';
 
@@ -88,7 +89,7 @@ const Recipes = () => {
                 groupList.length > 0 &&
                 groupList.map(
                   (item) =>
-                    <Link key={item.id} to={'/groupe/' + item.id} reloadDocument>
+                    <Link key={item.id} to={'/groupe/' + item.id}>
                       <GroupCard isGroup={true} title={item.title} imagePath={item.imagePath} />
                     </Link>
                 )

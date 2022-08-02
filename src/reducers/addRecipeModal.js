@@ -47,11 +47,12 @@ const reducer = (state = initialState, action = {}) => {
       }
     }
     case SET_INGREDIENTS: {
+      console.log(action.object);
       return {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          ingredientsList: state.ingredients.push(action.object)
+          ingredientsList: state.newRecipe.ingredientsList.concat(action.object)
         }
       }
     }
@@ -60,7 +61,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          stepsList: state.steps.push(action.object)
+          stepsList: state.newRecipe.stepsList.concat(action.object)
         }
       }
     }

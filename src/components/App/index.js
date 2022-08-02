@@ -41,7 +41,20 @@ const App = () => {
   const { isOpen } = useSelector((state) => state.addRecipeModal);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  const getData = async() => {
+    const token = await getAccessTokenSilently();
+
+    dispatch(setUserToken(token));
+  }
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      getData();
+    }
+  },
+  [isAuthenticated]);
 
 
 

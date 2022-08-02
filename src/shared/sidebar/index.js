@@ -1,8 +1,10 @@
 // import utils
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { setIsItemModalOpen, setIsModalOpen, setItemModalType } from '../../actions/recipes';
+import { setIsModalOpen } from '../../actions/recipes';
+import { setIsItemModalOpen } from '../../actions/modal';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 // import components
 import Input from '../../shared/input';
@@ -24,25 +26,25 @@ const Sidebar = () => {
     <aside className='sidebar'>
       <div className='sidebar__add'>
         { isAuthenticated &&
-          <a onClick={handleAddRecipeClick} className='sidebar__add__button'>
+          <Link to='#' onClick={handleAddRecipeClick} className='sidebar__add__button'>
             <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter une recette
-          </a>
+          </Link>
         }
         { isAuthenticated &&
-          <a onClick={handleAddGroupClick} className='sidebar__add__button'>
+          <Link to='#' onClick={handleAddGroupClick} className='sidebar__add__button'>
             <i className="fa-solid fa-plus sidebar__add__button__icon"></i> Ajouter un groupe
-          </a>
+          </Link>
         }
       </div>
       <div className='sidebar__search'>
         <h2 className='sidebar__search__title'>Rechercher :</h2>
-        <Input type='search' name='searchbar' value='' placeholder='Saisissez une lettre...' />
+        <Input type='search' name='searchbar' value='' placeholder='Saisissez une lettre...' isRequired={false} />
       </div>
       <div className='sidebar__navigation'>
         <h2 className='sidebar__navigation__title'>Navigation :</h2>
-        <a href='#group' className='sidebar__navigation__filter'>Groupes</a>
-        <a href='#recipes' className='sidebar__navigation__filter'>Mes recettes</a>
-        <a href='#cooking' className='sidebar__navigation__filter'>Recettes Cooking by me</a>
+        <Link to='#group' className='sidebar__navigation__filter'>Groupes</Link>
+        <Link to='#recipes' className='sidebar__navigation__filter'>Mes recettes</Link>
+        <Link to='#cooking' className='sidebar__navigation__filter'>Recettes Cooking by me</Link>
       </div>
     </aside>
   );

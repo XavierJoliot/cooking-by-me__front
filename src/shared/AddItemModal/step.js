@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setInputItemStepModal } from '../../actions/input';
 import { setSteps } from '../../actions/recipes';
+import { addDataToApi, updateDataToApi } from '../../actions/api';
 
 // import component
 import Input from '../input';
@@ -11,12 +12,22 @@ import Button from '../button';
 
 const Step = ({ close }) => { 
   const dispatch = useDispatch();
-  const { modalName, step } = useSelector((state) => state.addItemModal);
-  const { order, description } = useSelector((state) => state.addItemModal.step);
+  const { mode, modalName, step } = useSelector((state) => state.addItemModal);
+  const { id, order, description } = useSelector((state) => state.addItemModal.step);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(order && description) {
+    if(order > 0 && description) {
+      if(mode === 'edit') {
+        dispatch(updateDataToApi(`etape/${id}`, step));
+        return(console.log('done'));
+      }
+
+      if(mode === 'add') {
+        dispatch(addDataToApi(`etape`, step));
+        return(console.log('done'));
+      }
+
       dispatch(setSteps(step));
       close();
       return(console.log('done'));

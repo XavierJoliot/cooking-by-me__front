@@ -22,7 +22,7 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
   }
 
   const handleRecipeDeleteLinkClicked = () => {
-    if(confirm(`Tu es sûre de vouloir supprimer ce chef d'oeuvre ?`)) {
+    if(confirm(`Tu es sûr de vouloir supprimer ce chef d'oeuvre ?`)) {
       dispatch(deleteDataFromAPI(`recette/${recipeId}`));
     }
   }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
 import { setAllGroup } from '../actions/groups';
+import { setCurrentItem, setIsItemModalOpen } from '../actions/modal';
 import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe} from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
@@ -22,18 +23,7 @@ const apiMiddleware = (store) => (next) => (action) => {
           action.data)
         .then(
           () => {
-            switch(action.information) {
-              case 'myRecipe': {
-                document.location.reload();
-                break;
-              }
-              case 'group': {
-                document.location.reload();
-                break;
-              }
-              default:
-                break;
-            }
+            document.location.reload();
           },
         )
         .catch((error) => {
@@ -57,6 +47,16 @@ const apiMiddleware = (store) => (next) => (action) => {
               case 'editMyRecipe' : {
                 store.dispatch(setNewRecipe(response.data));
                 store.dispatch(setIsModalOpen('edit'));
+                break;
+              }
+              case 'editIngredient' : {
+                store.dispatch(setCurrentItem('ingredient', response.data));
+                store.dispatch(setIsItemModalOpen('ingredient', 'edit'));
+                break;
+              }
+              case 'editStep' : {
+                store.dispatch(setCurrentItem('step', response.data));
+                store.dispatch(setIsItemModalOpen('étape', 'edit'));
                 break;
               }
               case 'groupsList': {
@@ -85,15 +85,8 @@ const apiMiddleware = (store) => (next) => (action) => {
       api
         .put(action.endPoint, action.data)
           .then(
-            (response) => {
-              switch(action.information) {
-                case 'editMyRecipe' : {
-                  document.location.reload();
-                  break;
-                }
-                default:
-                  break;
-              }
+            () => {
+              document.location.reload();
             },
           )
           .catch(
@@ -110,7 +103,15 @@ const apiMiddleware = (store) => (next) => (action) => {
         .delete(action.endPoint)
         .then(
           () => {
-            document.location.reload();
+            switch(action.infromation) {
+              case 'fromRecipe': {
+                break;
+              }
+              default: {
+                document.location.reload();
+                break;
+              }
+            }
           },
         )
         .catch(
