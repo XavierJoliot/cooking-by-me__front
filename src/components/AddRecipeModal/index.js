@@ -1,7 +1,8 @@
 // import utils
 import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsItemModalOpen, setIsModalOpen, setItemModalType, setUserToken, submitAddRecipeModal } from '../../actions/recipes';
+import { setIsModalOpen } from '../../actions/recipes';
+import { setIsItemModalOpen } from '../../actions/modal';
 import { setInputAddRecipeValue } from '../../actions/input';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -35,9 +36,9 @@ const AddRecipeModal = () => {
   const handleSubmit = async (e) => {    
     e.preventDefault();
     if(mode === 'edit') {
-      dispatch(updateDataToApi(`recette/${id}`, newRecipe, 'editMyRecipe'));
+      dispatch(updateDataToApi(`recette/${id}`, newRecipe));
     } else {
-      dispatch(addDataToApi('recette', newRecipe, 'myRecipe'));
+      dispatch(addDataToApi('recette', newRecipe));
     }
 
     
@@ -45,12 +46,11 @@ const AddRecipeModal = () => {
 
   const handleOpenAddItemModal = (e) => {
     if(e.target.id === 'ingredient') {
-      dispatch(setItemModalType('ingredient'));
+      dispatch(setIsItemModalOpen('ingredient'));
     };
     if(e.target.id === 'step') {
-      dispatch(setItemModalType('étape'));
+      dispatch(setIsItemModalOpen('étape'));
     };
-    dispatch(setIsItemModalOpen());
   }
 
   return (

@@ -1,17 +1,22 @@
 import { SET_INPUT_ITEM_INGREDIENT_MODAL, SET_INPUT_ITEM_STEP_MODAL, SET_INPUT_ITEM_GROUP_MODAL } from "../actions/input";
-import { SET_IS_ITEM_MODAL_OPEN, SET_ITEM_MODAL_TYPE } from "../actions/recipes";
+import { ERASE_DATA_ITEM_MODAL, SET_CURRENT_ITEM, SET_IS_ITEM_MODAL_OPEN, SET_RECIPE_ID_ITEM_MODAL } from "../actions/modal";
 
 const initialState = {
   isItemModalOpen: false,
   modalName: '',
+  mode: '',
   ingredient: {
-    name: '',
-    quantity: 0,
-    unit: '',
+    recipeId: null,
+    id: null,
+    name: null,
+    quantity: null,
+    unit: null,
   },
   step: {
-    order: 0,
-    description: '',
+    recipeId: null,
+    id: null,
+    order: null,
+    description: null,
   },
   unitList: [
     'mg',
@@ -23,8 +28,9 @@ const initialState = {
     'càs',
   ],
   group: {
-    title: '',
-    description: '',
+    id: null,
+    title: null,
+    description: null,
   }
 }
 
@@ -34,12 +40,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isItemModalOpen: !state.isItemModalOpen,
-      }
-    }
-    case SET_ITEM_MODAL_TYPE: {
-      return {
-        ...state,
         modalName: action.name,
+        mode: action.mode
       }
     }
     case SET_INPUT_ITEM_INGREDIENT_MODAL: {
@@ -67,6 +69,41 @@ const reducer = (state = initialState, action = {}) => {
           ...state.group,
           [action.name]: action.value,
         }
+      }
+    }
+    case SET_CURRENT_ITEM: {
+      return {
+        ...state,
+        [action.item]: action.data,
+      }
+    }
+    case SET_RECIPE_ID_ITEM_MODAL: {
+      return {
+        ...state,
+        [action.item]: {
+          ...state[action.item],
+          recipeId: action.id,
+        }
+      }
+    }
+    case ERASE_DATA_ITEM_MODAL: {
+      return {
+        ...state,
+        ingredient: {
+          id: '',
+          name: '',
+          quantity: 0,
+          unit: ''
+        },
+        step: {
+          id: '',
+          order: 0,
+          description: '',
+        },
+        group: {
+          title: '',
+          description: '',
+        },
       }
     }
     default:

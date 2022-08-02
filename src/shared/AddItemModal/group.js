@@ -7,17 +7,26 @@ import { setInputItemGroupModal } from '../../actions/input';
 // import component
 import Input from '../input';
 import Button from '../button';
+import { addDataToApi, updateDataToApi } from '../../actions/api';
 
 const Group = ({ close }) => { 
   const dispatch = useDispatch();
-  const { modalName } = useSelector((state) => state.addItemModal);
-  const { title, description } = useSelector((state) => state.addItemModal.group);
+  const { modalName, mode,group } = useSelector((state) => state.addItemModal);
+  const { id, title, description } = useSelector((state) => state.addItemModal.group);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(title) {
+      if(mode === 'edit') {
+        dispatch(updateDataToApi((`groupe/${id}`), group));
+        return(console.log('done'));
+      }
+
+      if(mode === 'add') {
+        dispatch(addDataToApi(('groupe'), group));
+        return(console.log('done'));
+      }
       close();
-      return(console.log('done'));
     }
 
     return(console.log('erreur'));

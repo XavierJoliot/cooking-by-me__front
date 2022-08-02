@@ -5,24 +5,24 @@ const initialState = {
   isOpen: false,
   mode: '',
   newRecipe: {
-    id: '',
-    groupId: 0,
-    title: '',
-    duration: 0,
-    quantity: 0,
-    imagePath: '',
-    note: '',
+    id: null,
+    groupId: null,
+    title: null,
+    duration: null,
+    quantity: null,
+    imagePath: null,
+    note: null,
     stepsList: [
       {
-        order: 1,
-        description: 'Test',
+        order: null,
+        description: null,
       }
     ],
     ingredientsList: [
       {
-        name: 'ingredient 1',
-        quantity: 100,
-        unit: 'g',
+        name: null,
+        quantity: null,
+        unit: null,
       }
     ]
   },
@@ -47,11 +47,12 @@ const reducer = (state = initialState, action = {}) => {
       }
     }
     case SET_INGREDIENTS: {
+      console.log(action.object);
       return {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          ingredientsList: state.ingredients.push(action.object)
+          ingredientsList: state.newRecipe.ingredientsList.concat(action.object)
         }
       }
     }
@@ -60,7 +61,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         newRecipe: {
           ...state.newRecipe,
-          stepsList: state.steps.push(action.object)
+          stepsList: state.newRecipe.stepsList.concat(action.object)
         }
       }
     }

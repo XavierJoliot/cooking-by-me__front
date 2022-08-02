@@ -1,19 +1,17 @@
 export const ADD_DATA_TO_API = 'ADD_DATA_TO_API';
 
-export const addDataToApi = (endPoint, data, information) => ({
+export const addDataToApi = (endPoint, data) => ({
   type: ADD_DATA_TO_API,
   endPoint, 
-  data,
-  information
+  data
 });
 
 export const UPDATE_DATA_TO_API = 'UPDATE_DATA_TO_API';
 
-export const updateDataToApi = (endPoint, data, information) => ({
+export const updateDataToApi = (endPoint, data) => ({
   type: UPDATE_DATA_TO_API,
   endPoint, 
-  data, 
-  information
+  data
 });
 
 
@@ -27,7 +25,8 @@ export const getDataFromApi = (endPoint, information) => ({
 
 export const DELETE_DATA_FROM_API = 'DELETE_DATA_FROM_API';
 
-export const deleteDataFromAPI = (endPoint) => ({
+export const deleteDataFromAPI = (endPoint, information) => ({
   type: DELETE_DATA_FROM_API,
-  endPoint
+  endPoint,
+  information
 });

@@ -3,10 +3,10 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 
 // import images
 import EmptyImage from '../../assets/images/empty-image.jpg';
-import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 
 const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantity }) => { 
   const dispatch = useDispatch();
@@ -22,9 +22,14 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
   }
 
   const handleRecipeDeleteLinkClicked = () => {
-    if(confirm(`Tu es sûre de vouloir supprimer ce chef d'oeuvre ?`)) {
+    if(confirm(`Tu es sûr de vouloir supprimer ce chef d'oeuvre ?`)) {
       dispatch(deleteDataFromAPI(`recette/${recipeId}`));
     }
+  }
+
+  const failedImageLoad = ({currentTarget}) => {
+    currentTarget.onError = null;
+    currentTarget.src = EmptyImage;
   }
   return (
     <article className='card'>
@@ -50,7 +55,7 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
       }
       
       <Link key={recipeId} to={'/recette/' + recipeId}>
-        <img className='card__image' src={imageSrc} alt='Rectte cooking by me' />
+        <img className='card__image' src={imageSrc} onError={failedImageLoad} alt='Rectte cooking by me' />
         <div className='card__description'>
           <h3 className='card__description__title'>{title}</h3>
           <div className='card__description__details'>

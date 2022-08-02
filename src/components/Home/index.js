@@ -16,7 +16,7 @@ import RecipesCard from '../../shared/recipesCard';
 const Home = () =>{ 
   const { cookingRecipes } = useSelector((state) => state.recipes);
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently, loginWithRedirect } = useAuth0();
 
   return (
     <main className='home'>

@@ -8,12 +8,13 @@ import { setInputItemIngredientModal } from '../../actions/input';
 import Input from '../input';
 import Button from '../button';
 import { setIngredients } from '../../actions/recipes';
+import { addDataToApi, updateDataToApi } from '../../actions/api';
 
 const Ingredient = ({ close }) => { 
   const dispatch = useDispatch();
 
-  const { modalName, unitList, ingredient } = useSelector((state) => state.addItemModal);
-  const { name, quantity, unit } = useSelector((state) => state.addItemModal.ingredient);
+  const { mode, modalName, unitList, ingredient } = useSelector((state) => state.addItemModal);
+  const { id, name, quantity, unit } = useSelector((state) => state.addItemModal.ingredient);
 
   const handleSelect = (e) => {
     dispatch(setInputItemIngredientModal('unit', e.target.value));
@@ -21,7 +22,17 @@ const Ingredient = ({ close }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(name && quantity && unit) {
+    if(name && quantity > 0 && unit) {
+      if(mode === 'edit') {
+        dispatch(updateDataToApi(`ingredient/${id}`, ingredient));
+        return(console.log('done'));
+      }
+
+      if(mode === 'add') {
+        dispatch(addDataToApi(`ingredient`, ingredient));
+        return(console.log('done'));
+      }
+
       dispatch(setIngredients(ingredient));
       close();
       return(console.log('done'));
@@ -57,11 +68,11 @@ const Ingredient = ({ close }) => {
         <div className='add-item-modal__form__quantity__select'>
           <label className='add-item-modal__form__quantity__select__label'>Unité :</label>
           <select onChange={handleSelect} className='add-item-modal__form__quantity__select__item'>
-            <option className='add-item-modal__form__quantity__select__item__option' value="value" selected>Choisir</option>
+            <option className='add-item-modal__form__quantity__select__item__option' value="value" selected={!ingredient.unit}>Choisir</option>
             {
               unitList.map(
                 (unit) => (
-                  <option key={unit} className='add-item-modal__form__quantity__select__item__option' value={unit}>{unit}</option>
+                  <option key={unit} className='add-item-modal__form__quantity__select__item__option' selected={ingredient.unit === unit} value={unit}>{unit}</option>
                 )
               )
             }
