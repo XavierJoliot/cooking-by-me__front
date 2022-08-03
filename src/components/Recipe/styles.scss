@@ -8,18 +8,22 @@
     margin-bottom: 2rem;
 
     &__interaction {
-      top: .5rem;
-      right: .5rem;
+      top: 1rem;
+      right: 1rem;
       padding: 1rem;
       cursor: pointer;
       position: absolute;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fff;
   
       &__icon {
         color: vars.$first-color;
-        box-shadow: 0px 3px 5px #a2a2a2;
         font-size: 1.5rem;
       }
   
@@ -28,6 +32,9 @@
         margin-top: .5rem;
         box-shadow: 0px 3px 5px #a2a2a2;
         display: none;
+        position: absolute;
+        right: .5rem;
+        top: 3.5rem;
   
         &--display {
           display: block;
@@ -44,6 +51,27 @@
             }
           }
         }
+      }
+    }
+
+    &__back {
+      top: 1rem;
+      left: 1rem;
+      padding: 1rem;
+      cursor: pointer;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fff;
+
+      &__icon {
+        color: vars.$first-color;
+        font-size: 1.5rem;
       }
     }
     
@@ -87,7 +115,7 @@
       display: flex;
       height: 200px;
       overflow: hidden;
-      overflow-x: scroll;
+      overflow-x: auto;
     }
   }
 

@@ -1,6 +1,6 @@
 // import utils
 import './styles.scss';
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
@@ -18,6 +18,7 @@ import GroupCard from '../../shared/groupCard';
 const Recipe = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const getData = async() => {
@@ -113,6 +114,10 @@ const Recipe = () => {
     dispatch(setIsItemModalOpen('groupe'))
   }
 
+  const handleBackActionCkicked = () => {
+    navigate(-1);
+  }
+
   // redirect if data not found
   const { redirectTo } = useSelector((state) => state.general);
 
@@ -123,7 +128,7 @@ const Recipe = () => {
   return (
     <main className='recipe'>
       <section className='recipe__presentation'>
-        <div className='recipe__presentation__interaction' onClick={handleRecipeMenuClicked}>
+        <div className='recipe__presentation__interaction' onClick={handleRecipeMenuClicked} title='Menu'>
           <i className="fa-solid fa-ellipsis-vertical recipe__presentation__interaction__icon"></i>
           <div id="recipeMenu" className='recipe__presentation__interaction__menu'>
             <ul className='recipe__presentation__interaction__menu__list'>
@@ -138,6 +143,11 @@ const Recipe = () => {
                 </li>
               </Link>
             </ul>
+          </div>
+        </div>
+        <div className='recipe__presentation__back' onClick={handleBackActionCkicked} title='Retour'>
+          <div className='recipe__presentation__back__icon'>
+            <i className='fa-solid fa-angle-left recipe__presentation__back__icon__item'></i>
           </div>
         </div>
         <img className='recipe__presentation__image' onError={failedImageLoad} src={imageSrc} alt='Presentation recette utilisateur Cooking by me' />
@@ -160,25 +170,25 @@ const Recipe = () => {
             currentRecipe.groupsList &&
             currentRecipe.groupsList.map(
               (group) =>(
-                <Link key={group.id} to={'/groupe/' + group.id} reloadDocument>
+                <Link key={group.id} to={'/groupe/' + group.id}>
                   <GroupCard isGroup={true} title={group.title} imagePath={group.imagePath} />
                 </Link>
               )
             )
           }
           <Link to='#' onClick={handleAddGroupClicked}>
-            <GroupCard isGroup={false} title='Ajouter un groupe' />
+            <GroupCard isGroup={false} title='Ajouter dans un groupe' />
           </Link>
         </div>
       </section>
       <section className='recipe__content'>
         <div className='recipe__content__menu'>
-          <Link to='#' id='ingredientsButton' className='recipe__content__menu__link recipe__content__menu__link--active' onClick={handleLinkClick}>
+          <a id='ingredientsButton' className='recipe__content__menu__link recipe__content__menu__link--active' onClick={handleLinkClick}>
             Ingrédients
-          </Link>
-          <Link to='#' id='stepButton' className='recipe__content__menu__link' onClick={handleLinkClick}>
+          </a>
+          <a id='stepButton' className='recipe__content__menu__link' onClick={handleLinkClick}>
             Étapes
-          </Link>
+          </a>
         </div>
         <article id='ingredients' className='recipe__content__ingredients'>
           <Link id='addIngredient' className='recipe__content__ingredients__add' to='#' onClick={handleAddItemClicked}>
