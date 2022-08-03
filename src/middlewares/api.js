@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
-import { redirectNotFound } from '../actions/general';
+import { redirectNotFound, setIsLoading } from '../actions/general';
 import { setAllGroup, setCurrentGroup } from '../actions/groups';
 import { setCurrentItem, setIsItemModalOpen } from '../actions/modal';
 import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe} from '../actions/recipes';
@@ -19,6 +19,9 @@ const apiMiddleware = (store) => (next) => (action) => {
 
   switch (action.type) {
     case ADD_DATA_TO_API: {
+
+      store.dispatch(setIsLoading(true));
+
       api
         .post(action.endPoint,
           action.data)
@@ -32,10 +35,15 @@ const apiMiddleware = (store) => (next) => (action) => {
           },
         );
 
+      store.dispatch(setIsLoading(false));
+
       next(action);
       break;
     }
     case GET_DATA_FROM_API: {
+
+      store.dispatch(setIsLoading(true));
+
       api
         .get(action.endPoint)
         .then(
@@ -96,11 +104,16 @@ const apiMiddleware = (store) => (next) => (action) => {
             
           },
         );
-
+      
+      store.dispatch(setIsLoading(false));
+      
       next(action);
       break;
     }
     case UPDATE_DATA_TO_API: {
+
+      store.dispatch(setIsLoading(true));
+
       api
         .put(action.endPoint, action.data)
           .then(
@@ -113,11 +126,16 @@ const apiMiddleware = (store) => (next) => (action) => {
               console.log(error);
             },
           );  
+      
+      store.dispatch(setIsLoading(false));
 
       next(action);
       break;
     }
     case DELETE_DATA_FROM_API: {
+
+      store.dispatch(setIsLoading(true));
+
       api
         .delete(action.endPoint)
         .then(
@@ -138,6 +156,8 @@ const apiMiddleware = (store) => (next) => (action) => {
             console.log(error);
           },
         );
+
+      store.dispatch(setIsLoading(false));
 
       next(action);
       break;

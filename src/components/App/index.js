@@ -39,6 +39,7 @@ const App = () => {
   );
 
   const { isOpen } = useSelector((state) => state.addRecipeModal);
+  const { isLoadingActive } = useSelector((state) => state.general);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -71,7 +72,7 @@ const App = () => {
 
   return (
     <div className="app">
-      {isLoading && <Loader />}
+      {isLoadingActive || isLoading && <Loader />}
       {isOpen && <AddRecipeModal />}
       {isItemModalOpen && <AddItemModal />}
       <AddRecipeButton />
