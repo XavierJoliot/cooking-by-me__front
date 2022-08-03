@@ -8,7 +8,7 @@ import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 // import images
 import EmptyImage from '../../assets/images/empty-image.jpg';
 
-const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantity }) => { 
+const RecipesCard = ({ isEmpty, isEditable, recipeId, imagePath, duration, title, quantity }) => { 
   const dispatch = useDispatch();
   const imageSrc = imagePath ? imagePath : EmptyImage;
 
@@ -30,6 +30,17 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
   const failedImageLoad = ({currentTarget}) => {
     currentTarget.onError = null;
     currentTarget.src = EmptyImage;
+  }
+
+  if(isEmpty) {
+    return (
+      <article className='card card--add'>
+        <div className='card__add'>
+          <i className="fa-solid fa-plus card__add__icon"></i>
+          {title}
+        </div>
+      </article>
+    )
   }
   return (
     <article className='card'>
@@ -75,12 +86,13 @@ const RecipesCard = ({ isEditable, recipeId, imagePath, duration, title, quantit
 }
 
 RecipesCard.propTypes = {
-  isEditable: PropTypes.bool.isRequired,
-  recipeId: PropTypes.number.isRequired,
-  imagePath: PropTypes.string.isRequired,
-  duration: PropTypes.number.isRequired,
+  isEmpty: PropTypes.bool,
+  isEditable: PropTypes.bool,
+  recipeId: PropTypes.number,
+  imagePath: PropTypes.string,
+  duration: PropTypes.number,
   title: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number
 };
 
 export default RecipesCard;

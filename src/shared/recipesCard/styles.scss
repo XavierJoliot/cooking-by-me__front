@@ -8,6 +8,37 @@
   min-width: 279px;
   position: relative;
 
+  &--add {
+    height: 291px;
+    background-color: #dedede;
+    border: dashed 2px #8d8d8d;
+    transition: all .5s;
+    color: #000;
+    justify-content: center;
+    max-width: 279px;
+
+    &:hover {
+      background-color: #8d8d8d;
+      border: solid 2px #8d8d8d;
+      color: #fff;
+    }
+  }
+
+  &__add {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+
+    &__icon {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+  }
+
   &__interaction {
     bottom: .5rem;
     right: .5rem;
