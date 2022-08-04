@@ -75,7 +75,7 @@ const App = () => {
       {isLoadingActive || isLoading && <Loader />}
       {isOpen && <AddRecipeModal />}
       {isItemModalOpen && <AddItemModal />}
-      <AddRecipeButton />
+      {isAuthenticated && <AddRecipeButton />}
       <Header />
       <Routes>
         <Route path="/" exact element={<Home />} />
