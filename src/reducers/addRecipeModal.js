@@ -13,17 +13,8 @@ const initialState = {
     imagePath: null,
     note: null,
     stepsList: [
-      {
-        order: null,
-        description: null,
-      }
     ],
     ingredientsList: [
-      {
-        name: null,
-        quantity: null,
-        unit: null,
-      }
     ]
   },
 }

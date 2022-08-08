@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, UPDATE_DATA_TO_API } from '../actions/api';
+import { ADD_DATA_TO_API, DELETE_DATA_FROM_API, GET_DATA_FROM_API, GET_USER_ROLE, UPDATE_DATA_TO_API } from '../actions/api';
 import { redirectNotFound, setIsLoading } from '../actions/general';
 import { setAllGroup, setCurrentGroup } from '../actions/groups';
 import { setCurrentItem, setIsItemModalOpen } from '../actions/modal';
-import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe} from '../actions/recipes';
+import { setNewRecipe, setAllRecipes, setIsModalOpen, setCurrentRecipe, setCookingRecipes} from '../actions/recipes';
 
 const apiMiddleware = (store) => (next) => (action) => {
   axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
@@ -51,6 +51,10 @@ const apiMiddleware = (store) => (next) => (action) => {
             switch(action.information) {
               case 'myRecipesList' : {
                 store.dispatch(setAllRecipes(response.data));
+                break;
+              }
+              case 'cookingRecipesList' : {
+                store.dispatch(setCookingRecipes(response.data));
                 break;
               }
               case 'editMyRecipe' : {

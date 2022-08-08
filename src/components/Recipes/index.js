@@ -3,7 +3,8 @@ import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { setIsModalOpen, setUserToken } from '../../actions/recipes';
+import { setIsModalOpen } from '../../actions/recipes';
+import { setUserToken } from '../../actions/general';
 import { setIsItemModalOpen } from '../../actions/modal';
 import { useEffect } from 'react';
 import { getDataFromApi } from '../../actions/api';
@@ -46,6 +47,7 @@ const Recipes = () => {
   }
 
   useEffect(() => {
+    dispatch(getDataFromApi('recette/cooking-by-me', 'cookingRecipesList'));
     if(isAuthenticated) {
       getData();
     }
@@ -103,13 +105,13 @@ const Recipes = () => {
               }
               {
                 !isAuthenticated &&
-                <a className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
+                <Link to='#' className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
                   <p className='recipes__list__right__group__content__empty__text'>
                   <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
                   Créer vous un compte pour pouvoir ajouter un groupe de recette et débuter votre livre.
                   <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
                   </p>
-                </a>
+                </Link>
               }
             </div>
           </div>
@@ -139,23 +141,23 @@ const Recipes = () => {
               {
                 isAuthenticated &&
                 myRecipes.length === 0 &&
-                <a className='recipes__list__right__group__content__empty' onClick={handleAddRecipeClick}> 
+                <Link to='#' className='recipes__list__right__group__content__empty' onClick={handleAddRecipeClick}> 
                   <p className='recipes__list__right__group__content__empty__text'>
                   <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
                   Ajouter une recette pour la voir s'afficher ici.
                   <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
                   </p>
-                </a>
+                </Link>
               }
               {
                 !isAuthenticated &&
-                <a className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
+                <Link to='#' className='recipes__list__right__group__content__empty' onClick={() => loginWithRedirect()}> 
                   <p className='recipes__list__right__group__content__empty__text'>
                   <span className='recipes__list__right__group__content__empty__text__bold'>N'attendez plus !</span>
                   Créer vous un compte pour pouvoir ajouter une recette et débuter votre livre.
                   <span className='recipes__list__right__group__content__empty__text__bold'>Cliquez moi !</span>
                   </p>
-                </a>
+                </Link>
               }
             </div>
           </div>
@@ -167,6 +169,7 @@ const Recipes = () => {
             </div>
             <div className='recipes__list__right__group__content recipes__list__right__group__content--recipes'>
               {
+                cookingRecipes.length > 0 &&
                 cookingRecipes.map(
                   (item) => (
                     <RecipesCard
@@ -180,6 +183,15 @@ const Recipes = () => {
                     />
                   )
                 )
+              }
+              {
+                cookingRecipes.length === 0 &&
+                <div className='recipes__list__right__group__content__empty'>
+                  <p className='recipes__list__right__group__content__empty__text'>
+                  <span className='recipes__list__right__group__content__empty__text__bold'>Bientot du contenu par ici !</span>
+                  Nos cuistos sont en train de préparer les meilleurs recette pour nos cooker. Revenez d'ici peu, il y aura plein de bonnes choses à découvrir !
+                  </p>
+                </div>
               }
             </div>
           </div>

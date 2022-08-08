@@ -6,31 +6,34 @@ const initialState = {
   modalName: '',
   mode: '',
   ingredient: {
-    recipeId: null,
-    id: null,
-    name: null,
-    quantity: null,
-    unit: null,
+    recipeId: 0,
+    id: 0,
+    name: '',
+    quantity: 0,
+    unit: '',
   },
   step: {
-    recipeId: null,
-    id: null,
-    order: null,
-    description: null,
+    recipeId: 0,
+    id: 0,
+    order: 0,
+    description: '',
   },
   unitList: [
     'mg',
     'g',
     'Kg',
     'ml',
+    'cl',
     'L',
     'càc',
     'càs',
+    'gousse(s)',
+    'item'
   ],
   group: {
-    id: null,
-    title: null,
-    description: null,
+    id: 0,
+    title: '',
+    description: '',
   }
 }
 

@@ -57,7 +57,7 @@ const AddRecipeModal = () => {
     <section className='modal'>
       <form onSubmit={handleSubmit} className='modal__form'>
         <i onClick={handleClose} className="fa-solid fa-xmark modal__form__close"></i>
-        <h1 className='modal__form__title'>Ajouter une recette :</h1>
+        <h1 className='modal__form__title'>{mode === 'edit' ? 'Modifier la' : 'Ajouter une'} recette :</h1>
         <Input
           name='title'
           type='text'
@@ -83,7 +83,7 @@ const AddRecipeModal = () => {
                 ingredientsList.map(
                   (ingredient) => (
                     <li key={ingredient.name} className='modal__form__lists__ingredients__list__item'>
-                      {ingredient.name} - {ingredient.quantity}{ingredient.unit}
+                      {ingredient.name} - {ingredient.quantity} {ingredient.unit}
                     </li>
                   )
                 )
