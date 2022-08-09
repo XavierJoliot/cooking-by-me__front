@@ -5,13 +5,13 @@ const initialState = {
   isOpen: false,
   mode: '',
   newRecipe: {
-    id: null,
-    groupId: null,
-    title: null,
-    duration: null,
-    quantity: null,
+    id: 0,
+    groupId: 0,
+    title: '',
+    duration: 0,
+    quantity: 0,
     imagePath: null,
-    note: null,
+    note: '',
     stepsList: [
     ],
     ingredientsList: [

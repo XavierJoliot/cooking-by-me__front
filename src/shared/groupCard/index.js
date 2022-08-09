@@ -7,7 +7,9 @@ import EmptyImage from '../../assets/images/empty-image.jpg';
 
 const GroupCard = ({ isGroup, title, imagePath }) => { 
   
-  const imageSrc = imagePath ? imagePath : EmptyImage;
+  const path = process.env.REACT_APP_API_PATH;
+  
+  const imageSrc = imagePath ? path + imagePath : EmptyImage;
   
   if(!isGroup) {
     return (

@@ -7,12 +7,12 @@ const initialState = {
   ], 
   currentRecipe: {
     id: 0,
-    userId: null,
-    title: null,
+    userId: '',
+    title: '',
     duration: 0,
     quantity: 0,
-    imagePath: null,
-    note: null,
+    imagePath: '',
+    note: '',
     stepsList: [
     ],
     ingredientsList: [

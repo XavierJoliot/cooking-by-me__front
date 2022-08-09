@@ -10,7 +10,10 @@ import EmptyImage from '../../assets/images/empty-image.jpg';
 
 const RecipesCard = ({ isEmpty, isEditable, recipeId, imagePath, duration, title, quantity }) => { 
   const dispatch = useDispatch();
-  const imageSrc = imagePath ? imagePath : EmptyImage;
+  
+  const path = process.env.REACT_APP_API_PATH;
+
+  const imageSrc = imagePath ? path + imagePath : EmptyImage;
 
   const handleRecipeMenuClicked = (e) => {
     const element = document.getElementById(`cardMenu${recipeId}`);

@@ -11,7 +11,7 @@ const apiMiddleware = (store) => (next) => (action) => {
   const { token } = store.getState().user;
 
   const api = axios.create({
-    baseURL: 'https://localhost:7262/api/',
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
       'authorization': `Bearer ${token}`
     },
@@ -21,10 +21,18 @@ const apiMiddleware = (store) => (next) => (action) => {
     case ADD_DATA_TO_API: {
 
       store.dispatch(setIsLoading(true));
+      
+      if(action.image) {
+        action.data.imagePath = action.image;
+      }
 
       api
         .post(action.endPoint,
-          action.data)
+          action.data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }
+          })
         .then(
           () => {
             document.location.reload();
@@ -82,6 +90,7 @@ const apiMiddleware = (store) => (next) => (action) => {
                 break;
               }
               case 'getRecipe': {
+                console.log(response.data);
                 store.dispatch(setCurrentRecipe(response.data));
                 break;
               }

@@ -42,7 +42,7 @@ const Ingredient = ({ close }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='add-item-modal__form'>
+    <form onSubmit={handleSubmit} className='add-item-modal__form' encType='multipart/form-data'>
       <i onClick={close} className="fa-solid fa-xmark add-item-modal__form__close"></i>
       <h1 className='add-item-modal__form__title'>Ajouter un {modalName} :</h1>
       <Input

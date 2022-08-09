@@ -5,14 +5,17 @@ import { setIsModalOpen } from '../../actions/recipes';
 import { setIsItemModalOpen } from '../../actions/modal';
 import { setInputAddRecipeValue } from '../../actions/input';
 import { useAuth0 } from '@auth0/auth0-react';
+import { addDataToApi, updateDataToApi } from '../../actions/api';
+import { useState } from 'react';
 
 // import component
 import Input from '../../shared/input';
 import Button from '../../shared/button';
-import { addDataToApi, updateDataToApi } from '../../actions/api';
 
 const AddRecipeModal = () => { 
   const dispatch = useDispatch();
+
+  const [file, setFile] = useState()
 
   const { mode, newRecipe } = useSelector((state) => state.addRecipeModal);
   const { userRole } = useSelector((state) => state.user);
@@ -36,9 +39,9 @@ const AddRecipeModal = () => {
   const handleSubmit = async (e) => {    
     e.preventDefault();
     if(mode === 'edit') {
-      dispatch(updateDataToApi(`recette/${id}`, newRecipe));
+      dispatch(updateDataToApi(`recette/${id}`, newRecipe, file));
     } else {
-      dispatch(addDataToApi('recette', newRecipe));
+      dispatch(addDataToApi('recette', newRecipe, file));
     }
 
     
@@ -57,13 +60,18 @@ const AddRecipeModal = () => {
     dispatch(setInputAddRecipeValue('isPublic', !isPublic));
   }
 
+  const handleUploadFileChanged = (e) => {
+    // console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  }
+
   const beforeClassName = isPublic ? 'modal__form__switch__box__before' : 'modal__form__switch__box__before modal__form__switch__box__before--active';
 
   const afterClassName = !isPublic ? 'modal__form__switch__box__after' : 'modal__form__switch__box__after modal__form__switch__box__after--active';
 
   return (
     <section className='modal'>
-      <form onSubmit={handleSubmit} className='modal__form'>
+      <form onSubmit={handleSubmit} className='modal__form' encType='multipart/form-data'>
         <i onClick={handleClose} className="fa-solid fa-xmark modal__form__close"></i>
         <h1 className='modal__form__title'>{mode === 'edit' ? 'Modifier la' : 'Ajouter une'} recette :</h1>
         <Input
@@ -75,14 +83,15 @@ const AddRecipeModal = () => {
           action={setInputAddRecipeValue}
           isRequired={true}
         />
-        <Input
+        <input type='file' onChange={handleUploadFileChanged} />
+        {/* <Input
           name='imagePath'
           type='file'
           value={imagePath}
           label='Média :'
-          action={setInputAddRecipeValue}
+          action={handleUploadFileChange}
           isRequired={false}
-        />
+        /> */}
         <div className='modal__form__lists'>
           <div className='modal__form__lists__ingredients'>
             <h2 className='modal__form__lists__ingredients__title'>Ingrédients :</h2>
