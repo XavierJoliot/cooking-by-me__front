@@ -15,7 +15,8 @@ const initialState = {
     stepsList: [
     ],
     ingredientsList: [
-    ]
+    ],
+    isPublic: false,
   },
 }
 

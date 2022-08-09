@@ -14,9 +14,8 @@ import { addDataToApi, updateDataToApi } from '../../actions/api';
 const AddRecipeModal = () => { 
   const dispatch = useDispatch();
 
-  const { user } = useAuth0();
-
   const { mode, newRecipe } = useSelector((state) => state.addRecipeModal);
+  const { userRole } = useSelector((state) => state.user);
 
   const { 
     id,
@@ -26,7 +25,8 @@ const AddRecipeModal = () => {
     quantity, 
     note, 
     ingredientsList, 
-    stepsList 
+    stepsList ,
+    isPublic
   } = useSelector((state) => state.addRecipeModal.newRecipe);
 
   const handleClose = () => {
@@ -52,6 +52,14 @@ const AddRecipeModal = () => {
       dispatch(setIsItemModalOpen('étape'));
     };
   }
+
+  const handleSwitchClicked = () => {
+    dispatch(setInputAddRecipeValue('isPublic', !isPublic));
+  }
+
+  const beforeClassName = isPublic ? 'modal__form__switch__box__before' : 'modal__form__switch__box__before modal__form__switch__box__before--active';
+
+  const afterClassName = !isPublic ? 'modal__form__switch__box__after' : 'modal__form__switch__box__after modal__form__switch__box__after--active';
 
   return (
     <section className='modal'>
@@ -139,6 +147,23 @@ const AddRecipeModal = () => {
           action={setInputAddRecipeValue}
           isRequired={false}
         />
+        {userRole &&
+          <div className='modal__form__switch'>
+            <h3 className='modal__form__switch__title'>Visibilité de la recette :</h3>
+            <div className='modal__form__switch__box'>
+              <p className={beforeClassName}>Privée</p>
+              <input
+                className='modal__form__switch__box__input'
+                type="checkbox"
+                id="switch"
+                checked={isPublic}
+                onChange={handleSwitchClicked}
+              />
+              <label className='modal__form__switch__box__label' for="switch">Toggle</label>
+              <p className={afterClassName}>Publique</p>
+            </div>
+          </div>
+        }
         <Button type='submit' text='Ajouter' className='fill m-r' />
         <Button handler={handleClose} type='button' text='Fermer' className='stroke' />
       </form>
