@@ -158,8 +158,9 @@ const AddRecipeModal = () => {
                 id="switch"
                 checked={isPublic}
                 onChange={handleSwitchClicked}
+                value={isPublic}
               />
-              <label className='modal__form__switch__box__label' for="switch">Toggle</label>
+              <label className='modal__form__switch__box__label' htmlFor="switch">Toggle</label>
               <p className={afterClassName}>Publique</p>
             </div>
           </div>
