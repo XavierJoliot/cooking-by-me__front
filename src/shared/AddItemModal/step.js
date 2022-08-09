@@ -37,7 +37,7 @@ const Step = ({ close }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='add-item-modal__form'>
+    <form onSubmit={handleSubmit} className='add-item-modal__form' encType='multipart/form-data'>
       <i onClick={close} className="fa-solid fa-xmark add-item-modal__form__close"></i>
       <h1 className='add-item-modal__form__title'>Ajouter une {modalName} :</h1>
       <div className='add-item-modal__form__order'>

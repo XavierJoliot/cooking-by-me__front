@@ -36,9 +36,11 @@ const Recipe = () => {
   },
   [isAuthenticated]);
 
+  const path = process.env.REACT_APP_API_PATH;
+
   const currentRecipe = useSelector((state) => state.recipes.currentRecipe);
 
-  const imageSrc = currentRecipe.imagePath ? currentRecipe.imagePath : EmptyImage;
+  const imageSrc = currentRecipe.imagePath ? path + currentRecipe.imagePath : EmptyImage;
 
   const failedImageLoad = ({currentTarget}) => {
     currentTarget.onError = null;
