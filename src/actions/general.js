@@ -12,3 +12,16 @@ export const setIsLoading = (bool) => ({
   bool,
 });
 
+export const SET_USER_TOKEN = 'SET_USER_TOKEN';
+
+export const setUserToken = (token) => ({
+  type: SET_USER_TOKEN,
+  token
+});
+
+export const SET_USER_ROLE = 'SET_USER_ROLE';
+
+export const setUserRole = (role) => ({
+  type: SET_USER_ROLE,
+  role
+});

@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserToken } from '../../actions/recipes';
+import { setUserRole, setUserToken } from '../../actions/general';
 import { useAuth0 } from '@auth0/auth0-react';
 
 // import styles
@@ -42,12 +42,17 @@ const App = () => {
   const { isLoadingActive } = useSelector((state) => state.general);
   const { isItemModalOpen } = useSelector((state) => state.addItemModal);
 
-  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { user, isLoading, isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
 
   const getData = async() => {
     const token = await getAccessTokenSilently();
 
+    const roleNamespace  ='http://localhost:8080//roles';
+
     dispatch(setUserToken(token));
+    if(user[roleNamespace].length > 0) {
+      dispatch(setUserRole(user[roleNamespace][0]));
+    }
   }
 
   useEffect(() => {

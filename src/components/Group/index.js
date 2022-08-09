@@ -2,7 +2,7 @@
 import './styles.scss';
 import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserToken } from '../../actions/recipes';
+import { setUserToken } from '../../actions/general';
 import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 import { useEffect } from 'react';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';

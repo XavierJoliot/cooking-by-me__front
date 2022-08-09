@@ -3,6 +3,9 @@ import './styles.scss';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 
+// import images
+import EmptyProfil from '../../assets/images/defaultAvatar.png';
+
 const UserMenu = () => { 
   const handleMenuClick = (e) => {
     const elmt = document.querySelector('.user__menu');
@@ -14,7 +17,7 @@ const UserMenu = () => {
 
   const failedImageLoad = ({currentTarget}) => {
     currentTarget.onError = null;
-    currentTarget.src = EmptyImage;
+    currentTarget.src = EmptyProfil;
   }
 
   if(isAuthenticated) {

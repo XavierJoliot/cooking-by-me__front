@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { useEffect } from 'react';
-import { setUserToken } from '../../actions/recipes';
+import { setUserToken } from '../../actions/general';
 import { setIsItemModalOpen, setRecipeIdItemModal } from '../../actions/modal';
 
 // import component
@@ -61,7 +61,6 @@ const Recipe = () => {
       document.getElementById('ingredientsButton').classList.remove('recipe__content__menu__link--active');
       document.getElementById('ingredients').classList.add('recipe__content__ingredients--hidden');
     }
-    console.log(currentElmt);
   }
 
   const handleAddItemClicked = (e) => {

@@ -19,13 +19,6 @@ export const setSteps = (object) => ({
   object
 });
 
-export const SET_USER_TOKEN = 'SET_USER_TOKEN';
-
-export const setUserToken = (token) => ({
-  type: SET_USER_TOKEN,
-  token
-});
-
 export const SET_ALL_RECIPES = 'SET_ALL_RECIPES';
 
 export const setAllRecipes = (recipes) => ({
@@ -44,6 +37,13 @@ export const SET_CURRENT_RECIPE = 'SET_CURRENT_RECIPE';
 
 export const setCurrentRecipe = (data) => ({
   type: SET_CURRENT_RECIPE,
+  data
+});
+
+export const SET_COOKING_RECIPES = 'SET_COOKING_RECIPES';
+
+export const setCookingRecipes = (data) => ({
+  type: SET_COOKING_RECIPES,
   data
 });
 
