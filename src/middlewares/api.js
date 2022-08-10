@@ -127,8 +127,18 @@ const apiMiddleware = (store) => (next) => (action) => {
 
       store.dispatch(setIsLoading(true));
 
+      if(action.image) {
+        action.data.imagePath = action.image;
+      }
+
       api
-        .put(action.endPoint, action.data)
+        .put(action.endPoint, action.data, 
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }
+          }
+          )
           .then(
             () => {
               document.location.reload();

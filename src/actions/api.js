@@ -9,10 +9,11 @@ export const addDataToApi = (endPoint, data, image) => ({
 
 export const UPDATE_DATA_TO_API = 'UPDATE_DATA_TO_API';
 
-export const updateDataToApi = (endPoint, data) => ({
+export const updateDataToApi = (endPoint, data, image) => ({
   type: UPDATE_DATA_TO_API,
   endPoint, 
-  data
+  data,
+  image
 });
 
 
