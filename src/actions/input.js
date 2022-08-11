@@ -37,3 +37,11 @@ export const setInputItemGroupModal = (name, value) => ({
   name, 
   value
 });
+
+export const SET_CONTACT_INPUT_VALUE = 'SET_CONTACT_INPUT_VALUE';
+
+export const setContactInputValue = (name, value) => ({
+  type: SET_CONTACT_INPUT_VALUE,
+  name,
+  value
+});
