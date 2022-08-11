@@ -37,12 +37,6 @@ const UserMenu = () => {
                 Mon espace
               </li>
             </Link>
-            <Link to='mon-espace/profil' className='user__menu__list__link' onClick={handleMenuClick}>
-              <li className='user__menu__list__link__item'>
-                <i className="fa-solid fa-circle-user user__menu__list__link__item__icon"></i>
-                Mon profil
-              </li>
-            </Link>
             <Link className='user__menu__list__link' to='#' onClick={() => logout({ returnTo: window.location.origin })}>
               <li className='user__menu__list__link__item'>
                 <i className="fa-solid fa-right-from-bracket user__menu__list__link__item__icon user__menu__list__link__item__icon--red"></i>

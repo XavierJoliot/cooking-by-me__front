@@ -31,7 +31,7 @@ const GroupCard = ({ isGroup, title, imagePath }) => {
 
 GroupCard.propTypes = {
   isGroup: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   imagePath: PropTypes.string
 }
 
