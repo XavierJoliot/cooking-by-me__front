@@ -61,7 +61,6 @@ const AddRecipeModal = () => {
   }
 
   const handleUploadFileChanged = (e) => {
-    // console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   }
 
@@ -83,15 +82,10 @@ const AddRecipeModal = () => {
           action={setInputAddRecipeValue}
           isRequired={true}
         />
-        <input type='file' onChange={handleUploadFileChanged} />
-        {/* <Input
-          name='imagePath'
-          type='file'
-          value={imagePath}
-          label='Média :'
-          action={handleUploadFileChange}
-          isRequired={false}
-        /> */}
+        <div className='modal__form__file'>
+          <label className='modal__form__file__label' htmlFor='file'>Ajouter une image :</label>
+          <input className='modal__form__file__input' id='file' type='file' onChange={handleUploadFileChanged} />
+        </div>
         <div className='modal__form__lists'>
           <div className='modal__form__lists__ingredients'>
             <h2 className='modal__form__lists__ingredients__title'>Ingrédients :</h2>

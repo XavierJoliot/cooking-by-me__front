@@ -30,6 +30,23 @@
       font-weight: vars.$font-bold;
     }
 
+    &__file {
+      margin-top: .5rem;
+      display: flex;
+      flex-direction: column;
+
+      &__label {
+        margin-bottom: .5rem;
+        color: vars.$first-color;
+        font-weight: vars.$font-bold;
+        font-family: 'Raleway', sans-serif;
+      }
+
+      &__input {
+        padding: .5rem 0;
+      }
+    }
+
     &__lists {
 
       &__ingredients {
