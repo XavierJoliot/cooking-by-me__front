@@ -22,6 +22,7 @@ import AddItemModal from '../../shared/addItemModal';
 import Loader from '../../shared/loader';
 import Group from '../Group';
 import AddRecipeButton from '../../shared/AddRecipeButton';
+import Dashboard from '../Dashboard';
 
 // == Composant
 const App = () => { 
@@ -90,6 +91,7 @@ const App = () => {
         <Route path="/mentions-legales" element={<Legals />} />
         <Route path="/recette/:id" element={<Recipe />} />
         <Route path="/groupe/:id" element={<Group />} />
+        <Route path="/mon-espace" element={<Dashboard />} />
       </Routes>
       <Footer />
     </div>
