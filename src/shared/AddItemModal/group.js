@@ -18,12 +18,12 @@ const Group = ({ close }) => {
     e.preventDefault();
     if(title) {
       if(mode === 'edit') {
-        dispatch(updateDataToApi((`groupe/${id}`), group));
+        dispatch(updateDataToApi((`groupe/${id}`), group, true));
         return(console.log('done'));
       }
 
       if(mode === 'add') {
-        dispatch(addDataToApi(('groupe'), group));
+        dispatch(addDataToApi(('groupe'), group, true));
         return(console.log('done'));
       }
       close();

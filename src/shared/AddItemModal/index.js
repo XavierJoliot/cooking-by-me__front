@@ -7,6 +7,7 @@ import { eraseDataItemModal, setIsItemModalOpen } from '../../actions/modal';
 import Ingredient from './ingredient';
 import Step from './step';
 import Group from './group';
+import GroupToRecipe from './groupToRecipe';
 
 const AddItemModal = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const AddItemModal = () => {
       {modalName === 'ingredient' && <Ingredient close={handleClose} />}
       {modalName === 'étape' && <Step close={handleClose} />}
       {modalName === 'groupe' && <Group close={handleClose} />}
+      {modalName === 'groupe à la recette' && <GroupToRecipe close={handleClose} />}
     </section>  
   );
 }

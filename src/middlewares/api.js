@@ -21,18 +21,25 @@ const apiMiddleware = (store) => (next) => (action) => {
     case ADD_DATA_TO_API: {
 
       store.dispatch(setIsLoading(true));
-      
+      let customHeaders;
+
       if(action.image) {
         action.data.imagePath = action.image;
       }
 
+      if(action.enctype) {
+        customHeaders = {
+            headers: {
+            "Content-Type": "multipart/form-data",
+          }
+        }
+      }
+
+      console.log(action.enctype);
+
       api
         .post(action.endPoint,
-          action.data, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            }
-          })
+          action.data, customHeaders)
         .then(
           () => {
             document.location.reload();
@@ -127,18 +134,21 @@ const apiMiddleware = (store) => (next) => (action) => {
 
       store.dispatch(setIsLoading(true));
 
+      let header;
+
       if(action.image) {
         action.data.imagePath = action.image;
       }
 
-      api
-        .put(action.endPoint, action.data, 
-          {
+      if(action.enctype) {
+        header = {
             headers: {
-              "Content-Type": "multipart/form-data",
-            }
+            "Content-Type": "multipart/form-data",
           }
-          )
+        }
+      }
+      api
+        .put(action.endPoint, action.data, header)
           .then(
             () => {
               document.location.reload();

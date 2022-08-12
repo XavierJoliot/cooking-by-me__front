@@ -1,19 +1,21 @@
 export const ADD_DATA_TO_API = 'ADD_DATA_TO_API';
 
-export const addDataToApi = (endPoint, data, image) => ({
+export const addDataToApi = (endPoint, data, enctype, image) => ({
   type: ADD_DATA_TO_API,
   endPoint, 
   data,
-  image
+  enctype,
+  image,
 });
 
 export const UPDATE_DATA_TO_API = 'UPDATE_DATA_TO_API';
 
-export const updateDataToApi = (endPoint, data, image) => ({
+export const updateDataToApi = (endPoint, data, enctype, image) => ({
   type: UPDATE_DATA_TO_API,
   endPoint, 
   data,
-  image
+  image,
+  enctype
 });
 
 

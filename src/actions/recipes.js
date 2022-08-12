@@ -47,4 +47,12 @@ export const setCookingRecipes = (data) => ({
   data
 });
 
+export const SET_GROUP_IDS = 'SET_GROUP_IDS';
+
+export const setGroupId = (id) => ({
+  type: SET_GROUP_IDS,
+  id
+});
+
+
 

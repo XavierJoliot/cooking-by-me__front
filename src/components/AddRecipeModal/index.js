@@ -39,9 +39,9 @@ const AddRecipeModal = () => {
   const handleSubmit = async (e) => {    
     e.preventDefault();
     if(mode === 'edit') {
-      dispatch(updateDataToApi(`recette/${id}`, newRecipe, file));
+      dispatch(updateDataToApi(`recette/${id}`, newRecipe, true, file, ));
     } else {
-      dispatch(addDataToApi('recette', newRecipe, file));
+      dispatch(addDataToApi('recette', newRecipe, true, file));
     }
 
     

@@ -1,5 +1,4 @@
-import { SET_ALL_RECIPES, SET_COOKING_RECIPES, SET_CURRENT_RECIPE } from '../actions/recipes';
-import imgTest from '../assets/images/slider-head-home.jpg';
+import { SET_ALL_RECIPES, SET_COOKING_RECIPES, SET_CURRENT_RECIPE, SET_GROUP_IDS } from '../actions/recipes';
 
 const initialState = {
   myRecipes: [],
@@ -20,6 +19,9 @@ const initialState = {
     group_Recipe: [
     ]
   },
+  groupData: {
+    groupIds: [],
+  }
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -32,6 +34,11 @@ const reducer = (state = initialState, action = {}) => {
       }
     }
     case SET_CURRENT_RECIPE: {
+      const groupIdsList = [];
+
+      action.data.group_Recipe.forEach(groupRecipe => {
+        groupIdsList.push(groupRecipe.groupId);
+      });
       return {
         ...state,
         currentRecipe: action.data,
@@ -41,6 +48,22 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         cookingRecipes: action.data
+      }
+    }
+    case SET_GROUP_IDS: {
+      const newGroupIds = state.groupData.groupIds;
+      if(newGroupIds.includes(action.id)) {
+        const index = newGroupIds.indexOf(action.id);
+        newGroupIds.splice(index, 1);
+      } else {
+        newGroupIds.push(action.id);
+      }
+      return {
+        ...state,
+        groupData: {
+          ...state.groupData,
+          groupIds: newGroupIds,
+        }
       }
     }
     default:
