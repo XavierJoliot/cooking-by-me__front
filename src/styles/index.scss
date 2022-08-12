@@ -46,4 +46,9 @@ a {
 
 p {
   line-height: 120%;
+  text-align: justify;
+}
+
+strong {
+  font-weight: vars.$font-bold;
 }

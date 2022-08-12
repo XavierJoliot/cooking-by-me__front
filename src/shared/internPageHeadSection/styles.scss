@@ -20,5 +20,9 @@
 @media(min-width:769px) {
   .head {
     padding: 5rem;
+
+    &__title {
+      font-size: 3rem;
+    }
   }
 }

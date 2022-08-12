@@ -43,7 +43,6 @@
   }
 
   &__my-recipes {
-    height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,9 +51,28 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 3rem;
 
-    &__link {
-      display: block;
+    &__content {
+      padding: 2rem;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+
+      &__title {
+        margin-bottom: 2rem;
+      }
+
+      &__text {
+        margin-bottom: 2rem;
+      }
+
+      &__link {
+        display: block;
+      }
+
     }
   }
 
@@ -108,6 +126,7 @@
 
     &__presentation {
       flex-direction: row;
+      border-bottom: 1px solid vars.$first-color;
 
       &__logo {
         width: 33%;
@@ -133,10 +152,20 @@
       }
     }
 
+    &__my-recipes {
+      padding: 0 30rem;
+
+      &__content {
+        border-radius: 0;
+        background-color: #fff;
+      }
+    }
+
     &__cooking-recipes {
       padding: 4rem;
       display: flex;
       align-items: center;
+      border-top: 1px solid vars.$second-color;
 
       &__description{
         width: 40%;
