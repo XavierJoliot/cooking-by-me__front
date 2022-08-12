@@ -1,4 +1,4 @@
-import { SET_ALL_GROUPS, SET_CURRENT_GROUP } from "../actions/groups";
+import { SET_ALL_GROUPS, SET_CURRENT_GROUP, SET_RECIPE_IDS } from "../actions/groups";
 
 const initialState = {
   
@@ -12,6 +12,9 @@ const initialState = {
     createdAt: '',
     updatedAt: '',
     group_Recipe: []
+  },
+  recipeData: {
+    recipeIds: []
   }
 };
 
@@ -27,6 +30,22 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         currentGroup: action.data,
+      }
+    }
+    case SET_RECIPE_IDS: {
+      const newRecipeIds = state.recipeData.recipeIds;
+      if(newRecipeIds.includes(action.id)) {
+        const index = newRecipeIds.indexOf(action.id);
+        newRecipeIds.splice(index, 1);
+      } else {
+        newRecipeIds.push(action.id);
+      }
+      return {
+        ...state,
+        recipeData: {
+          ...state.recipeData,
+          recipeIds: newRecipeIds,
+        }
       }
     }
     default:

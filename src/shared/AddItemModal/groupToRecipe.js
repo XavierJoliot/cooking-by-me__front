@@ -66,7 +66,7 @@ const GroupToRecipe = ({ close }) => {
             (groupRecipe) => (
                 <div onClick={(e) => handleRemoveGroupClicked(e, groupRecipe.id)} className='add-item-modal__form__group-list__item add-item-modal__form__group-list__item--not-available' title='Retirer la recette de ce groupe'>
                   <p className='add-item-modal__form__group-list__item__text'>{groupRecipe.group.title}</p>
-                  <i onClick={(e) => handleRemoveGroupClicked(e, groupRecipe.id)} className='ri-delete-bin-line add-item-modal__form__group-list__item__icon add-item-modal__form__group-list__item__icon--red'></i>
+                  <i className='ri-delete-bin-line add-item-modal__form__group-list__item__icon add-item-modal__form__group-list__item__icon--red'></i>
                 </div>
             )
           )
