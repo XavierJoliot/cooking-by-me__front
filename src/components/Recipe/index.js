@@ -27,6 +27,7 @@ const Recipe = () => {
     dispatch(setUserToken(token));
 
     dispatch(getDataFromApi(`recette/${id}`, 'getRecipe'));
+    dispatch(getDataFromApi('groupe', 'groupsList'));
   }
 
   useEffect(() => {
@@ -112,7 +113,7 @@ const Recipe = () => {
   }
 
   const handleAddGroupClicked = () => {
-    dispatch(setIsItemModalOpen('groupe'))
+    dispatch(setIsItemModalOpen('groupe à la recette'))
   }
 
   const handleBackActionCkicked = () => {
@@ -168,11 +169,11 @@ const Recipe = () => {
         <h1 className='recipe__group__title'>Groupes ayant cette recette :</h1>
         <div className='recipe__group__list'>
           {
-            currentRecipe.groupsList &&
-            currentRecipe.groupsList.map(
-              (group) =>(
-                <Link key={group.id} to={'/groupe/' + group.id}>
-                  <GroupCard isGroup={true} title={group.title} imagePath={group.imagePath} />
+            currentRecipe.group_Recipe &&
+            currentRecipe.group_Recipe.map(
+              (groupRecipe) =>(
+                <Link key={groupRecipe.groupId} to={'/groupe/' + groupRecipe.groupId}>
+                  <GroupCard isGroup={true} title={groupRecipe.group.title} imagePath={groupRecipe.group.imagePath} />
                 </Link>
               )
             )

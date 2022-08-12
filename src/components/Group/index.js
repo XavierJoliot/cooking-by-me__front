@@ -111,15 +111,14 @@ const Group = () => {
           {group_Recipe &&
             group_Recipe.map(
               (item) => (
-                <Link key={item.id} to={'/recette/' + item.id} reloadDocument>
-                  <RecipesCard
-                    key={item.title}
-                    imagePath={item.imagePath} 
-                    duration={item.duration}
-                    title={item.title}
-                    quantity={item.quantity}
-                  />
-                </Link>
+                <RecipesCard
+                  key={item.recipe.title}
+                  imagePath={item.recipe.imagePath} 
+                  duration={item.recipe.duration}
+                  title={item.recipe.title}
+                  quantity={item.recipe.quantity}
+                  recipeId={item.recipeId}
+                />
               )
             )
           }
