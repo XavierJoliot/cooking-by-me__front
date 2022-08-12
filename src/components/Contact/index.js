@@ -11,7 +11,7 @@ const Contact = () => (
   <main className='contact-page'>
     <InternPageHeadSection title='Contact' imagePath={ContactHead} />
     <section className='contact-page__description'>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim mauris, dictum eget sapien vitae, auctor vulputate mi. Maecenas finibus elit arcu, vel sodales massa vulputate quis. Praesent iaculis risus vitae feugiat laoreet. Vestibulum ut ligula nec mi rhoncus sodales.</p>
+      <p>Parce que la <strong>cuisine</strong> c’est avant tout du <strong>partage</strong>, n’hésite pas à communiquer avec nous à l’aide de notre formulaire de contact ! C’est simple, rapide et nous te répondrons dans un délai de 48h ! </p>
     </section>
   </main>
 );

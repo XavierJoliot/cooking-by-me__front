@@ -71,7 +71,13 @@ const Recipes = () => {
       <InternPageHeadSection imagePath={HeadImage} title='Mes recettes' />
       <section className='recipes__description'>
         <p className='recipes__description__text'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim mauris, dictum eget sapien vitae, auctor vulputate mi. Maecenas finibus elit arcu, vel sodales massa vulputate quis. Praesent iaculis risus vitae feugiat laoreet. Vestibulum ut ligula nec mi rhoncus sodales.
+        Chez <strong>Cooking By Me</strong> nous sommes convaincus que la <strong>cuisine</strong> rend nos vies meilleures. Une journée difficile, une promotion à célébrer, une soirée entre amis… à chaque événement, sa <strong>recette</strong> ! 
+        <br />
+        <br />
+        Tu peux trouver ton bonheur à chaque pixel ! Ici tu trouveras tout ce dont tu as besoin, des <strong>recettes toutes faites</strong> pour des <strong>repas sans se poser de questions</strong>, tes propres recettes pour pouvoir briller en société ou tout simplement te régaler quand tu le désir et pour finir des <strong>groupes</strong>, dans lesquelles tu peux <strong>ranger, trier tes recettes</strong> afin de te <strong>simplifier</strong> la vie.
+        <br />
+        <br />
+        Et puis, si tu as une idée précise en tête, que tu veux retrouver un groupe, une recette de <strong>Cookers</strong> ou encore une de tes recettes, la <strong>barre de filtres</strong> sur le coté t'aideras à trouver tout ce dont tu as besoin.
         </p>
       </section>
       <section className='recipes__list'>
