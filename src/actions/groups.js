@@ -12,3 +12,11 @@ export const setCurrentGroup = (data) => ({
   data
 });
 
+export const SET_RECIPE_IDS = 'SET_RECIPE_IDS';
+
+export const setRecipeId = (id) => ({
+  type: SET_RECIPE_IDS,
+  id
+});
+
+

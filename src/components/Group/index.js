@@ -6,6 +6,7 @@ import { setUserToken } from '../../actions/general';
 import { deleteDataFromAPI, getDataFromApi } from '../../actions/api';
 import { useEffect } from 'react';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { setIsItemModalOpen } from '../../actions/modal';
 
 // import components
 import RecipesCard from '../../shared/recipesCard';
@@ -32,6 +33,7 @@ const Group = () => {
     dispatch(setUserToken(token));
 
     dispatch(getDataFromApi(`groupe/${id}`, 'getGroup'));
+    dispatch(getDataFromApi(`recette`, 'myRecipesList'));
   }
 
   useEffect(() => {
@@ -64,6 +66,10 @@ const Group = () => {
 
   const handleBackActionCkicked = () => {
     navigate(-1);
+  }
+
+  const handleAddRecipeClicked = () => {
+    dispatch(setIsItemModalOpen('recette à un groupe'))
   }
 
   // redirect if data not found
@@ -122,7 +128,7 @@ const Group = () => {
               )
             )
           }
-          <Link to='#'>
+          <Link to='#' onClick={handleAddRecipeClicked}>
             <RecipesCard isEmpty={true} title='Ajouter une recette dans ce groupe'/>
           </Link>
         </div>

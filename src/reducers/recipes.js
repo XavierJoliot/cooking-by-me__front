@@ -34,11 +34,6 @@ const reducer = (state = initialState, action = {}) => {
       }
     }
     case SET_CURRENT_RECIPE: {
-      const groupIdsList = [];
-
-      action.data.group_Recipe.forEach(groupRecipe => {
-        groupIdsList.push(groupRecipe.groupId);
-      });
       return {
         ...state,
         currentRecipe: action.data,
